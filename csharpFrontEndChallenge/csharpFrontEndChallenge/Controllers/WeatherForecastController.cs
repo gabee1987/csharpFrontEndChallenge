@@ -1,4 +1,4 @@
-﻿using csharpFrontEndChallenge.Models;
+﻿using csharpFrontEndChallenge.Models.WeatherForecast;
 using Microsoft.AspNetCore.Mvc;
 
 namespace csharpFrontEndChallenge.Controllers
@@ -16,6 +16,11 @@ namespace csharpFrontEndChallenge.Controllers
         }
 
         public IActionResult ForecastIndex()
+        {
+            return View();
+        }
+
+        public IActionResult FetchForecast(  )
         {
             return View();
         }
