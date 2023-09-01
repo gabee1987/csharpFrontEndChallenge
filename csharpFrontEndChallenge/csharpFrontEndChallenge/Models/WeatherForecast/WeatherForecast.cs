@@ -2,13 +2,39 @@
 {
     public class WeatherForecast
     {
-        public Location Location { get; set; }
-        public string TimeZone { get; set; }
-        public double Offset { get; set; }
-        public double Elevation { get; set; }
-        public WeatherTypeData Currently { get; set; }
-        public WeatherTypeData Minutely { get; set; }
-        public WeatherTypeData Hourly { get; set; }
-        public WeatherTypeData Daily { get; set; }
+        /// <summary>
+        /// Location data based on Latitude and Longitude
+        /// </summary>
+        public Location Location { get; set; }       
+
+        /// <summary>
+        /// A block containing the current weather for the requested location.
+        /// </summary>
+        public CurrentlyData Currently { get; set; }
+
+        /// <summary>
+        /// A block containing the minute-by-minute precipitation intensity for the 60 minutes.
+        /// </summary>
+        public MinutelyData Minutely { get; set; }
+
+        /// <summary>
+        /// A block containing the hour-by-hour forecasted conditions for the next 48 hours.
+        /// </summary>
+        public HourlyData Hourly { get; set; }
+
+        /// <summary>
+        /// A block containing the day-by-day forecasted conditions for the next 7 days.
+        /// </summary>
+        public DailyData Daily { get; set; }
+
+        /// <summary>
+        /// A list containing any severe weather alerts if any for the current location.
+        /// </summary>
+        public List<Alert> Alerts { get; set; } = new List<Alert>();
+
+        /// <summary>
+        /// A block containing miscellaneous data for the API request.
+        /// </summary>
+        public ApiFlag Flags { get; set; }
     }
 }

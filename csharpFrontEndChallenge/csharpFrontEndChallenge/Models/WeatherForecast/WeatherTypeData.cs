@@ -4,6 +4,6 @@
     {
         public string Summary { get; set; }
         public string Icon { get; set; }
-        public WeatherData Data { get; set; }
+        public BaseWeatherData Data { get; set; }
     }
 }
