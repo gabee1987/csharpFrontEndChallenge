@@ -1,7 +1,7 @@
-﻿using csharpFrontEndChallenge.Models.WeatherForecast;
+﻿using WeatherNET.Models.WeatherForecast;
 using Microsoft.AspNetCore.Mvc;
 
-namespace csharpFrontEndChallenge.Controllers
+namespace WeatherNET.Controllers
 {
     public class WeatherForecastController : Controller
     {

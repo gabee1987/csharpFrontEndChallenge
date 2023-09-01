@@ -1,4 +1,4 @@
-﻿namespace csharpFrontEndChallenge.Models.WeatherForecast
+﻿namespace WeatherNET.Models.WeatherForecast
 {
     /// <summary>
     /// The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. 45.42,-75.69).

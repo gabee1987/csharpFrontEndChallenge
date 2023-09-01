@@ -1,6 +1,6 @@
-﻿using csharpFrontEndChallenge.Services.Interfaces;
+﻿using WeatherNET.Services.Interfaces;
 
-namespace csharpFrontEndChallenge.Services
+namespace WeatherNET.Services
 {
     public class TimeService : ITimeService
     {
@@ -28,7 +28,7 @@ namespace csharpFrontEndChallenge.Services
         /// <param name="unixTimeStamp">The UNIX timestamp.</param>
         /// <returns>The corresponding DateTimeOffset.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the timestamp is out of valid range.</exception>
-        public static DateTimeOffset UnixTimeStampToDateTimeOffset( long unixTimeStamp )
+        public DateTimeOffset UnixTimeStampToDateTimeOffset( long unixTimeStamp )
         {
             if ( unixTimeStamp < 0 )
             {
@@ -43,7 +43,7 @@ namespace csharpFrontEndChallenge.Services
         /// </summary>
         /// <param name="dateTimeOffset">The DateTimeOffset.</param>
         /// <returns>The corresponding UNIX timestamp.</returns>
-        public static long DateTimeOffsetToUnixTimeStamp( DateTimeOffset dateTimeOffset )
+        public long DateTimeOffsetToUnixTimeStamp( DateTimeOffset dateTimeOffset )
         {
             if ( dateTimeOffset < UnixEpoch )
             {
@@ -59,7 +59,7 @@ namespace csharpFrontEndChallenge.Services
         /// <param name="dateTime">The DateTime (should be in UTC).</param>
         /// <returns>The corresponding UNIX timestamp.</returns>
         /// <exception cref="ArgumentException">Thrown when the DateTime is not in UTC.</exception>
-        public static long DateTimeToUnixTimeStamp( DateTime dateTime )
+        public long DateTimeToUnixTimeStamp( DateTime dateTime )
         {
             if ( dateTime.Kind != DateTimeKind.Utc )
             {

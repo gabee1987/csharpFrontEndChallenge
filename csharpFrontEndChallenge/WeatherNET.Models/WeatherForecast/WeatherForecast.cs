@@ -1,4 +1,6 @@
-﻿namespace csharpFrontEndChallenge.Models.WeatherForecast
+﻿using WeatherNET.Models.WeatherForecast.API;
+
+namespace WeatherNET.Models.WeatherForecast
 {
     public class WeatherForecast
     {

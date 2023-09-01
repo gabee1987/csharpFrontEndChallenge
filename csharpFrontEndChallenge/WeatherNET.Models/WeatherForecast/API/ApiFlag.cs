@@ -1,4 +1,4 @@
-﻿namespace csharpFrontEndChallenge.Models.WeatherForecast
+﻿namespace WeatherNET.Models.WeatherForecast.API
 {
     public class ApiFlag
     {

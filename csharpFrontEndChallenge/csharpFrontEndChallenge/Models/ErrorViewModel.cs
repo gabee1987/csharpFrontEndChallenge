@@ -1,4 +1,4 @@
-namespace csharpFrontEndChallenge.Models
+namespace WeatherNET.Models
 {
     public class ErrorViewModel
     {

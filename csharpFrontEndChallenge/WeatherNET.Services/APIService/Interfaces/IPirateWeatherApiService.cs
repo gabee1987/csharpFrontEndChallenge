@@ -1,6 +1,7 @@
-﻿namespace csharpFrontEndChallenge.Services.Interfaces
+﻿namespace WeatherNET.Services.Interfaces
 {
     public interface IPirateWeatherApiService
     {
+
     }
 }

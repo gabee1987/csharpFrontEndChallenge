@@ -1,8 +1,8 @@
-﻿using csharpFrontEndChallenge.Models;
+﻿using WeatherNET.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace csharpFrontEndChallenge.Controllers
+namespace WeatherNET.Controllers
 {
     public class HomeController : Controller
     {

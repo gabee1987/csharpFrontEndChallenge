@@ -1,4 +1,4 @@
-﻿namespace csharpFrontEndChallenge.Models.WeatherForecast
+﻿namespace WeatherNET.Models.WeatherForecast
 {
     public class WeatherTypeData
     {
