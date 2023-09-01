@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharpFrontEndChallenge", "csharpFrontEndChallenge\csharpFrontEndChallenge.csproj", "{975344B3-B3C3-41FB-9014-BCDAF2AE62DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherNET.App", "WeatherNET.App\WeatherNET.App.csproj", "{975344B3-B3C3-41FB-9014-BCDAF2AE62DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherNET.Models", "WeatherNET.Models\WeatherNET.Models.csproj", "{66709A77-2BB1-44C4-8DFC-812D27B4241B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherNET.Services", "WeatherNET.Services\WeatherNET.Services.csproj", "{8C2F1A6D-D414-4F64-B926-2AFD94DB587B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{975344B3-B3C3-41FB-9014-BCDAF2AE62DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975344B3-B3C3-41FB-9014-BCDAF2AE62DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975344B3-B3C3-41FB-9014-BCDAF2AE62DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66709A77-2BB1-44C4-8DFC-812D27B4241B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66709A77-2BB1-44C4-8DFC-812D27B4241B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66709A77-2BB1-44C4-8DFC-812D27B4241B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66709A77-2BB1-44C4-8DFC-812D27B4241B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2F1A6D-D414-4F64-B926-2AFD94DB587B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C2F1A6D-D414-4F64-B926-2AFD94DB587B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C2F1A6D-D414-4F64-B926-2AFD94DB587B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2F1A6D-D414-4F64-B926-2AFD94DB587B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
