@@ -1,6 +1,6 @@
 ﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class MinutelyData : BaseWeatherData
+    public class MinutelyWeatherData : BaseWeatherData
     {
     }
 }

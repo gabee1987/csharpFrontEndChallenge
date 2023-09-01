@@ -12,22 +12,22 @@ namespace WeatherNET.Models.WeatherForecast
         /// <summary>
         /// A block containing the current weather for the requested location.
         /// </summary>
-        public CurrentlyData Currently { get; set; }
+        public CurrentlyWeatherData Currently { get; set; }
 
         /// <summary>
         /// A block containing the minute-by-minute precipitation intensity for the 60 minutes.
         /// </summary>
-        public MinutelyData Minutely { get; set; }
+        public MinutelyWeatherData Minutely { get; set; }
 
         /// <summary>
         /// A block containing the hour-by-hour forecasted conditions for the next 48 hours.
         /// </summary>
-        public HourlyData Hourly { get; set; }
+        public HourlyWeatherData Hourly { get; set; }
 
         /// <summary>
         /// A block containing the day-by-day forecasted conditions for the next 7 days.
         /// </summary>
-        public DailyData Daily { get; set; }
+        public DailyWeatherData Daily { get; set; }
 
         /// <summary>
         /// A list containing any severe weather alerts if any for the current location.

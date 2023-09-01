@@ -1,6 +1,6 @@
 ﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class DailyData : BaseWeatherData
+    public class DailyWeatherData : BaseWeatherData
     {
         /// <summary>
         /// The time when the sun rises for a given day.
