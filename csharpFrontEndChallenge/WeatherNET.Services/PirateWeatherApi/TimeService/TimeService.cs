@@ -1,23 +1,23 @@
-﻿using WeatherNET.Services.Interfaces;
+﻿using WeatherNET.Services.PirateWeatherApi.TimeService.Interfaces;
 
-namespace WeatherNET.Services
+namespace WeatherNET.Services.PirateWeatherApi.TimeService
 {
     public class TimeService : ITimeService
     {
-        private static readonly DateTimeOffset UnixEpoch = new DateTimeOffset( 1970, 1, 1, 0, 0, 0, TimeSpan.Zero );
+        private static readonly DateTimeOffset UnixEpoch = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
-        public  DateTime ConvertUnixToDateTime( long unixTime )
+        public DateTime ConvertUnixToDateTime(long unixTime)
         {
-            var dateTime = new DateTime( 1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc );
-            dateTime     = dateTime.AddSeconds( unixTime ).ToLocalTime();
+            var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(unixTime).ToLocalTime();
 
             return dateTime;
         }
 
-        public  long ConvertDateTimeToUnix( DateTime dateTime )
+        public long ConvertDateTimeToUnix(DateTime dateTime)
         {
-            var unixTime       = new DateTime( 1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc );
-            long unixTimeStamp = (long)( dateTime.ToUniversalTime() - unixTime ).TotalSeconds;
+            var unixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            long unixTimeStamp = (long)(dateTime.ToUniversalTime() - unixTime).TotalSeconds;
 
             return 0;
         }
@@ -28,14 +28,14 @@ namespace WeatherNET.Services
         /// <param name="unixTimeStamp">The UNIX timestamp.</param>
         /// <returns>The corresponding DateTimeOffset.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the timestamp is out of valid range.</exception>
-        public DateTimeOffset UnixTimeStampToDateTimeOffset( long unixTimeStamp )
+        public DateTimeOffset UnixTimeStampToDateTimeOffset(long unixTimeStamp)
         {
-            if ( unixTimeStamp < 0 )
+            if (unixTimeStamp < 0)
             {
-                throw new ArgumentOutOfRangeException( nameof( unixTimeStamp ), "UNIX timestamp cannot be negative." );
+                throw new ArgumentOutOfRangeException(nameof(unixTimeStamp), "UNIX timestamp cannot be negative.");
             }
 
-            return UnixEpoch.AddSeconds( unixTimeStamp );
+            return UnixEpoch.AddSeconds(unixTimeStamp);
         }
 
         /// <summary>
@@ -43,14 +43,14 @@ namespace WeatherNET.Services
         /// </summary>
         /// <param name="dateTimeOffset">The DateTimeOffset.</param>
         /// <returns>The corresponding UNIX timestamp.</returns>
-        public long DateTimeOffsetToUnixTimeStamp( DateTimeOffset dateTimeOffset )
+        public long DateTimeOffsetToUnixTimeStamp(DateTimeOffset dateTimeOffset)
         {
-            if ( dateTimeOffset < UnixEpoch )
+            if (dateTimeOffset < UnixEpoch)
             {
-                throw new ArgumentOutOfRangeException( nameof( dateTimeOffset ), "DateTimeOffset cannot be before the UNIX epoch." );
+                throw new ArgumentOutOfRangeException(nameof(dateTimeOffset), "DateTimeOffset cannot be before the UNIX epoch.");
             }
 
-            return (long)( dateTimeOffset - UnixEpoch ).TotalSeconds;
+            return (long)(dateTimeOffset - UnixEpoch).TotalSeconds;
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace WeatherNET.Services
         /// <param name="dateTime">The DateTime (should be in UTC).</param>
         /// <returns>The corresponding UNIX timestamp.</returns>
         /// <exception cref="ArgumentException">Thrown when the DateTime is not in UTC.</exception>
-        public long DateTimeToUnixTimeStamp( DateTime dateTime )
+        public long DateTimeToUnixTimeStamp(DateTime dateTime)
         {
-            if ( dateTime.Kind != DateTimeKind.Utc )
+            if (dateTime.Kind != DateTimeKind.Utc)
             {
-                throw new ArgumentException( "DateTime must be in UTC.", nameof( dateTime ) );
+                throw new ArgumentException("DateTime must be in UTC.", nameof(dateTime));
             }
 
-            return DateTimeOffsetToUnixTimeStamp( new DateTimeOffset( dateTime ) );
+            return DateTimeOffsetToUnixTimeStamp(new DateTimeOffset(dateTime));
         }
     }
 }

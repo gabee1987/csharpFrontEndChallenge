@@ -1,6 +1,6 @@
 ﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class CurrentlyData : BaseWeatherData
+    public class CurrentlyWeatherData : BaseWeatherData
     {
         /// <summary>
         /// The approximate distance to the nearest storm in kilometers or miles depending on the requested units.
