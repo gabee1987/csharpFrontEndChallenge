@@ -5,7 +5,7 @@
 //    using WeatherNET;
 //
 //    var weatherData = WeatherData.FromJson(jsonString);
-namespace WeatherNET
+namespace WeatherNET.PirateWeatherApi
 {
     using System;
     using System.Globalization;
@@ -51,7 +51,8 @@ namespace WeatherNET
         public long Time { get; set; }
 
         [JsonProperty( "summary" )]
-        public Summary Summary { get; set; }
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
         public Icon Icon { get; set; }
@@ -117,7 +118,8 @@ namespace WeatherNET
     public partial class Daily
     {
         [JsonProperty( "summary" )]
-        public Summary Summary { get; set; }
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
         public Icon Icon { get; set; }
@@ -135,7 +137,8 @@ namespace WeatherNET
         public Icon Icon { get; set; }
 
         [JsonProperty( "summary" )]
-        public Summary Summary { get; set; }
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
 
         [JsonProperty( "sunriseTime" )]
         public long SunriseTime { get; set; }
@@ -276,7 +279,8 @@ namespace WeatherNET
     public partial class Hourly
     {
         [JsonProperty( "summary" )]
-        public Summary Summary { get; set; }
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
         public Icon Icon { get; set; }
@@ -288,7 +292,8 @@ namespace WeatherNET
     public partial class Minutely
     {
         [JsonProperty( "summary" )]
-        public Summary Summary { get; set; }
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
         public string Icon { get; set; }
@@ -315,20 +320,20 @@ namespace WeatherNET
         public PrecipType PrecipType { get; set; }
     }
 
-    public enum Icon { ClearDay, ClearNight, Cloudy, PartlyCloudyDay };
+    public enum Icon { ClearDay, ClearNight, Rain, Snow, Sleet, Wind, Fog, Cloudy, PartlyCloudyDay, PartlyCloudyNight };
 
-    public enum PrecipType { None };
+    public enum PrecipType { Rain, Snow, Sleet, None };
 
-    public enum Summary { Clear, Cloudy, PartlyCloudy };
+    //public enum Summary { Clear, Cloudy, PartlyCloudy };
 
     public partial class WeatherData
     {
-        public static WeatherData FromJson( string json ) => JsonConvert.DeserializeObject<WeatherData>( json, WeatherNET.Converter.Settings );
+        public static WeatherData FromJson( string json ) => JsonConvert.DeserializeObject<WeatherData>( json, WeatherNET.PirateWeatherApi.Converter.Settings );
     }
 
     public static class Serialize
     {
-        public static string ToJson( this WeatherData self ) => JsonConvert.SerializeObject( self, WeatherNET.Converter.Settings );
+        public static string ToJson( this WeatherData self ) => JsonConvert.SerializeObject( self, WeatherNET.PirateWeatherApi.Converter.Settings );
     }
 
     internal static class Converter
@@ -341,7 +346,7 @@ namespace WeatherNET
             {
                 IconConverter.Singleton,
                 PrecipTypeConverter.Singleton,
-                SummaryConverter.Singleton,
+                //SummaryConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
@@ -361,10 +366,22 @@ namespace WeatherNET
                     return Icon.ClearDay;
                 case "clear-night":
                     return Icon.ClearNight;
+                case "rain":
+                    return Icon.Rain;
+                case "snow":
+                    return Icon.Snow;
+                case "sleet":
+                    return Icon.Sleet;
+                case "wind":
+                    return Icon.Wind;
+                case "fog":
+                    return Icon.Fog;
                 case "cloudy":
                     return Icon.Cloudy;
                 case "partly-cloudy-day":
                     return Icon.PartlyCloudyDay;
+                case "partly-cloudy-night":
+                    return Icon.PartlyCloudyNight;
             }
             throw new Exception( "Cannot unmarshal type Icon" );
         }
@@ -385,11 +402,29 @@ namespace WeatherNET
                 case Icon.ClearNight:
                     serializer.Serialize( writer, "clear-night" );
                     return;
+                case Icon.Rain:
+                    serializer.Serialize( writer, "rain" );
+                    return;
+                case Icon.Snow:
+                    serializer.Serialize( writer, "snow" );
+                    return;
+                case Icon.Sleet:
+                    serializer.Serialize( writer, "sleet" );
+                    return;
+                case Icon.Wind:
+                    serializer.Serialize( writer, "wind" );
+                    return;
+                case Icon.Fog:
+                    serializer.Serialize( writer, "fog" );
+                    return;
                 case Icon.Cloudy:
                     serializer.Serialize( writer, "cloudy" );
                     return;
                 case Icon.PartlyCloudyDay:
                     serializer.Serialize( writer, "partly-cloudy-day" );
+                    return;
+                case Icon.PartlyCloudyNight:
+                    serializer.Serialize( writer, "partly-cloudy-night" );
                     return;
             }
             throw new Exception( "Cannot marshal type Icon" );
@@ -406,9 +441,17 @@ namespace WeatherNET
         {
             if ( reader.TokenType == JsonToken.Null ) return null;
             var value = serializer.Deserialize<string>( reader );
-            if ( value == "none" )
+
+            switch ( value )
             {
-                return PrecipType.None;
+                case "rain":
+                    return PrecipType.Rain;
+                case "snow":
+                    return PrecipType.Snow;
+                case "sleet":
+                    return PrecipType.Sleet;
+                case "none":
+                    return PrecipType.None;
             }
             throw new Exception( "Cannot unmarshal type PrecipType" );
         }
@@ -421,10 +464,22 @@ namespace WeatherNET
                 return;
             }
             var value = (PrecipType)untypedValue;
-            if ( value == PrecipType.None )
+            switch ( value )
             {
-                serializer.Serialize( writer, "none" );
-                return;
+                case PrecipType.Rain:
+                    serializer.Serialize( writer, "rain" );
+                    break;
+                case PrecipType.Snow:
+                    serializer.Serialize( writer, "snow" );
+                    break;
+                case PrecipType.Sleet:
+                    serializer.Serialize( writer, "sleet" );
+                    break;
+                case PrecipType.None:
+                    serializer.Serialize( writer, "none" );
+                    break;
+                default:
+                    break;
             }
             throw new Exception( "Cannot marshal type PrecipType" );
         }
@@ -432,49 +487,49 @@ namespace WeatherNET
         public static readonly PrecipTypeConverter Singleton = new PrecipTypeConverter();
     }
 
-    internal class SummaryConverter : JsonConverter
-    {
-        public override bool CanConvert( Type t ) => t == typeof( Summary ) || t == typeof( Summary? );
+    //internal class SummaryConverter : JsonConverter
+    //{
+    //    public override bool CanConvert( Type t ) => t == typeof( Summary ) || t == typeof( Summary? );
 
-        public override object ReadJson( JsonReader reader, Type t, object existingValue, JsonSerializer serializer )
-        {
-            if ( reader.TokenType == JsonToken.Null ) return null;
-            var value = serializer.Deserialize<string>( reader );
-            switch ( value )
-            {
-                case "Clear":
-                    return Summary.Clear;
-                case "Cloudy":
-                    return Summary.Cloudy;
-                case "Partly Cloudy":
-                    return Summary.PartlyCloudy;
-            }
-            throw new Exception( "Cannot unmarshal type Summary" );
-        }
+    //    public override object ReadJson( JsonReader reader, Type t, object existingValue, JsonSerializer serializer )
+    //    {
+    //        if ( reader.TokenType == JsonToken.Null ) return null;
+    //        var value = serializer.Deserialize<string>( reader );
+    //        switch ( value )
+    //        {
+    //            case "Clear":
+    //                return Summary.Clear;
+    //            case "Cloudy":
+    //                return Summary.Cloudy;
+    //            case "Partly Cloudy":
+    //                return Summary.PartlyCloudy;
+    //        }
+    //        throw new Exception( "Cannot unmarshal type Summary" );
+    //    }
 
-        public override void WriteJson( JsonWriter writer, object untypedValue, JsonSerializer serializer )
-        {
-            if ( untypedValue == null )
-            {
-                serializer.Serialize( writer, null );
-                return;
-            }
-            var value = (Summary)untypedValue;
-            switch ( value )
-            {
-                case Summary.Clear:
-                    serializer.Serialize( writer, "Clear" );
-                    return;
-                case Summary.Cloudy:
-                    serializer.Serialize( writer, "Cloudy" );
-                    return;
-                case Summary.PartlyCloudy:
-                    serializer.Serialize( writer, "Partly Cloudy" );
-                    return;
-            }
-            throw new Exception( "Cannot marshal type Summary" );
-        }
+    //    public override void WriteJson( JsonWriter writer, object untypedValue, JsonSerializer serializer )
+    //    {
+    //        if ( untypedValue == null )
+    //        {
+    //            serializer.Serialize( writer, null );
+    //            return;
+    //        }
+    //        var value = (Summary)untypedValue;
+    //        switch ( value )
+    //        {
+    //            case Summary.Clear:
+    //                serializer.Serialize( writer, "Clear" );
+    //                return;
+    //            case Summary.Cloudy:
+    //                serializer.Serialize( writer, "Cloudy" );
+    //                return;
+    //            case Summary.PartlyCloudy:
+    //                serializer.Serialize( writer, "Partly Cloudy" );
+    //                return;
+    //        }
+    //        throw new Exception( "Cannot marshal type Summary" );
+    //    }
 
-        public static readonly SummaryConverter Singleton = new SummaryConverter();
-    }
+    //    public static readonly SummaryConverter Singleton = new SummaryConverter();
+    //}
 }

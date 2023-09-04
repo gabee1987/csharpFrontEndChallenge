@@ -2,7 +2,7 @@
 
 namespace WeatherNET.Models.WeatherForecast
 {
-    public class WeatherForecast
+    public class WeatherForecastModel
     {
         /// <summary>
         /// Location data based on Latitude and Longitude
