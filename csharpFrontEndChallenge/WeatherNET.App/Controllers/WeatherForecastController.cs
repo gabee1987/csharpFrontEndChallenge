@@ -6,10 +6,10 @@ namespace WeatherNET.Controllers
     public class WeatherForecastController : Controller
     {
         private readonly IConfiguration _configuration;
-        private readonly ILogger<WeatherForecastModel> _logger;
+        private readonly ILogger<WeatherData> _logger;
 
 
-        public WeatherForecastController( IConfiguration configuration, ILogger<WeatherForecastModel> logger )
+        public WeatherForecastController( IConfiguration configuration, ILogger<WeatherData> logger )
         {
             _configuration = configuration;
             _logger        = logger;

@@ -1,4 +1,4 @@
-﻿namespace WeatherNET.Models.WeatherForecast
+﻿namespace WeatherNET.Models
 {
     public class HelperClasses
     {

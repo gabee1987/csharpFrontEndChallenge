@@ -1,11 +1,11 @@
 ﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class BaseWeatherData
+    public  class PerHourWeatherData
     {
         /// <summary>
         /// The time in which the data point begins.
         /// </summary>
-        public DateTime Time { get; set; }
+        public long Time { get; set; }
 
         /// <summary>
         /// A human-readable summary describing the weather conditions for a given data point.
@@ -16,8 +16,17 @@
         /// One of a set of icons to provide a visual display of what's happening.
         /// This could be one of: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night.
         /// </summary>
-        public string IconType { get; set; }
+        public string Icon { get; set; }
 
+        /// <summary>
+        /// The approximate distance to the nearest storm in kilometers or miles depending on the requested units.
+        /// </summary>
+        public double NearestStormDistance { get; set; }
+
+        /// <summary>
+        /// The approximate direction in degrees in which a storm is travelling with 0° representing true north.
+        /// </summary>
+        public double NearestStormBearing { get; set; }
 
         /// <summary>
         /// The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested units.
@@ -103,5 +112,10 @@
         /// The density of total atmospheric ozone at a given time in Dobson units.
         /// </summary>
         public double Ozone { get; set; }
+
+        /// <summary>
+        /// The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested units.
+        /// </summary>
+        public double PrecipAccumulation { get; set; }
     }
 }

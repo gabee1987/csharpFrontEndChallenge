@@ -1,4 +1,4 @@
-﻿namespace WeatherNET.Models.WeatherForecast.API
+﻿namespace WeatherNET.Models.WeatherForecast
 {
     public class ApiFlag
     {

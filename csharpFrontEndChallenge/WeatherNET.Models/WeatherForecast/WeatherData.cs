@@ -1,8 +1,6 @@
-﻿using WeatherNET.Models.WeatherForecast.API;
-
-namespace WeatherNET.Models.WeatherForecast
+﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class WeatherForecastModel
+    public class WeatherData
     {
         /// <summary>
         /// Location data based on Latitude and Longitude

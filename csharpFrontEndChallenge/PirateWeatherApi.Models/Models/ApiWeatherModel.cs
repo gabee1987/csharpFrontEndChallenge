@@ -12,7 +12,7 @@ namespace WeatherNET.PirateWeatherApi
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class WeatherData
+    public partial class ApiWeatherData
     {
         [JsonProperty( "latitude" )]
         public double Latitude { get; set; }
@@ -30,22 +30,22 @@ namespace WeatherNET.PirateWeatherApi
         public long Elevation { get; set; }
 
         [JsonProperty( "currently" )]
-        public Currently Currently { get; set; }
+        public ApiCurrentlyData Currently { get; set; }
 
         [JsonProperty( "minutely" )]
-        public Minutely Minutely { get; set; }
+        public ApiMinutelyData Minutely { get; set; }
 
         [JsonProperty( "hourly" )]
-        public Hourly Hourly { get; set; }
+        public ApiHourlyData Hourly { get; set; }
 
         [JsonProperty( "daily" )]
-        public Daily Daily { get; set; }
+        public ApiDailyData Daily { get; set; }
 
         [JsonProperty( "flags" )]
-        public Flags Flags { get; set; }
+        public ApiFlags Flags { get; set; }
     }
 
-    public partial class Currently
+    public partial class ApiCurrentlyData
     {
         [JsonProperty( "time" )]
         public long Time { get; set; }
@@ -55,7 +55,7 @@ namespace WeatherNET.PirateWeatherApi
         public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
-        public Icon Icon { get; set; }
+        public string Icon { get; set; }
 
         [JsonProperty( "nearestStormDistance", NullValueHandling = NullValueHandling.Ignore )]
         public long? NearestStormDistance { get; set; }
@@ -73,7 +73,7 @@ namespace WeatherNET.PirateWeatherApi
         public long PrecipIntensityError { get; set; }
 
         [JsonProperty( "precipType" )]
-        public PrecipType PrecipType { get; set; }
+        public string PrecipType { get; set; }
 
         [JsonProperty( "temperature" )]
         public double Temperature { get; set; }
@@ -115,26 +115,26 @@ namespace WeatherNET.PirateWeatherApi
         public long? PrecipAccumulation { get; set; }
     }
 
-    public partial class Daily
+    public partial class ApiDailyData
     {
         [JsonProperty( "summary" )]
         //public Summary Summary { get; set; }
         public string Summary { get; set; }
 
         [JsonProperty( "icon" )]
-        public Icon Icon { get; set; }
+        public string Icon { get; set; }
 
         [JsonProperty( "data" )]
-        public PerDayData[] Data { get; set; }
+        public ApiPerDayData[] Data { get; set; }
     }
 
-    public partial class PerDayData
+    public partial class ApiPerDayData
     {
         [JsonProperty( "time" )]
         public long Time { get; set; }
 
         [JsonProperty( "icon" )]
-        public Icon Icon { get; set; }
+        public string Icon { get; set; }
 
         [JsonProperty( "summary" )]
         //public Summary Summary { get; set; }
@@ -165,7 +165,7 @@ namespace WeatherNET.PirateWeatherApi
         public long PrecipAccumulation { get; set; }
 
         [JsonProperty( "precipType" )]
-        public PrecipType PrecipType { get; set; }
+        public string PrecipType { get; set; }
 
         [JsonProperty( "temperatureHigh" )]
         public double TemperatureHigh { get; set; }
@@ -249,13 +249,13 @@ namespace WeatherNET.PirateWeatherApi
         public long ApparentTemperatureMaxTime { get; set; }
     }
 
-    public partial class Flags
+    public partial class ApiFlags
     {
         [JsonProperty( "sources" )]
         public string[] Sources { get; set; }
 
         [JsonProperty( "sourceTimes" )]
-        public SourceTimes SourceTimes { get; set; }
+        public ApiSourceTimes SourceTimes { get; set; }
 
         [JsonProperty( "nearest-station" )]
         public long NearestStation { get; set; }
@@ -267,7 +267,7 @@ namespace WeatherNET.PirateWeatherApi
         public string Version { get; set; }
     }
 
-    public partial class SourceTimes
+    public partial class ApiSourceTimes
     {
         [JsonProperty( "gfs" )]
         public DateTimeOffset Gfs { get; set; }
@@ -276,20 +276,7 @@ namespace WeatherNET.PirateWeatherApi
         public DateTimeOffset Gefs { get; set; }
     }
 
-    public partial class Hourly
-    {
-        [JsonProperty( "summary" )]
-        //public Summary Summary { get; set; }
-        public string Summary { get; set; }
-
-        [JsonProperty( "icon" )]
-        public Icon Icon { get; set; }
-
-        [JsonProperty( "data" )]
-        public Currently[] Data { get; set; }
-    }
-
-    public partial class Minutely
+    public partial class ApiHourlyData
     {
         [JsonProperty( "summary" )]
         //public Summary Summary { get; set; }
@@ -299,10 +286,23 @@ namespace WeatherNET.PirateWeatherApi
         public string Icon { get; set; }
 
         [JsonProperty( "data" )]
-        public PerMinuteData[] Data { get; set; }
+        public ApiCurrentlyData[] Data { get; set; }
     }
 
-    public partial class PerMinuteData
+    public partial class ApiMinutelyData
+    {
+        [JsonProperty( "summary" )]
+        //public Summary Summary { get; set; }
+        public string Summary { get; set; }
+
+        [JsonProperty( "icon" )]
+        public string Icon { get; set; }
+
+        [JsonProperty( "data" )]
+        public ApiPerMinuteData[] Data { get; set; }
+    }
+
+    public partial class ApiPerMinuteData
     {
         [JsonProperty( "time" )]
         public long Time { get; set; }
@@ -317,23 +317,23 @@ namespace WeatherNET.PirateWeatherApi
         public long PrecipIntensityError { get; set; }
 
         [JsonProperty( "precipType" )]
-        public PrecipType PrecipType { get; set; }
+        public ApiPrecipType PrecipType { get; set; }
     }
 
-    public enum Icon { ClearDay, ClearNight, Rain, Snow, Sleet, Wind, Fog, Cloudy, PartlyCloudyDay, PartlyCloudyNight };
+    public enum ApiIcon { ClearDay, ClearNight, Rain, Snow, Sleet, Wind, Fog, Cloudy, PartlyCloudyDay, PartlyCloudyNight };
 
-    public enum PrecipType { Rain, Snow, Sleet, None };
+    public enum ApiPrecipType { Rain, Snow, Sleet, None };
 
     //public enum Summary { Clear, Cloudy, PartlyCloudy };
 
-    public partial class WeatherData
+    public partial class ApiWeatherData
     {
-        public static WeatherData FromJson( string json ) => JsonConvert.DeserializeObject<WeatherData>( json, WeatherNET.PirateWeatherApi.Converter.Settings );
+        public static ApiWeatherData FromJson( string json ) => JsonConvert.DeserializeObject<ApiWeatherData>( json, WeatherNET.PirateWeatherApi.Converter.Settings );
     }
 
     public static class Serialize
     {
-        public static string ToJson( this WeatherData self ) => JsonConvert.SerializeObject( self, WeatherNET.PirateWeatherApi.Converter.Settings );
+        public static string ToJson( this ApiWeatherData self ) => JsonConvert.SerializeObject( self, WeatherNET.PirateWeatherApi.Converter.Settings );
     }
 
     internal static class Converter
@@ -344,17 +344,17 @@ namespace WeatherNET.PirateWeatherApi
             DateParseHandling        = DateParseHandling.None,
             Converters               =
             {
-                IconConverter.Singleton,
-                PrecipTypeConverter.Singleton,
+                ApiIconConverter.Singleton,
+                ApiPrecipTypeConverter.Singleton,
                 //SummaryConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
     }
 
-    internal class IconConverter : JsonConverter
+    internal class ApiIconConverter : JsonConverter
     {
-        public override bool CanConvert( Type t ) => t == typeof( Icon ) || t == typeof( Icon? );
+        public override bool CanConvert( Type t ) => t == typeof( ApiIcon ) || t == typeof( ApiIcon? );
 
         public override object ReadJson( JsonReader reader, Type t, object existingValue, JsonSerializer serializer )
         {
@@ -363,25 +363,25 @@ namespace WeatherNET.PirateWeatherApi
             switch ( value )
             {
                 case "clear-day":
-                    return Icon.ClearDay;
+                    return ApiIcon.ClearDay;
                 case "clear-night":
-                    return Icon.ClearNight;
+                    return ApiIcon.ClearNight;
                 case "rain":
-                    return Icon.Rain;
+                    return ApiIcon.Rain;
                 case "snow":
-                    return Icon.Snow;
+                    return ApiIcon.Snow;
                 case "sleet":
-                    return Icon.Sleet;
+                    return ApiIcon.Sleet;
                 case "wind":
-                    return Icon.Wind;
+                    return ApiIcon.Wind;
                 case "fog":
-                    return Icon.Fog;
+                    return ApiIcon.Fog;
                 case "cloudy":
-                    return Icon.Cloudy;
+                    return ApiIcon.Cloudy;
                 case "partly-cloudy-day":
-                    return Icon.PartlyCloudyDay;
+                    return ApiIcon.PartlyCloudyDay;
                 case "partly-cloudy-night":
-                    return Icon.PartlyCloudyNight;
+                    return ApiIcon.PartlyCloudyNight;
             }
             throw new Exception( "Cannot unmarshal type Icon" );
         }
@@ -393,49 +393,49 @@ namespace WeatherNET.PirateWeatherApi
                 serializer.Serialize( writer, null );
                 return;
             }
-            var value = (Icon)untypedValue;
+            var value = (ApiIcon)untypedValue;
             switch ( value )
             {
-                case Icon.ClearDay:
+                case ApiIcon.ClearDay:
                     serializer.Serialize( writer, "clear-day" );
                     return;
-                case Icon.ClearNight:
+                case ApiIcon.ClearNight:
                     serializer.Serialize( writer, "clear-night" );
                     return;
-                case Icon.Rain:
+                case ApiIcon.Rain:
                     serializer.Serialize( writer, "rain" );
                     return;
-                case Icon.Snow:
+                case ApiIcon.Snow:
                     serializer.Serialize( writer, "snow" );
                     return;
-                case Icon.Sleet:
+                case ApiIcon.Sleet:
                     serializer.Serialize( writer, "sleet" );
                     return;
-                case Icon.Wind:
+                case ApiIcon.Wind:
                     serializer.Serialize( writer, "wind" );
                     return;
-                case Icon.Fog:
+                case ApiIcon.Fog:
                     serializer.Serialize( writer, "fog" );
                     return;
-                case Icon.Cloudy:
+                case ApiIcon.Cloudy:
                     serializer.Serialize( writer, "cloudy" );
                     return;
-                case Icon.PartlyCloudyDay:
+                case ApiIcon.PartlyCloudyDay:
                     serializer.Serialize( writer, "partly-cloudy-day" );
                     return;
-                case Icon.PartlyCloudyNight:
+                case ApiIcon.PartlyCloudyNight:
                     serializer.Serialize( writer, "partly-cloudy-night" );
                     return;
             }
             throw new Exception( "Cannot marshal type Icon" );
         }
 
-        public static readonly IconConverter Singleton = new IconConverter();
+        public static readonly ApiIconConverter Singleton = new ApiIconConverter();
     }
 
-    internal class PrecipTypeConverter : JsonConverter
+    internal class ApiPrecipTypeConverter : JsonConverter
     {
-        public override bool CanConvert( Type t ) => t == typeof( PrecipType ) || t == typeof( PrecipType? );
+        public override bool CanConvert( Type t ) => t == typeof( ApiPrecipType ) || t == typeof( ApiPrecipType? );
 
         public override object ReadJson( JsonReader reader, Type t, object existingValue, JsonSerializer serializer )
         {
@@ -445,13 +445,13 @@ namespace WeatherNET.PirateWeatherApi
             switch ( value )
             {
                 case "rain":
-                    return PrecipType.Rain;
+                    return ApiPrecipType.Rain;
                 case "snow":
-                    return PrecipType.Snow;
+                    return ApiPrecipType.Snow;
                 case "sleet":
-                    return PrecipType.Sleet;
+                    return ApiPrecipType.Sleet;
                 case "none":
-                    return PrecipType.None;
+                    return ApiPrecipType.None;
             }
             throw new Exception( "Cannot unmarshal type PrecipType" );
         }
@@ -463,19 +463,19 @@ namespace WeatherNET.PirateWeatherApi
                 serializer.Serialize( writer, null );
                 return;
             }
-            var value = (PrecipType)untypedValue;
+            var value = (ApiPrecipType)untypedValue;
             switch ( value )
             {
-                case PrecipType.Rain:
+                case ApiPrecipType.Rain:
                     serializer.Serialize( writer, "rain" );
                     break;
-                case PrecipType.Snow:
+                case ApiPrecipType.Snow:
                     serializer.Serialize( writer, "snow" );
                     break;
-                case PrecipType.Sleet:
+                case ApiPrecipType.Sleet:
                     serializer.Serialize( writer, "sleet" );
                     break;
-                case PrecipType.None:
+                case ApiPrecipType.None:
                     serializer.Serialize( writer, "none" );
                     break;
                 default:
@@ -484,7 +484,7 @@ namespace WeatherNET.PirateWeatherApi
             throw new Exception( "Cannot marshal type PrecipType" );
         }
 
-        public static readonly PrecipTypeConverter Singleton = new PrecipTypeConverter();
+        public static readonly ApiPrecipTypeConverter Singleton = new ApiPrecipTypeConverter();
     }
 
     //internal class SummaryConverter : JsonConverter
