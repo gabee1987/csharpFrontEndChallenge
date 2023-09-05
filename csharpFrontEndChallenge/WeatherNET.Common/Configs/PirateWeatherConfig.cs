@@ -2,7 +2,7 @@
 {
     public class PirateWeatherConfig
     {
-        public string PirateWeatherBaseUrl { get; set; }
-        public string PirateWeatherApiKey { get; set; }
+        public string BaseUrl { get; set; }
+        public string ApiKey { get; set; }
     }
 }

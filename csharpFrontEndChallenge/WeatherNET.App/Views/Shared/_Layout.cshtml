@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - csharpFrontEndChallenge</title>
+    <title>@ViewData["Title"] - WeatherNET</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/csharpFrontEndChallenge.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/weatherNET.styles.css" asp-append-version="true" />
     @*Knockout JS CDN*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
 </head>
@@ -25,7 +25,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="WeatherForecast" asp-action="ForecastIndex">Forecast</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Weather" asp-action="GetCurrentWeather">Current Weather</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

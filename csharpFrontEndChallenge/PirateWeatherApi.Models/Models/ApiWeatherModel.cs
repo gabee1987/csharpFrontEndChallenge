@@ -24,7 +24,7 @@ namespace WeatherNET.PirateWeatherApi
         public string Timezone { get; set; }
 
         [JsonProperty( "offset" )]
-        public long Offset { get; set; }
+        public double Offset { get; set; }
 
         [JsonProperty( "elevation" )]
         public long Elevation { get; set; }
@@ -64,13 +64,13 @@ namespace WeatherNET.PirateWeatherApi
         public long? NearestStormBearing { get; set; }
 
         [JsonProperty( "precipIntensity" )]
-        public long PrecipIntensity { get; set; }
+        public double PrecipIntensity { get; set; }
 
         [JsonProperty( "precipProbability" )]
-        public long PrecipProbability { get; set; }
+        public double PrecipProbability { get; set; }
 
         [JsonProperty( "precipIntensityError" )]
-        public long PrecipIntensityError { get; set; }
+        public double PrecipIntensityError { get; set; }
 
         [JsonProperty( "precipType" )]
         public string PrecipType { get; set; }
@@ -106,13 +106,13 @@ namespace WeatherNET.PirateWeatherApi
         public double UvIndex { get; set; }
 
         [JsonProperty( "visibility" )]
-        public long Visibility { get; set; }
+        public double Visibility { get; set; }
 
         [JsonProperty( "ozone" )]
         public double Ozone { get; set; }
 
         [JsonProperty( "precipAccumulation", NullValueHandling = NullValueHandling.Ignore )]
-        public long? PrecipAccumulation { get; set; }
+        public double? PrecipAccumulation { get; set; }
     }
 
     public partial class ApiDailyData
@@ -150,19 +150,19 @@ namespace WeatherNET.PirateWeatherApi
         public double MoonPhase { get; set; }
 
         [JsonProperty( "precipIntensity" )]
-        public long PrecipIntensity { get; set; }
+        public double PrecipIntensity { get; set; }
 
         [JsonProperty( "precipIntensityMax" )]
-        public long PrecipIntensityMax { get; set; }
+        public double PrecipIntensityMax { get; set; }
 
         [JsonProperty( "precipIntensityMaxTime" )]
         public long PrecipIntensityMaxTime { get; set; }
 
         [JsonProperty( "precipProbability" )]
-        public long PrecipProbability { get; set; }
+        public double PrecipProbability { get; set; }
 
         [JsonProperty( "precipAccumulation" )]
-        public long PrecipAccumulation { get; set; }
+        public double PrecipAccumulation { get; set; }
 
         [JsonProperty( "precipType" )]
         public string PrecipType { get; set; }
@@ -222,7 +222,7 @@ namespace WeatherNET.PirateWeatherApi
         public long UvIndexTime { get; set; }
 
         [JsonProperty( "visibility" )]
-        public long Visibility { get; set; }
+        public double Visibility { get; set; }
 
         [JsonProperty( "temperatureMin" )]
         public double TemperatureMin { get; set; }
@@ -270,10 +270,10 @@ namespace WeatherNET.PirateWeatherApi
     public partial class ApiSourceTimes
     {
         [JsonProperty( "gfs" )]
-        public DateTimeOffset Gfs { get; set; }
+        public string Gfs { get; set; }
 
         [JsonProperty( "gefs" )]
-        public DateTimeOffset Gefs { get; set; }
+        public string Gefs { get; set; }
     }
 
     public partial class ApiHourlyData
@@ -308,13 +308,13 @@ namespace WeatherNET.PirateWeatherApi
         public long Time { get; set; }
 
         [JsonProperty( "precipIntensity" )]
-        public long PrecipIntensity { get; set; }
+        public double PrecipIntensity { get; set; }
 
         [JsonProperty( "precipProbability" )]
-        public long PrecipProbability { get; set; }
+        public double PrecipProbability { get; set; }
 
         [JsonProperty( "precipIntensityError" )]
-        public long PrecipIntensityError { get; set; }
+        public double PrecipIntensityError { get; set; }
 
         [JsonProperty( "precipType" )]
         public ApiPrecipType PrecipType { get; set; }

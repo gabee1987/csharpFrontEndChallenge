@@ -16,12 +16,18 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
         public PirateWeatherApiService( IOptions<PirateWeatherConfig> configOptions, IMapper mapper )
         {
             _config = configOptions.Value;
-            _api    = RestService.For<IPirateWeatherApi>( _config.PirateWeatherBaseUrl );
+            _api    = RestService.For<IPirateWeatherApi>( _config.BaseUrl );
+            _mapper = mapper;
         }
 
         public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location )
         {
-            var apidData = await _api.GetWeatherDataAsync( _config.PirateWeatherApiKey, location.Latitude, location.Longitude );
+            if ( string.IsNullOrWhiteSpace( _config.BaseUrl ) )
+            {
+                throw new ArgumentException( "PirateWeatherBaseUrl is not set in the configuration." );
+            }
+
+            var apidData = await _api.GetWeatherDataAsync( _config.ApiKey, location.Latitude, location.Longitude );
             return _mapper.Map<CurrentlyWeatherData>( apidData.Currently );
         }
 

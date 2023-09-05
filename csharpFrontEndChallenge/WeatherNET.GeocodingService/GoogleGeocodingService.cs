@@ -13,7 +13,7 @@ namespace WeatherNET.GeocodingService
         public GoogleGeocodingService( IOptions<GoogleGeocodingConfig> configOptions )
         {
             _config = configOptions.Value;
-            _api    = RestService.For<IGoogleGeocodingApi>( Configs.GoogleApiBaseUrl );
+            _api    = RestService.For<IGoogleGeocodingApi>( _config.BaseUrl );
         }
 
 

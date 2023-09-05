@@ -1,5 +1,7 @@
 using WeatherNET.Common.Configs;
 using WeatherNET.GeocodingService;
+using WeatherNET.Services.PirateWeatherApi.APIService;
+using WeatherNET.Services.PirateWeatherApi.APIService.Interfaces;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -9,12 +11,13 @@ builder.Services.AddControllersWithViews();
 // Bind configuration sections to classes
 var configuration = builder.Configuration;
 
-builder.Services.Configure<GoogleGeocodingConfig>( configuration.GetSection( "GoogleMaps" ) );
-builder.Services.Configure<PirateWeatherConfig>( configuration.GetSection( "PirateWeather" ) );
+builder.Services.Configure<GoogleGeocodingConfig>( configuration.GetSection( "GoogleMapsApi" ) );
+builder.Services.Configure<PirateWeatherConfig>( configuration.GetSection( "PirateWeatherApi" ) );
 
 // Application Services
 builder.Services.AddAutoMapper( typeof( WeatherNET.Services.MappingProfiles.WeatherMappingProfile ) );
 builder.Services.AddSingleton<IGeocodingService, GoogleGeocodingService>();
+builder.Services.AddSingleton<IPirateWeatherApiService, PirateWeatherApiService>();
 
 
 var app = builder.Build();

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Current Weather";
+}
+@model WeatherNET.Models.WeatherForecast.CurrentlyWeatherData
+
+<div class="text-center">
+    <h1 class="display-4">Weather Forecast</h1>
+</div>
+<form method="get" action="/Weather/GetCurrentWeather">
+    <input type="text" name="locationName" placeholder="Enter location name..." required>
+    <button type="submit">Get Forecast</button>
+</form>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Current Weather for {Location}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Temperature:</strong> @Model.Temperature °</p>
+                    <p><strong>Feels Like:</strong> @Model.ApparentTemperature °</p>
+                    <p><strong>Humidity:</strong> @Model.Humidity %</p>
+                    <p><strong>Wind Speed:</strong> @Model.WindSpeed km/h</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>UV Index:</strong> @Model.UvIndex</p>
+                    <p><strong>Visibility:</strong> @Model.Visibility km</p>
+                    <p><strong>Pressure:</strong> @Model.Pressure hPa</p>
+                    <p><strong>Ozone:</strong> @Model.Ozone DU</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <p><strong>Weather Summary:</strong> @Model.Summary</p>
+        </div>
+    </div>
+
+    <!-- Daily Forecast -->
+    @*<div class="mt-5">
+        <h3>Daily Forecast</h3>
+        <div class="row">
+            @foreach ( var day in Model.Daily.Data )
+            {
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5>@day.Time</h5>
+                            <img src="@day.Icon" alt="@day.Summary" class="img-fluid mb-2">
+                            <p><strong>High:</strong> @day.TemperatureHigh °</p>
+                            <p><strong>Low:</strong> @day.TemperatureLow °</p>
+                            <p><strong>Summary:</strong> @day.Summary</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@
+
+    <!-- Hourly Forecast (you can add similar sections for Minutely, etc.) -->
+    @*<div class="mt-5">
+        <h3>Hourly Forecast</h3>
+        <div class="row">
+            @foreach ( var hour in Model.Hourly.Data )
+            {
+                <div class="col-md-2">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5>@hour.Time</h5>
+                            <img src="@hour.Icon" alt="@hour.Summary" class="img-fluid mb-2">
+                            <p><strong>Temp:</strong> @hour.Temperature °</p>
+                            <p><strong>Summary:</strong> @hour.Summary</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@
+</div>
