@@ -21,7 +21,7 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
 
         public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location )
         {
-            var apidData = await _api. GetWeatherDataAsync( _config.PirateWeatherApiKey, location.Latitude, location.Longitude );
+            var apidData = await _api.GetWeatherDataAsync( _config.PirateWeatherApiKey, location.Latitude, location.Longitude );
             return _mapper.Map<CurrentlyWeatherData>( apidData.Currently );
         }
 
