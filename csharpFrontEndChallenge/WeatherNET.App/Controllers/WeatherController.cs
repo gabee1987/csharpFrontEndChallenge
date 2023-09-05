@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WeatherNET.GeocodingService;
 using WeatherNET.Services.PirateWeatherApi.APIService.Interfaces;
+using WeatherNET.App.Models;
 
 namespace WeatherNET.Controllers
 {
@@ -33,6 +34,7 @@ namespace WeatherNET.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCurrentWeather( string? locationName )
         {
+            // TODO need to create a proper inital page for the first time start
             // Validate input
             if ( string.IsNullOrWhiteSpace( locationName ) )
             {
@@ -53,9 +55,16 @@ namespace WeatherNET.Controllers
             // Fetch weather data
             var currentWeather = await _pirateWeatherApiService.GetCurrentWeatherAsync( location );
 
+            var viewModel = new CurrentWeatherViewModel
+            {
+                Currently   = currentWeather,
+                Location    = location,
+                DisplayUnit = "imperial"
+            };
+
 
             // Pass the weather data to the view
-            return View( "CurrentWeather", currentWeather );
+            return View( "CurrentWeather", viewModel );
         }
     }
 }

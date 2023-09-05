@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Current Weather";
 }
-@model WeatherNET.Models.WeatherForecast.CurrentlyWeatherData
+@model WeatherNET.App.Models.CurrentWeatherViewModel
 
 <div class="text-center">
     <h1 class="display-4">Weather Forecast</h1>
@@ -14,26 +14,40 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2>Current Weather for {Location}</h2>
+            <h2>Current Weather for @Model.Location.Name</h2>
+            <h3>Time of data: @Model.Currently.Time</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Temperature:</strong> @Model.Temperature °</p>
-                    <p><strong>Feels Like:</strong> @Model.ApparentTemperature °</p>
-                    <p><strong>Humidity:</strong> @Model.Humidity %</p>
-                    <p><strong>Wind Speed:</strong> @Model.WindSpeed km/h</p>
+                    <p><strong>Summary:</strong> @Model.Currently.Summary</p>
+                    <p><strong>Icon:</strong> @Model.Currently.Icon</p>
+                    <p><strong>Temperature:</strong> @Model.Currently.Temperature °</p>
+                    <p><strong>Feels Like:</strong> @Model.Currently.ApparentTemperature °</p>
+                    <p><strong>Nearest Storm Distance:</strong> @Model.Currently.NearestStormDistance</p>
+                    <p><strong>Nearest Storm Bearing:</strong> @Model.Currently.NearestStormBearing</p>
+                    <p><strong>Precipitation Intensity:</strong> @Model.Currently.PrecipIntensity</p>
+                    <p><strong>Precipitation Probability:</strong> @Model.Currently.PrecipProbability %</p>
+                    <p><strong>Precipitation Intensity Error:</strong> @Model.Currently.PrecipIntensityError</p>
+                    <p><strong>Precipitation Type:</strong> @Model.Currently.PrecipType</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>UV Index:</strong> @Model.UvIndex</p>
-                    <p><strong>Visibility:</strong> @Model.Visibility km</p>
-                    <p><strong>Pressure:</strong> @Model.Pressure hPa</p>
-                    <p><strong>Ozone:</strong> @Model.Ozone DU</p>
+                    <p><strong>Dew Point:</strong> @Model.Currently.DewPoint</p>
+                    <p><strong>Humidity:</strong> @Model.Currently.Humidity %</p>
+                    <p><strong>Pressure:</strong> @Model.Currently.Pressure hPa</p>
+                    <p><strong>Wind Speed:</strong> @Model.Currently.WindSpeed km/h</p>
+                    <p><strong>Wind Gust:</strong> @Model.Currently.WindGust km/h</p>
+                    <p><strong>Wind Bearing:</strong> @Model.Currently.WindBearing °</p>
+                    <p><strong>Cloud Cover:</strong> @Model.Currently.CloudCover %</p>
+                    <p><strong>UV Index:</strong> @Model.Currently.UvIndex</p>
+                    <p><strong>Visibility:</strong> @Model.Currently.Visibility km</p>
+                    <p><strong>Ozone:</strong> @Model.Currently.Ozone DU</p>
+                    <p><strong>Precipitation Accumulation:</strong> @Model.Currently.PrecipAccumulation</p>
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <p><strong>Weather Summary:</strong> @Model.Summary</p>
+            <p><strong>Weather Summary:</strong> @Model.Currently.Summary</p>
         </div>
     </div>
 
