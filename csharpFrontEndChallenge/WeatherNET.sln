@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherNET.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PirateWeatherApi.Models", "PirateWeatherApi.Models\PirateWeatherApi.Models.csproj", "{643E9BB4-A4DE-41BB-8E1F-A55F077B0169}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherNET.GeocodingService", "WeatherNET.GeocodingService\WeatherNET.GeocodingService.csproj", "{C4DFF1A6-54EE-4310-9158-A4967A80EB71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherNET.Common", "WeatherNET.Common\WeatherNET.Common.csproj", "{6C76FEDF-FC6E-4117-B69D-2153A276D6AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{643E9BB4-A4DE-41BB-8E1F-A55F077B0169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643E9BB4-A4DE-41BB-8E1F-A55F077B0169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{643E9BB4-A4DE-41BB-8E1F-A55F077B0169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4DFF1A6-54EE-4310-9158-A4967A80EB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4DFF1A6-54EE-4310-9158-A4967A80EB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4DFF1A6-54EE-4310-9158-A4967A80EB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4DFF1A6-54EE-4310-9158-A4967A80EB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C76FEDF-FC6E-4117-B69D-2153A276D6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C76FEDF-FC6E-4117-B69D-2153A276D6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C76FEDF-FC6E-4117-B69D-2153A276D6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C76FEDF-FC6E-4117-B69D-2153A276D6AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
