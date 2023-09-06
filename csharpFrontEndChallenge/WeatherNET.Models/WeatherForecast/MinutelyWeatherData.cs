@@ -13,6 +13,6 @@
         /// </summary>
         public string Icon { get; set; }
 
-        public IEnumerable<PerMinuteWeatherData> Data { get; set; }
+        public List<PerMinuteWeatherData> Data { get; set; } = new List<PerMinuteWeatherData>();
     }
 }

@@ -1,6 +1,4 @@
-﻿using WeatherNET.Services.PirateWeatherApi.TimeService.Interfaces;
-
-namespace WeatherNET.Services.PirateWeatherApi.TimeService
+﻿namespace WeatherNET.Services.PirateWeatherApi.TimeService
 {
     public class TimeService : ITimeService
     {

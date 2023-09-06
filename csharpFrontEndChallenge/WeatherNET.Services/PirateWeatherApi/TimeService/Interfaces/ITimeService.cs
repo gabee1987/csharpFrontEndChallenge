@@ -1,4 +1,4 @@
-﻿namespace WeatherNET.Services.PirateWeatherApi.TimeService.Interfaces
+﻿namespace WeatherNET.Services.PirateWeatherApi.TimeService
 {
     public interface ITimeService
     {

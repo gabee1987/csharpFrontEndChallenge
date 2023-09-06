@@ -35,6 +35,6 @@
         /// <summary>
         /// A block containing miscellaneous data for the API request.
         /// </summary>
-        public ApiFlag Flags { get; set; }
+        public Flags Flags { get; set; }
     }
 }

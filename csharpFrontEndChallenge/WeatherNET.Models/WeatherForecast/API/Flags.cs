@@ -1,16 +1,16 @@
 ﻿namespace WeatherNET.Models.WeatherForecast
 {
-    public class ApiFlag
+    public class Flags
     {
         /// <summary>
         /// The models used to generate the forecast.
         /// </summary>   
-        public List<string> Sources { get; set; }
+        public List<string> Sources { get; set; } = new List<string>();
 
         /// <summary>
         /// The time in UTC when the model was last updated.
         /// </summary>
-        public Dictionary<string, string> SourceTimes { get; set; }
+        public SourceTimes SourceTimes { get; set; }
 
         /// <summary>
         /// The distance in miles or kilometres to the closest station used in the request.

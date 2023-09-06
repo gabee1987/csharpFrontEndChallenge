@@ -14,6 +14,6 @@
         /// </summary>
         public string Icon { get; set; }
 
-        public IEnumerable<PerDayWeatherData> Data { get; set; }
+        public List<PerDayWeatherData> Data { get; set; } = new List<PerDayWeatherData>();
     }
 }

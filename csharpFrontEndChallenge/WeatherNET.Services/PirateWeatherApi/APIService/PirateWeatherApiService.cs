@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Refit;
 using WeatherNET.Common.Configs;
 using WeatherNET.Models.WeatherForecast;
-using WeatherNET.Services.PirateWeatherApi.APIService.Interfaces;
 
 namespace WeatherNET.Services.PirateWeatherApi.APIService
 {
@@ -20,7 +19,7 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
             _mapper = mapper;
         }
 
-        public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location )
+        public async Task<WeatherData> GetWeatherAsync( Location location )
         {
             if ( string.IsNullOrWhiteSpace( _config.BaseUrl ) )
             {
@@ -28,6 +27,17 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
             }
 
             var apidData = await _api.GetWeatherDataAsync( _config.ApiKey, location.Latitude, location.Longitude );
+            return _mapper.Map<WeatherData>( apidData );
+        }
+
+        public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location )
+        {
+            if ( string.IsNullOrWhiteSpace( _config.BaseUrl ) )
+            {
+                throw new ArgumentException( "PirateWeatherBaseUrl is not set in the configuration." );
+            }
+
+            var apidData = await _api.GetCurrentWeatherDataAsync( _config.ApiKey, location.Latitude, location.Longitude );
             return _mapper.Map<CurrentlyWeatherData>( apidData.Currently );
         }
 

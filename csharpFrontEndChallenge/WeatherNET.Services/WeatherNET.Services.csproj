@@ -16,4 +16,8 @@
     <ProjectReference Include="..\WeatherNET.Models\WeatherNET.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UnitConversionService\Interfaces\" />
+  </ItemGroup>
+
 </Project>

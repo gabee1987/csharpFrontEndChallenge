@@ -317,7 +317,7 @@ namespace WeatherNET.PirateWeatherApi
         public double PrecipIntensityError { get; set; }
 
         [JsonProperty( "precipType" )]
-        public ApiPrecipType PrecipType { get; set; }
+        public string PrecipType { get; set; }
     }
 
     public enum ApiIcon { ClearDay, ClearNight, Rain, Snow, Sleet, Wind, Fog, Cloudy, PartlyCloudyDay, PartlyCloudyNight };
