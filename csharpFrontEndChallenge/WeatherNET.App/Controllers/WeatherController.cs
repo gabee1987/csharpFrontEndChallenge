@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WeatherNET.App.Models;
 using WeatherNET.Services.WeatherService;
+using WeatherNET.Services.Exceptions_Models;
 
 namespace WeatherNET.Controllers
 {
@@ -27,28 +28,31 @@ namespace WeatherNET.Controllers
         [HttpGet]
         public async Task<IActionResult> GetWeather( string? locationName )
         {
-            // TODO need to create a proper inital page for the first time start
-            // Validate input
-            if ( string.IsNullOrWhiteSpace( locationName ) )
+            try
             {
-                locationName = "Budapest";
-                // Handle invalid input (e.g., return an error view or message)
-                //return View( "Error", "Invalid location name provided." );
+                locationName ??= "Budapest";
+
+                var weatherData = await _weatherService.GetWeatherAsync( locationName );
+
+                if ( weatherData == null )
+                {
+                    _logger.LogWarning( $"No weather data found for location: {locationName}" );
+                    return NotFound( $"No weather data found for location: {locationName}" );
+                }
+
+                return View( "Weather", weatherData );
             }
+            catch ( InvalidLocationException ex ) // Custom exception for invalid locations
+            {
 
-            var weatherData = await _weatherService.GetWeatherAsync( locationName );
-            
-
-            //var viewModel = new CurrentWeatherViewModel
-            //{
-            //    Currently   = weatherData.Currently,
-            //    Location    = weatherData.Location,
-            //    DisplayUnit = "metric"
-            //};
-
-
-            // Pass the weather data to the view
-            return View( "Weather", weatherData );
+                _logger.LogError( ex, $"Invalid location provided: {locationName}" );
+                return BadRequest( $"Invalid location: {locationName}" );
+            }
+            catch ( Exception ex ) // General exception handler
+            {
+                _logger.LogError( ex, "An error occurred while fetching weather data." );
+                return StatusCode( 500, "Internal server error. Please try again later." );
+            }
         }
     }
 }

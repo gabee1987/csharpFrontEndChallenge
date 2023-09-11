@@ -1,5 +1,6 @@
 ﻿using WeatherNET.GeocodingService;
 using WeatherNET.Models.WeatherForecast;
+using WeatherNET.Services.Exceptions_Models;
 using WeatherNET.Services.PirateWeatherApi.APIService;
 using WeatherNET.Services.PirateWeatherApi.TimeService;
 
@@ -97,6 +98,11 @@ namespace WeatherNET.Services.WeatherService
         {
             // Convert location name to latitude and longitude
             var coordinates = await _geocodingService.GetCoordinatesAsync( locationName );
+
+            if ( coordinates.Latitude == 0 && coordinates.Longitude == 0 )
+            {
+                throw new InvalidLocationException( $"Invalid location provided: {locationName}" );
+            }
 
             var location = new Location
             {
