@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Refit;
 using WeatherNET.Common.Configs;
 using WeatherNET.Models.WeatherForecast;
+using WeatherNET.PirateWeatherApi;
 
 namespace WeatherNET.Services.PirateWeatherApi.APIService
 {
@@ -21,39 +22,45 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
 
         public async Task<WeatherData> GetWeatherAsync( Location location )
         {
-            if ( string.IsNullOrWhiteSpace( _config.BaseUrl ) )
-            {
-                throw new ArgumentException( "PirateWeatherBaseUrl is not set in the configuration." );
-            }
-
-            var apidData = await _api.GetWeatherDataAsync( _config.ApiKey, location.Latitude, location.Longitude );
-            return _mapper.Map<WeatherData>( apidData );
+            var apiData = await FetchApiData( _api.GetWeatherDataAsync, location );
+            return _mapper.Map<WeatherData>( apiData );
         }
 
         public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location )
         {
+            var apidData = await FetchApiData( _api.GetCurrentWeatherDataAsync, location );
+            return _mapper.Map<CurrentlyWeatherData>( apidData.Currently );
+        }
+
+        public async Task<DailyWeatherData> GetDailyWeatherAsync( Location location )
+        {
+            var apiData = await FetchApiData( _api.GetDailyWeatherDataAsync, location );
+            return _mapper.Map<DailyWeatherData>( apiData.Daily );
+        }
+
+        public async Task<HourlyWeatherData> GetHourlyWeatherAsync( Location location )
+        {
+            var apiData = await FetchApiData( _api.GetHourlyWeatherDataAsync, location );
+            return _mapper.Map<HourlyWeatherData>( apiData.Hourly );
+        }
+
+        public async Task<MinutelyWeatherData> GetMinutelyWeatherAsync( Location location )
+        {
+            var apiData = await FetchApiData( _api.GetMinutelyWeatherDataAsync, location );
+            return _mapper.Map<MinutelyWeatherData>( apiData.Minutely );
+        }
+
+
+
+        #region Helper methods
+        private async Task<ApiWeatherData> FetchApiData( Func<string, double, double, Task<ApiWeatherData>> apiMethod, Location location )
+        {
             if ( string.IsNullOrWhiteSpace( _config.BaseUrl ) )
             {
                 throw new ArgumentException( "PirateWeatherBaseUrl is not set in the configuration." );
             }
-
-            var apidData = await _api.GetCurrentWeatherDataAsync( _config.ApiKey, location.Latitude, location.Longitude );
-            return _mapper.Map<CurrentlyWeatherData>( apidData.Currently );
+            return await apiMethod( _config.ApiKey, location.Latitude, location.Longitude );
         }
-
-        public Task<DailyWeatherData> GetDailyWeatherAsync( Location location )
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<HourlyWeatherData> GetHourlyWeatherAsync( Location location )
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<HourlyWeatherData> GetMinutelyWeatherAsync( Location location )
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

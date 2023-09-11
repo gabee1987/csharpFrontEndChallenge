@@ -6,9 +6,9 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
     {
         Task<WeatherData> GetWeatherAsync( Location location );
         Task<CurrentlyWeatherData> GetCurrentWeatherAsync( Location location );
-        Task<HourlyWeatherData> GetMinutelyWeatherAsync( Location location );
-        Task<HourlyWeatherData> GetHourlyWeatherAsync( Location location );
         Task<DailyWeatherData> GetDailyWeatherAsync( Location location );
+        Task<HourlyWeatherData> GetHourlyWeatherAsync( Location location );
+        Task<MinutelyWeatherData> GetMinutelyWeatherAsync( Location location );
 
     }
 }

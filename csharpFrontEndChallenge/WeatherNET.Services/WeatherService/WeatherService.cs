@@ -22,15 +22,9 @@ namespace WeatherNET.Services.WeatherService
         }
 
         public async Task<WeatherData> GetWeatherAsync( string locationName )
-        {
-            // Convert location name to latitude and longitude
-            var coordinates = await _geocodingService.GetCoordinatesAsync( locationName );
-            var location = new Location
-            {
-                Latitude  = coordinates.Latitude,
-                Longitude = coordinates.Longitude,
-                Name      = locationName
-            };
+        {      
+            // Get Location object from location name
+            var location = await CreateLocationObject( locationName );
 
             // Fetch weather data
             var weatherData = await _pirateWeatherApiService.GetWeatherAsync( location );
@@ -41,24 +35,79 @@ namespace WeatherNET.Services.WeatherService
             return weatherData;
         }
 
-        public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( string locationName, string unitPreference )
+        public async Task<CurrentlyWeatherData> GetCurrentWeatherAsync( string locationName  )
         {
-            throw new NotImplementedException();
+            // Get Location object from location name
+            var location = await CreateLocationObject( locationName );
+
+            // Fetch weather data
+            var weatherData = await _pirateWeatherApiService.GetCurrentWeatherAsync( location );
+
+
+            // TODO do the unit conversions here with a UnitConversion service
+
+            return weatherData;
         }
 
-        public async Task<DailyWeatherData> GetDailyWeatherAsync( string locationName, string unitPreference )
+        public async Task<DailyWeatherData> GetDailyWeatherAsync( string locationName )
         {
-            throw new NotImplementedException();
+            // Get Location object from location name
+            var location = await CreateLocationObject( locationName );
+
+            // Fetch weather data
+            var weatherData = await _pirateWeatherApiService.GetDailyWeatherAsync( location );
+
+
+            // TODO do the unit conversions here with a UnitConversion service
+
+            return weatherData;
         }
 
-        public async Task<HourlyWeatherData> GetHourlyWeatherAsync( string locationName, string unitPreference )
+        public async Task<HourlyWeatherData> GetHourlyWeatherAsync( string locationName )
         {
-            throw new NotImplementedException();
+            // Get Location object from location name
+            var location = await CreateLocationObject( locationName );
+
+            // Fetch weather data
+            var weatherData = await _pirateWeatherApiService.GetHourlyWeatherAsync( location );
+
+
+            // TODO do the unit conversions here with a UnitConversion service
+
+            return weatherData;
         }
 
-        public async Task<MinutelyWeatherData> GetMinutelyWeatherAsync( string locationName, string unitPreference )
+        public async Task<MinutelyWeatherData> GetMinutelyWeatherAsync( string locationName )
         {
-            throw new NotImplementedException();
+            // Get Location object from location name
+            var location = await CreateLocationObject( locationName );
+
+            // Fetch weather data
+            var weatherData = await _pirateWeatherApiService.GetMinutelyWeatherAsync( location );
+
+
+            // TODO do the unit conversions here with a UnitConversion service
+
+            return weatherData;
         }
+
+        #region Helper Methods
+        private async Task<Location> CreateLocationObject( string locationName )
+        {
+            // Convert location name to latitude and longitude
+            var coordinates = await _geocodingService.GetCoordinatesAsync( locationName );
+
+            var location = new Location
+            {
+                Latitude  = coordinates.Latitude,
+                Longitude = coordinates.Longitude,
+                Name      = locationName
+            };
+
+            return location;
+
+            // TODO need errorhandling and logging
+        }
+        #endregion
     }
 }
