@@ -1,5 +1,6 @@
 using WeatherNET.Common.Configs;
 using WeatherNET.GeocodingService;
+using WeatherNET.Services.MappingProfiles;
 using WeatherNET.Services.PirateWeatherApi.APIService;
 using WeatherNET.Services.PirateWeatherApi.TimeService;
 using WeatherNET.Services.WeatherService;
@@ -17,7 +18,10 @@ builder.Services.Configure<PirateWeatherConfig>( configuration.GetSection( "Pira
 
 // Application Services
 builder.Services.AddSingleton<ITimeService, TimeService>();
-builder.Services.AddAutoMapper( typeof( WeatherNET.Services.MappingProfiles.WeatherMappingProfile ) );
+builder.Services.AddAutoMapper( ( serviceProvider, automapper ) =>
+{
+    automapper.AddProfile( new WeatherMappingProfile( serviceProvider.GetRequiredService<ITimeService>() ) );
+}, AppDomain.CurrentDomain.GetAssemblies() );
 builder.Services.AddSingleton<IGeocodingService, GoogleGeocodingService>();
 builder.Services.AddSingleton<IPirateWeatherApiService, PirateWeatherApiService>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();

@@ -5,7 +5,7 @@
         /// <summary>
         /// The time in which the data point begins.
         /// </summary>
-        public long Time { get; set; }
+        public DateTime Time { get; set; }
 
         /// <summary>
         /// The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested units.

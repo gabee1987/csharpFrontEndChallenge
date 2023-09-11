@@ -7,13 +7,13 @@ namespace WeatherNET.Services.MappingProfiles
     {
         private readonly ITimeService _timeService;
 
+        public WeatherMappingProfile() {}
+
         public WeatherMappingProfile( ITimeService timeService )
         {
             _timeService = timeService;
-        }
 
-        public WeatherMappingProfile()
-        {
+
             CreateMap<WeatherNET.PirateWeatherApi.ApiWeatherData, WeatherNET.Models.WeatherForecast.WeatherData>()
                 .ForMember( dest => dest.Location, opt => opt.MapFrom( src => new WeatherNET.Models.WeatherForecast.Location
                 {
@@ -24,21 +24,20 @@ namespace WeatherNET.Services.MappingProfiles
                     Elevation = src.Elevation,
                 } ) );
 
-            CreateMap<WeatherNET.PirateWeatherApi.ApiCurrentlyData, WeatherNET.Models.WeatherForecast.CurrentlyWeatherData>();
-                //.ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
-                //.ForMember( dest => dest.Time, opt => opt.MapFrom( src => src.Time != null ? _timeService.ConvertUnixToDateTime( src.Time ) : DateTime.MinValue ) );
+            CreateMap<WeatherNET.PirateWeatherApi.ApiCurrentlyData, WeatherNET.Models.WeatherForecast.CurrentlyWeatherData>()
+                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiDailyData, WeatherNET.Models.WeatherForecast.DailyWeatherData>();
-            CreateMap<WeatherNET.PirateWeatherApi.ApiPerDayData, WeatherNET.Models.WeatherForecast.PerDayWeatherData>();
-                //.ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
+            CreateMap<WeatherNET.PirateWeatherApi.ApiPerDayData, WeatherNET.Models.WeatherForecast.PerDayWeatherData>()
+                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiHourlyData, WeatherNET.Models.WeatherForecast.HourlyWeatherData>();
-            //CreateMap<WeatherNET.PirateWeatherApi.ApiCurrentlyData, WeatherNET.Models.WeatherForecast.PerHourWeatherData>()
-            //    .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
+            CreateMap<WeatherNET.PirateWeatherApi.ApiCurrentlyData, WeatherNET.Models.WeatherForecast.PerHourWeatherData>()
+                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiMinutelyData, WeatherNET.Models.WeatherForecast.MinutelyWeatherData>();
-            CreateMap<WeatherNET.PirateWeatherApi.ApiPerMinuteData, WeatherNET.Models.WeatherForecast.PerMinuteWeatherData>();
-                //.ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
+            CreateMap<WeatherNET.PirateWeatherApi.ApiPerMinuteData, WeatherNET.Models.WeatherForecast.PerMinuteWeatherData>()
+                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiFlags, WeatherNET.Models.WeatherForecast.Flags>();
             CreateMap<WeatherNET.PirateWeatherApi.ApiSourceTimes, WeatherNET.Models.WeatherForecast.SourceTimes>();

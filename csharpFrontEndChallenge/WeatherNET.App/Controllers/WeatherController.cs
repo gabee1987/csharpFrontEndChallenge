@@ -48,7 +48,7 @@ namespace WeatherNET.Controllers
 
 
             // Pass the weather data to the view
-            return View( "CurrentWeather", weatherData );
+            return View( "Weather", weatherData );
         }
     }
 }

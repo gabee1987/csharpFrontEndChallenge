@@ -5,7 +5,7 @@
         /// <summary>
         /// The time in which the data point begins.
         /// </summary>
-        public long Time { get; set; }
+        public DateTime Time { get; set; }
 
         /// <summary>
         /// A human-readable summary describing the weather conditions for a given data point.
