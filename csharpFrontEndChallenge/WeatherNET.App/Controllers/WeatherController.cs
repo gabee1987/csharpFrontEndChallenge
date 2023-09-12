@@ -1,6 +1,5 @@
 ﻿using WeatherNET.Models.WeatherForecast;
 using Microsoft.AspNetCore.Mvc;
-using WeatherNET.App.Models;
 using WeatherNET.Services.WeatherService;
 using WeatherNET.Services.Exceptions_Models;
 
@@ -26,11 +25,11 @@ namespace WeatherNET.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWeather( string? locationName )
+        public async Task<IActionResult> GetWeatherBasedOnName( string? locationName )
         {
             try
             {
-                locationName ??= "Budapest";
+                locationName ??= _configuration.GetValue<string>( "DefaultLocation" );
 
                 var weatherData = await _weatherService.GetWeatherAsync( locationName );
 
@@ -52,6 +51,60 @@ namespace WeatherNET.Controllers
             {
                 _logger.LogError( ex, "An error occurred while fetching weather data." );
                 return StatusCode( 500, "Internal server error. Please try again later." );
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetWeatherBasedOnCoords( double latitude, double longitude )
+        {
+            try
+            {
+                var weatherData = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
+
+                if ( weatherData == null )
+                {
+                    _logger.LogWarning( $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" );
+                    return NotFound( new { message = $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" } );
+                }
+
+                return View( "Weather", weatherData );
+            }
+            catch ( InvalidLocationException ex ) // Custom exception for invalid locations
+            {
+                _logger.LogError( ex, $"Invalid location provided - Latitude: {latitude}, Longitude: {longitude}" );
+                return BadRequest( new { message = $"Invalid location - Latitude: {latitude}, Longitude: {longitude}" } );
+            }
+            catch ( Exception ex ) // General exception handler
+            {
+                _logger.LogError( ex, "An error occurred while fetching weather data." );
+                return StatusCode( 500, new { message = "Internal server error. Please try again later." } );
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetWeatherData( double latitude, double longitude )
+        {
+            try
+            {
+                var weatherData = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
+
+                if ( weatherData == null )
+                {
+                    _logger.LogWarning( $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" );
+                    return NotFound( new { message = $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" } );
+                }
+
+                return Json( weatherData );
+            }
+            catch ( InvalidLocationException ex ) // Custom exception for invalid locations
+            {
+                _logger.LogError( ex, $"Invalid location provided - Latitude: {latitude}, Longitude: {longitude}" );
+                return BadRequest( new { message = $"Invalid location - Latitude: {latitude}, Longitude: {longitude}" } );
+            }
+            catch ( Exception ex ) // General exception handler
+            {
+                _logger.LogError( ex, "An error occurred while fetching weather data." );
+                return StatusCode( 500, new { message = "Internal server error. Please try again later." } );
             }
         }
     }

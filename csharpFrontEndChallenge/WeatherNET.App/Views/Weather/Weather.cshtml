@@ -6,15 +6,25 @@
 <div class="text-center">
     <h1 class="display-4">Weather Forecast</h1>
 </div>
-<form method="get" action="/Weather/GetWeather">
+<form method="get" action="/Weather/GetWeatherBasedOnName">
     <input type="text" name="locationName" placeholder="Enter location name..." required>
-    <button type="submit">Get Forecast</button>
+    <button class="btn-success" type="submit">Get Forecast</button>
 </form>
+
+@*<form method="get" action="/Weather/GetWeatherBasedOnName">
+    <input type="text" name="locationName" placeholder="Enter location name..." required>
+    <button class="btn-success" type="submit">Get Forecast</button>
+</form>*@
+
+<div class="col-6">
+    <button class="btn-primary" id="useMyLocationView">Get weather data (new view)</button>
+    <button class="btn-primary" id="useMyLocationData">Get weather data (json data)</button>
+</div>
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2>Current Weather for @Model.Location.Name</h2>
+            <h2 id="currentLocationName">Current Weather for @Model.Location.Name</h2> @*TODO fix the name*@
             <h3>Time of data: @Model.Currently.Time</h3>
         </div>
         <div class="card-body">
