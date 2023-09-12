@@ -25,7 +25,7 @@ namespace WeatherNET.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWeatherBasedOnName( string? locationName )
+        public async Task<IActionResult> GetWeatherByLocationName( string? locationName )
         {
             try
             {
@@ -55,7 +55,7 @@ namespace WeatherNET.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWeatherBasedOnCoords( double latitude, double longitude )
+        public async Task<IActionResult> GetWeatherByCoordinates( double latitude, double longitude )
         {
             try
             {
@@ -82,7 +82,7 @@ namespace WeatherNET.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWeatherData( double latitude, double longitude )
+        public async Task<IActionResult> GetWeatherDataAsJson( double latitude, double longitude )
         {
             try
             {
