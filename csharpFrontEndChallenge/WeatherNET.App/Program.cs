@@ -4,6 +4,7 @@ using WeatherNET.Services.MappingProfiles;
 using WeatherNET.Services.PirateWeatherApi.APIService;
 using WeatherNET.Services.PirateWeatherApi.TimeService;
 using WeatherNET.Services.WeatherService;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -26,7 +27,7 @@ builder.Services.AddSingleton<IGeocodingService, GoogleGeocodingService>();
 builder.Services.AddSingleton<IPirateWeatherApiService, PirateWeatherApiService>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
-
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
