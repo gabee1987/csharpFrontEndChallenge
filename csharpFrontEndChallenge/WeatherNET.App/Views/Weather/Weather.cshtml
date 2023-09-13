@@ -3,10 +3,10 @@
 }
 @model WeatherNET.Models.WeatherForecast.WeatherData
 
-<div class="container-fluid">
+<div class="container-fluid px-0">
     <!--Title-->
-    <div class="row g-3">
-        <div class="col mb-3">
+    <div class="row">
+        <div class="col-12">
             <div class="text-center">
                 <h1 class="display-4">Weather Forecast</h1>
             </div>
@@ -14,8 +14,8 @@
     </div>
 
     <!--Location input-->
-    <div class="row g-3">
-        <div class="col mb-3">
+    <div class="row g-0 weather-location-form">
+        <div class="col-12 g-4">
             <form method="get" action="/Weather/GetWeatherByLocationName">
                 <div class="mb-6">
                     <label for="locationName" class="form-label">Location</label>
@@ -31,10 +31,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="col mb-3">
                     <button class="btn btn-primary" type="submit">Get Forecast</button>
                 </div>
             </form>
+
+            <!--Get forecast based on actual location and update the values on the UI-->
+            <div class="row">
+                <div class="col mb-3">
+                    <button class="btn btn-primary" id="useMyLocationData" name="useMyLocationData">Update weather data</button>
+                    <label for="useMyLocationData" class="form-label">Get the weather data and update the UI based on location</label>
+                </div>
+            </div>
 
             <!-- A hidden form for just sending the coordinates to the server -->
             <form id="coordsForm" method="get" action="/Weather/GetWeatherByCoordinates">
@@ -44,28 +52,17 @@
         </div>
     </div>
 
-    <!--Get forecast based on actual location and update the values on the UI-->
-    <div class="row g-3">
-        @*<div class="col mb-3">
-            <button class="btn btn-primary" id="useMyLocationView">Get weather data (new view)</button>
-        </div>*@
-        <div class="col mb-3">
-            <button class="btn btn-primary" id="useMyLocationData" name="useMyLocationData">Update weather data</button>
-            <label for="useMyLocationData" class="form-label">Get the weather data and update the UI based on location</label>
-        </div>
-    </div>
-
     <!--Forecast card-->
-    <div class="row g-3">
-        <div class="col mb-3">
-            <div class="card">
+    <div class="row">
+        <div class="col-12">
+            <div class="card weather-card">
                 <div class="card-header">
                     <h2 id="currentLocationName">Current Weather for @Model.Location.Name</h2> @*TODO fix the name*@
                     <h3>Time of data: @Model.Currently.Time</h3>
                 </div>
                 <div id="forecastBody" class="card-body currently-weather-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <h6>Summary:</h6>
                             <p><span id="summaryValue">@Model.Currently.Summary</span></p>
                             <h6>Icon:</h6>
@@ -87,7 +84,7 @@
                             <h6>Precipitation Type:</h6>
                             <p><span id="precipitationTypeValue">@Model.Currently.PrecipType</span></p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <h6>Dew Point:</h6>
                             <p><span id="dewPointValue">@Model.Currently.DewPoint</span> °</p>
                             <h6>Humidity:</h6>
@@ -119,50 +116,4 @@
             </div>
         </div>
     </div>   
-</div>
-
-
-<div class="container mt-5">
-    
-
-    <!-- Daily Forecast -->
-    @*<div class="mt-5">
-        <h3>Daily Forecast</h3>
-        <div class="row">
-            @foreach ( var day in Model.Daily.Data )
-            {
-                <div class="col-md-3">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5>@day.Time</h5>
-                            <img src="@day.Icon" alt="@day.Summary" class="img-fluid mb-2">
-                            <p><strong>High:</strong> @day.TemperatureHigh °</p>
-                            <p><strong>Low:</strong> @day.TemperatureLow °</p>
-                            <p><strong>Summary:</strong> @day.Summary</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>*@
-
-    <!-- Hourly Forecast (you can add similar sections for Minutely, etc.) -->
-    @*<div class="mt-5">
-        <h3>Hourly Forecast</h3>
-        <div class="row">
-            @foreach ( var hour in Model.Hourly.Data )
-            {
-                <div class="col-md-2">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5>@hour.Time</h5>
-                            <img src="@hour.Icon" alt="@hour.Summary" class="img-fluid mb-2">
-                            <p><strong>Temp:</strong> @hour.Temperature °</p>
-                            <p><strong>Summary:</strong> @hour.Summary</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>*@
 </div>
