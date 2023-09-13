@@ -1,4 +1,28 @@
 $(document).ready(function () {
+    $('#useMyLocation').click(function (e) {
+        e.preventDefault(); // Prevent the default button behavior
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                // Populate the hidden form's inputs with the coordinates
+                $('#latitudeInput').val(lat);
+                $('#longitudeInput').val(lon);
+
+                // Submit the form
+                $('#coordsForm').submit();
+            }, function (error) {
+                console.error('Error getting location:', error);
+            });
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    });
+});
+
+$(document).ready(function () {
     $('#useMyLocationView').click(function () {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -23,7 +47,9 @@ $(document).ready(function () {
             console.error('Geolocation is not supported by this browser.');
         }
     });
+});
 
+$(document).ready(function () {
     $('#useMyLocationData').click(function () {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -37,7 +63,10 @@ $(document).ready(function () {
                     console.log(data.location.name);
                     $('#currentLocationName').text(`Current Weather for ${data.location.name}`);
 
-                    var currently = data.Currently;
+                    var currently = data.currently;
+
+                    //const forecastBody = $('#forecastBody');
+                    //forecastBody.empty();
 
                     // Update the card elements
                     $('#summaryValue').text(currently.Summary);
@@ -62,13 +91,9 @@ $(document).ready(function () {
                     $('#ozoneValue').text(currently.Ozone);
                     $('#precipitationAccumulationValue').text(currently.PrecipAccumulation);
 
+                    //forecastBody.append(
 
-                    const forecastBody = $('#forecastBody');
-                    forecastBody.empty();
-
-                    forecastBody.append(
-
-                    )
+                    //)
                 })
                     .fail(function (error) {
                         console.error('Error fetching weather:', error);
