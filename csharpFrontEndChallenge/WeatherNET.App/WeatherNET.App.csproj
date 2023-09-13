@@ -21,4 +21,8 @@
     <ProjectReference Include="..\WeatherNET.Services\WeatherNET.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\images\" />
+  </ItemGroup>
+
 </Project>

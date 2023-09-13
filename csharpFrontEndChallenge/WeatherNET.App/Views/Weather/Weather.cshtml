@@ -3,117 +3,12 @@
 }
 @model WeatherNET.Models.WeatherForecast.WeatherData
 
-<div class="container-fluid px-0">
-    <!--Title-->
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <div class="text-center">
-                <h1 class="display-4">Weather Forecast</h1>
+        <div class="col-xl-12">
+            <div class="header">
+
             </div>
         </div>
     </div>
-
-    <!--Location input-->
-    <div class="row g-0 weather-location-form">
-        <div class="col-12 g-4">
-            <form method="get" action="/Weather/GetWeatherByLocationName">
-                <div class="mb-6">
-                    <label for="locationName" class="form-label">Location</label>
-                    <div class="row">
-                        <!-- Location input field -->
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="locationNameInput" name="locationName" placeholder="Enter location name..." aria-describedby="locationNameInput" required>
-                            <div id="locationNameHelp" class="form-text">Enter any location name like postal code, city, street or address</div>
-                        </div>
-                        <!-- Use my location button -->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-secondary" id="useMyLocation">Use my location</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-3">
-                    <button class="btn btn-primary" type="submit">Get Forecast</button>
-                </div>
-            </form>
-
-            <!--Get forecast based on actual location and update the values on the UI-->
-            <div class="row">
-                <div class="col mb-3">
-                    <button class="btn btn-primary" id="useMyLocationData" name="useMyLocationData">Update weather data</button>
-                    <label for="useMyLocationData" class="form-label">Get the weather data and update the UI based on location</label>
-                </div>
-            </div>
-
-            <!-- A hidden form for just sending the coordinates to the server -->
-            <form id="coordsForm" method="get" action="/Weather/GetWeatherByCoordinates">
-                <input type="hidden" id="latitudeInput" name="latitude">
-                <input type="hidden" id="longitudeInput" name="longitude">
-            </form>
-        </div>
-    </div>
-
-    <!--Forecast card-->
-    <div class="row">
-        <div class="col-12">
-            <div class="card weather-card">
-                <div class="card-header">
-                    <h2 id="currentLocationName">Current Weather for @Model.Location.Name</h2> @*TODO fix the name*@
-                    <h3>Time of data: @Model.Currently.Time</h3>
-                </div>
-                <div id="forecastBody" class="card-body currently-weather-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <h6>Summary:</h6>
-                            <p><span id="summaryValue">@Model.Currently.Summary</span></p>
-                            <h6>Icon:</h6>
-                            <p><span id="iconValue">@Model.Currently.Icon</span></p>
-                            <h6>Temperature:</h6>
-                            <p><span id="temperatureValue">@Model.Currently.Temperature</span> °</p>
-                            <h6>Feels Like:</h6>
-                            <p><span id="feelsLikeValue">@Model.Currently.ApparentTemperature</span> °</p>
-                            <h6>Nearest Storm Distance:</h6>
-                            <p><span id="nearestStormDistanceValue">@Model.Currently.NearestStormDistance</span> km</p>
-                            <h6>Nearest Storm Bearing:</h6>
-                            <p><span id="nearestStormBearingValue">@Model.Currently.NearestStormBearing</span> °</p>
-                            <h6>Precipitation Intensity:</h6>
-                            <p><span id="precipitationIntensityValue">@Model.Currently.PrecipIntensity</span> mm/h</p>
-                            <h6>Precipitation Probability:</h6>
-                            <p><span id="precipitationProbabilityValue">@Model.Currently.PrecipProbability</span> %</p>
-                            <h6>Precipitation Intensity Error:</h6>
-                            <p><span id="precipitationIntensityErrorValue">@Model.Currently.PrecipIntensityError</span></p>
-                            <h6>Precipitation Type:</h6>
-                            <p><span id="precipitationTypeValue">@Model.Currently.PrecipType</span></p>
-                        </div>
-                        <div class="col-6">
-                            <h6>Dew Point:</h6>
-                            <p><span id="dewPointValue">@Model.Currently.DewPoint</span> °</p>
-                            <h6>Humidity:</h6>
-                            <p><span id="humidityValue">@Model.Currently.Humidity</span> %</p>
-                            <h6>Pressure:</h6>
-                            <p><span id="pressureValue">@Model.Currently.Pressure</span> hPa</p>
-                            <h6>Wind Speed:</h6>
-                            <p><span id="windSpeedValue">@Model.Currently.WindSpeed</span> km/h</p>
-                            <h6>Wind Gust:</h6>
-                            <p><span id="windGustValue">@Model.Currently.WindGust</span> km/h</p>
-                            <h6>Wind Bearing:</h6>
-                            <p><span id="windBearingValue">@Model.Currently.WindBearing</span> °</p>
-                            <h6>Cloud Cover:</h6>
-                            <p><span id="cloudCoverValue">@Model.Currently.CloudCover</span> %</p>
-                            <h6>UV Index:</h6>
-                            <p><span id="uvIndexValue">@Model.Currently.UvIndex</span></p>
-                            <h6>Visibility:</h6>
-                            <p><span id="visibilityValue">@Model.Currently.Visibility</span> km</p>
-                            <h6>Ozone:</h6>
-                            <p><span id="ozoneValue">@Model.Currently.Ozone</span> DU</p>
-                            <h6>Precipitation Accumulation:</h6>
-                            <p><span id="precipitationAccumulationValue">@Model.Currently.PrecipAccumulation</span> cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <p><strong>Weather Summary:</strong> @Model.Currently.Summary</p>
-                </div>
-            </div>
-        </div>
-    </div>   
 </div>
