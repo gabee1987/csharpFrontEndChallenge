@@ -54,13 +54,23 @@ function handleUseMyLocationDataClick() {
 
 // Function to update the UI with the fetched weather data
 function updateUIWithWeatherData(data) {
+    console.log("Data received:", data);  // Log the received data
+
     $('#currentLocationName').text(`Current Weather for ${data.location.name}`);
-    const forecastBody = $('#forecastBody');
-    forecastBody.empty();
+    //const forecastBody = $('#forecastBody');
+    //forecastBody.empty();
 
     // Update the card elements with the data
-    Object.keys(data.Currently).forEach(key => {
-        $(`#${key}Value`).text(data.Currently[key]);
+    Object.keys(data.currently).forEach(key => {
+        const elementId = `#${key.charAt(0).toLowerCase() + key.slice(1)}Value`;  // Convert the first letter to lowercase
+        console.log("elementId: ", elementId);
+        const element = $(elementId);
+        if (element.length) {  // Check if the element exists
+            console.log("objeckKey: ", data.currently[key]);
+            element.text(data.currently[key]);
+        } else {
+            console.error(`Element with ID ${elementId} not found!`);  // Log an error if the element doesn't exist
+        }
     });
 }
 
