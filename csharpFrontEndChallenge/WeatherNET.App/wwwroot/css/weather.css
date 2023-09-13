@@ -1,3 +1,41 @@
-﻿.header {
-    background: linear-gradient(91.02deg, rgba(189, 229, 252, 0.8) 0%, rgba(173, 216, 230, 0.8) 15%, rgba(240, 248, 255, 0.8) 70%, rgba(173, 216, 230, 0.8) 85%, rgba(189, 229, 252, 0.8) 100%), #EBF2FB;
+﻿.weather-container {
+    background-color: rgb(242, 243, 247);
+}
+
+.hero {
+    background: linear-gradient(100deg, rgba(231,255,255,1) 0%, rgba(239,252,255,1) 32%, rgba(220,243,255,1) 48%, rgba(249,232,255,1) 100%);
+}
+
+.location-container {
+    padding: 4rem;
+    text-align: center;
+}
+
+.weather-location-form {
+    background: transparent;
+}
+
+
+.location-input {
+    box-shadow: 0 3px 6px #1d1e261a, 0 1px 3px #1d1e261a;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    padding: 15px 50px 15px 20px;
+    line-height: normal;
+}
+
+.submit-button {
+    position: absolute;
+    top: 5px;
+    right: 17px;
+    bottom: 5px;
+    padding: 0 30px;
+}
+
+/* For medium screens and up,  add some top margin to the 'Use my location' button */
+@media (min-width: 768px) {
+    #useMyLocation {
+        margin-top: 0.5rem;
+    }
 }

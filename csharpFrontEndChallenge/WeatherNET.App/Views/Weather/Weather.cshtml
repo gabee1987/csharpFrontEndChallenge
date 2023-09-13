@@ -3,12 +3,97 @@
 }
 @model WeatherNET.Models.WeatherForecast.WeatherData
 
-<div class="container-fluid">
+<div class="container-fluid weather-container">
     <div class="row">
-        <div class="col-xl-12">
-            <div class="header">
-
+        <div class="col-xl-12 g-0">
+            <div class="hero">
+                <div class="container location-container">
+                    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName">
+                        <div class="mb-6">
+                            <div class="row d-flex justify-content-center">
+                                <!-- Location input field with the Get Forecast button -->
+                                <div class="col-md-8 position-relative">
+                                    <input type="text" class="form-control location-input" id="locationNameInput" name="locationName" placeholder="Enter location name..." aria-describedby="locationNameInput" required>
+                                    <button class="btn btn-primary submit-button" type="submit">Get Forecast</button>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <!-- Use my location button -->
+                                <div class="col-md-8 text-center">
+                                    <button type="button" class="btn btn-secondary mt-2" id="useMyLocation">Use my location</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<!--Forecast card-->
+@* <div class="row">
+    <div class="col-12">
+        <div class="card weather-card">
+            <div class="card-header">
+                <h2 id="currentLocationName">Current Weather for @Model.Location.Name</h2>
+                <h3>Time of data: @Model.Currently.Time</h3>
+            </div>
+            <div id="forecastBody" class="card-body currently-weather-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Summary:</h6>
+                        <p><span id="summaryValue">@Model.Currently.Summary</span></p>
+                        <h6>Icon:</h6>
+                        <p><span id="iconValue">@Model.Currently.Icon</span></p>
+                        <h6>Temperature:</h6>
+                        <p><span id="temperatureValue">@Model.Currently.Temperature</span> °</p>
+                        <h6>Feels Like:</h6>
+                        <p><span id="feelsLikeValue">@Model.Currently.ApparentTemperature</span> °</p>
+                        <h6>Nearest Storm Distance:</h6>
+                        <p><span id="nearestStormDistanceValue">@Model.Currently.NearestStormDistance</span> km</p>
+                        <h6>Nearest Storm Bearing:</h6>
+                        <p><span id="nearestStormBearingValue">@Model.Currently.NearestStormBearing</span> °</p>
+                        <h6>Precipitation Intensity:</h6>
+                        <p><span id="precipitationIntensityValue">@Model.Currently.PrecipIntensity</span> mm/h</p>
+                        <h6>Precipitation Probability:</h6>
+                        <p><span id="precipitationProbabilityValue">@Model.Currently.PrecipProbability</span> %</p>
+                        <h6>Precipitation Intensity Error:</h6>
+                        <p><span id="precipitationIntensityErrorValue">@Model.Currently.PrecipIntensityError</span></p>
+                        <h6>Precipitation Type:</h6>
+                        <p><span id="precipitationTypeValue">@Model.Currently.PrecipType</span></p>
+                    </div>
+                    <div class="col-6">
+                        <h6>Dew Point:</h6>
+                        <p><span id="dewPointValue">@Model.Currently.DewPoint</span> °</p>
+                        <h6>Humidity:</h6>
+                        <p><span id="humidityValue">@Model.Currently.Humidity</span> %</p>
+                        <h6>Pressure:</h6>
+                        <p><span id="pressureValue">@Model.Currently.Pressure</span> hPa</p>
+                        <h6>Wind Speed:</h6>
+                        <p><span id="windSpeedValue">@Model.Currently.WindSpeed</span> km/h</p>
+                        <h6>Wind Gust:</h6>
+                        <p><span id="windGustValue">@Model.Currently.WindGust</span> km/h</p>
+                        <h6>Wind Bearing:</h6>
+                        <p><span id="windBearingValue">@Model.Currently.WindBearing</span> °</p>
+                        <h6>Cloud Cover:</h6>
+                        <p><span id="cloudCoverValue">@Model.Currently.CloudCover</span> %</p>
+                        <h6>UV Index:</h6>
+                        <p><span id="uvIndexValue">@Model.Currently.UvIndex</span></p>
+                        <h6>Visibility:</h6>
+                        <p><span id="visibilityValue">@Model.Currently.Visibility</span> km</p>
+                        <h6>Ozone:</h6>
+                        <p><span id="ozoneValue">@Model.Currently.Ozone</span> DU</p>
+                        <h6>Precipitation Accumulation:</h6>
+                        <p><span id="precipitationAccumulationValue">@Model.Currently.PrecipAccumulation</span> cm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p><strong>Weather Summary:</strong> @Model.Currently.Summary</p>
+            </div>
+        </div>
+    </div>
+</div> *@
