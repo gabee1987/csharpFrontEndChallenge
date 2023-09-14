@@ -35,9 +35,9 @@
     padding: 0 30px;
 }
 
-/*=======================Today Forecast*/
+/*======================= Today Forecast*/
 .today-forecast {
-    padding: 3rem;
+    padding: 3rem 0;
     padding-top: 1rem;
 }
 
@@ -98,9 +98,77 @@
     height: 100%;
 }
 
+/*======================= Hourly Forecast*/
+.hourly-chart {
+    display: flex;
+    align-items: flex-end; /* This makes sure columns (bars) grow upwards */
+    /*background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(223,242,255,0) 28%);*/
+    padding: 0.2rem;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
 
 
-/*========================Weather Icons*/
+.hour-unit sup {
+    margin-left: -4px;
+}
+
+.hour-column {
+    /*position: relative;*/
+    width: 50px;
+    margin: 0 2px;
+    margin-top: -5rem;
+    flex-shrink: 0;
+    background-color: rgb(0, 128, 255, 0.30);
+    border-radius: 5px 5px 0 0;
+}
+
+.hourly-temp {
+    margin-top: -50%;
+}
+
+.hour-column-bottom-value {
+    /*height: 50px;*/
+}
+
+.temp-value {
+    position: absolute;
+    top: -25px; /* Position above the column/bar */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    font-size: 14px;
+    color: #333;
+}
+
+.hourly-icon {
+    position: absolute;
+    bottom: -25px; /* Position below the column/bar */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.hour {
+    position: absolute;
+    bottom: -45px; /* Adjust based on the icon's height */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    font-size: 14px;
+    color: #555;
+}
+
+.hourly-icon {
+    width: 30px !important;
+    height: 30px !important;
+    margin-left: 0 !important;
+    margin-top: 15px !important
+}
+
+
+/*======================= Weather Icons*/
 .weather-icon {
     background-repeat: no-repeat;
     background-position: center;
@@ -108,7 +176,7 @@
     height: 150px; /* adjust based on actual SVG size */
     display: inline-block; /* so the class behaves like an icon */
     margin-top: 30px;
-    /* margin-left: -3.5rem; */
+    margin-left: -3.5rem;
 }
 
     .weather-icon.clear-day {

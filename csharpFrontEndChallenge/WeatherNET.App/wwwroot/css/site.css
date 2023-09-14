@@ -21,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
     /*background: linear-gradient(91.02deg,rgba(238,228,234,.8) -2.97%,rgba(238,217,237,.8) 6.02%,rgba(224,214,250,.8) 16.07%,rgba(211,225,251,.8) 25.99%,rgba(220,239,249,.8) 37.91%,rgba(236,243,252,.8) 54.63%,rgba(236,243,252,.8) 85.3%,rgba(218,233,217,.8) 99.12%),#EBF2FB;*/
     /*background: linear-gradient(91.02deg, rgba(189, 229, 252, 0.8) 0%, rgba(173, 216, 230, 0.8) 15%, rgba(240, 248, 255, 0.8) 70%, rgba(173, 216, 230, 0.8) 85%, rgba(189, 229, 252, 0.8) 100%), #EBF2FB;*/
     /*background: linear-gradient(90deg, rgba(169,255,254,1) 0%, rgba(239,252,255,1) 25%, rgba(203,249,255,1) 70%, rgba(244,219,255,1) 100%);*/

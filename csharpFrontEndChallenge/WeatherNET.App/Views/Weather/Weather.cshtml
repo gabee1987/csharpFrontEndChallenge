@@ -30,6 +30,16 @@
         </div>
     </div>
     <div class="today-forecast">
+        @{
+            // Define scaling factor for columns.
+            double columnScalingFactor = 0.5;  // Adjust this value as needed.
+
+            // Define increment factor for chart height.
+            double chartHeightIncrementFactor = 0.8; 
+
+            double maxTemp = Model.Hourly.Data.Max( d => d.Temperature );
+            double adjustedChartHeight = maxTemp * chartHeightIncrementFactor;
+        }
         <div class="row d-flex justify-content-center">
             <div class="col-xl-6 text-center">
                 <div class="today-forecast-date">
@@ -83,6 +93,28 @@
                     </div>
                 </div>
                 
+            </div>
+        </div>
+        <div class="row d-flex p-0 justify-content-center">
+            <div class="hourly-chart" style="height: @(adjustedChartHeight)rem">
+                @foreach ( var hourData in Model.Hourly.Data )
+                {
+                    var heightValue = hourData.Temperature * columnScalingFactor;
+                    var iconClass = hourData.Icon.ToLower(); 
+                    var hour = hourData.Time.ToString( "HH" );
+                    <div class="hour-column" style="height: @(heightValue)rem">
+                        <div class="hourly-temp text-center">
+                            @Math.Round(hourData.Temperature)
+                            <span class="temp-unit hour-unit">
+                                <sup>°</sup>
+                            </span>
+                        </div>
+                        <div class="hour-column-bottom-value">
+                            <span class="weather-icon @iconClass hourly-icon"></span>
+                            <span class="hour">@hour:00</span>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
