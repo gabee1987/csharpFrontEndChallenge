@@ -30,9 +30,9 @@ body {
 }
 
 .main-container {
-    /*display: flex;
-    flex-direction: column;*/
+    display: flex;
     flex: 1 0 auto;
+    flex-direction: column;
 
     /*background: linear-gradient(100deg, rgba(231,255,255,1) 0%, rgba(239,252,255,1) 32%, rgba(220,243,255,1) 48%, rgba(249,232,255,1) 100%);*/
 }
