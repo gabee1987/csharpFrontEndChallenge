@@ -1,6 +1,6 @@
 .weather-container {
     flex-grow: 1;
-    background: linear-gradient(180deg, rgba(121,172,208,1) 0%, rgba(223,242,255,1) 100%);
+    background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);
 }
 
 .hero {
@@ -9,6 +9,7 @@
 
 .location-container {
     padding: 4rem;
+    padding-bottom: 1rem;
     text-align: center;
 }
 
@@ -37,6 +38,7 @@
 /*=======================Today Forecast*/
 .today-forecast {
     padding: 3rem;
+    padding-top: 1rem;
 }
 
 .today-forecast-date {
@@ -58,16 +60,55 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.today-forecast-temperature sup {
-    margin-right: -30px;
+.today-forecast-temperature-value .temp-unit {
+    margin-left: -1rem;
 }
+
+.today-forecast-temperature-value sup {
+    margin-right: -1.5rem;
+}
+
+.today-forecast-detailed-info {
+    font-size: 1.2rem;
+    color: #444444;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+    align-items: center;
+    text-align: center;
+    line-height: 30px;
+}
+
+.today-forecast-temperature-feels-like sup {
+    margin-right: -0.3rem;
+}
+
+.today-forecast-temperature-feels-like {
+    
+}
+
+.today-forecast-temperature-feels-like span {
+    margin-right: 0.5rem;
+}
+
+.today-forecast-temperature-feels-like,
+.today-forecast-precipProbability,
+.today-forecast-windSpeed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* vertically center the content inside */
+    height: 100%;
+}
+
+
 
 /*========================Weather Icons*/
 .weather-icon {
     background-repeat: no-repeat;
-    width: 200px; /* adjust based on actual SVG size */
-    height: 200px; /* adjust based on actual SVG size */
+    background-position: center;
+    width: 150px; /* adjust based on actual SVG size */
+    height: 150px; /* adjust based on actual SVG size */
     display: inline-block; /* so the class behaves like an icon */
+    margin-top: 30px;
+    /* margin-left: -3.5rem; */
 }
 
     .weather-icon.clear-day {
@@ -108,6 +149,30 @@
 
     .weather-icon.partly-cloudy-night {
         background-image: url('/assets/images/weather-icons/partly-cloudy-night.svg');
+    }
+
+.detailed-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px; /* adjust based on actual SVG size */
+    height: 30px; /* adjust based on actual SVG size */
+    display: inline-block; /* so the class behaves like an icon */
+}
+
+    .detailed-icon.rain {
+        background-image: url('/assets/images/weather-icons/raindrops.svg');
+    }
+
+    .detailed-icon.snow {
+        background-image: url('/assets/images/weather-icons/snowflake.svg');
+    }
+
+    .detailed-icon.sleet {
+        background-image: url('/assets/images/weather-icons/sleet.svg');
+    }
+
+    .detailed-icon.wind {
+        background-image: url('/assets/images/weather-icons/wind.svg');
     }
 
 /* For medium screens and up,  add some top margin to the 'Use my location' button */
