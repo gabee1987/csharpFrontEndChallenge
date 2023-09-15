@@ -109,8 +109,9 @@
     align-items: flex-end; /* This makes sure columns (bars) grow upwards */
     /*background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(223,242,255,0) 28%);*/
     padding: 0.2rem;
-    overflow-y: hidden;
     overflow-x: auto;
+    margin-top: 2rem;
+    padding-bottom: 3.5rem;
 }
 
 
@@ -119,21 +120,27 @@
 }
 
 .hour-column {
-    /*position: relative;*/
+    position: relative;
     width: 50px;
     margin: 0 2px;
-    margin-top: -5rem;
+    margin-bottom: 0.5rem;
     flex-shrink: 0;
     background-color: rgb(0, 128, 255, 0.30);
     border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: flex-end;
 }
 
 .hourly-temp {
     margin-top: -50%;
+    align-self: flex-start;
+    width: 100%;
 }
 
 .hour-column-bottom-value {
-    /*height: 50px;*/
+    position: relative;
+    margin-bottom: -10%;
+    margin-left: -50%;
 }
 
 .temp-value {
