@@ -49,7 +49,7 @@
                     <h3 id="currentLocationName">@Model.Location.Name</h3>      
                 </div>
                 <div class="today-forecast-temperature">
-                    <div class="col-xl-6">
+                    <div class="col-xl-4">
                         <div class="today-forecast-temperature-value">
                             @Math.Round(Model.Currently.Temperature)
                             <span class="temp-unit">
@@ -58,9 +58,10 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-xl-3">
-                        <div class="forecast-icon align-items-center">
-                            <span class="weather-icon @Model.Currently.Icon.ToLower()"></span>
+                    <div class="col-xl-4">
+                        <div class="weather-icon @Model.Currently.Icon.ToLower() align-items-center">
+                            @*<span class="weather-icon @Model.Currently.Icon.ToLower()"></span>*@
+                            
                         </div>
                     </div>
                 </div>
@@ -76,14 +77,19 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <div class="forecast-summary-text">
+                                <span>@Model.Currently.Icon</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="today-forecast-precipProbability">
-                                <span class="detailed-icon @(string.IsNullOrEmpty(Model.Currently.PrecipType) || Model.Currently.PrecipType.ToLower() == "none" ? "" : Model.Currently.PrecipType.ToLower())"></span>
+                                <span class="detailed-icon @(string.IsNullOrEmpty(Model.Currently.PrecipType) || Model.Currently.PrecipType.ToLower() == "none" ? "umbrella" : Model.Currently.PrecipType.ToLower())"></span>
                                 @(Model.Currently.PrecipProbability * 100)
                                 <span>%</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="today-forecast-windSpeed">
                                 <span class="detailed-icon wind"></span>
                                 @Math.Round(Model.Currently.WindSpeed)

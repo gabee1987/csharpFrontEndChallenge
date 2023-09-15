@@ -55,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center; 
-    font-size: 6rem;
+    font-size: 4rem;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
@@ -97,6 +97,11 @@
     justify-content: center; /* vertically center the content inside */
     height: 100%;
 }
+
+.forecast-summary-text {
+    /*font-size: 1rem;*/
+}
+
 
 /*======================= Hourly Forecast*/
 .hourly-chart {
@@ -172,11 +177,11 @@
 .weather-icon {
     background-repeat: no-repeat;
     background-position: center;
-    width: 150px; /* adjust based on actual SVG size */
-    height: 150px; /* adjust based on actual SVG size */
-    display: inline-block; /* so the class behaves like an icon */
-    margin-top: 30px;
-    margin-left: -3.5rem;
+    width: 150px;
+    height: 150px; 
+    /*display: inline-block;*/
+    /*margin-top: 30px;*/
+    /*margin-left: -3.5rem;*/
 }
 
     .weather-icon.clear-day {
@@ -241,6 +246,10 @@
 
     .detailed-icon.wind {
         background-image: url('/assets/images/weather-icons/wind.svg');
+    }
+
+    .detailed-icon.umbrella {
+        background-image: url('/assets/images/weather-icons/umbrella.svg');
     }
 
 /* For medium screens and up,  add some top margin to the 'Use my location' button */
