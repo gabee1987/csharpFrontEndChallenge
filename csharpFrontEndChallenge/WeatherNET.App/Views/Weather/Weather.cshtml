@@ -7,138 +7,18 @@
     <div class="row">
         <div class="col-xl-12 g-0">
             <div class="hero">
-                <div class="container location-container">
-                    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName">
-                        <div class="mb-6">
-                            <div class="row d-flex justify-content-center">
-                                <!-- Location input field with the Get Forecast button -->
-                                <div class="col-md-8 position-relative">
-                                    <input type="text" class="form-control location-input" id="locationNameInput" name="locationName" placeholder="Enter location name..." aria-describedby="locationNameInput" required>
-                                    <button class="btn btn-primary submit-button" type="submit">Get Forecast</button>
-                                </div>
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <!-- Use my location button -->
-                                <div class="col-md-8 text-center">
-                                    <button type="button" class="btn btn-secondary mt-2" id="useMyLocation">Use my location</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <partial name="_LocationSearch" model="Model" />
             </div>
         </div>
     </div>
     <div class="today-forecast">
-        @{
-            // Define scaling factor for columns.
-            double columnScalingFactor = 0.4;
-
-            // Define increment factor for chart height.
-            double chartHeightIncrementFactor = 0.7; 
-
-            double maxTemp = Model.Hourly.Data.Max( d => d.Temperature );
-            double adjustedChartHeight = maxTemp * chartHeightIncrementFactor;
-        }
         <div class="row d-flex justify-content-center">
             <div class="col-xl-6 text-center">
-                <div class="today-forecast-date">
-                    <h6>@Model.Currently.Time.ToString("MMMM dd, HH:mm")</h6>
-                </div>
-                <div class="today-forecast-location">
-                    <h3 id="currentLocationName">@Model.Location.Name</h3>      
-                </div>
-                <div class="today-forecast-temperature">
-                    <div class="col-xl-4">
-                        <div class="today-forecast-high-low">
-                            <div class="today-forecast-temp-high">
-                                Day @Math.Round(Model.Daily.Data.First().TemperatureHigh)
-                                <span class="temp-unit daily-high">
-                                    <sup>°</sup>
-                                    ↑
-                                </span>
-                            </div>
-                            <span class="middle-dot">·</span>
-                            <div class="today-forecast-temp-low">
-                                Night @Math.Round(Model.Daily.Data.First().TemperatureLow)
-                                <span class="temp-unit daily-low">
-                                    <sup>°</sup>
-                                    ↓
-                                </span>
-                            </div>
-                        </div>
-                        <div class="today-forecast-temperature-value">
-                            @Math.Round(Model.Currently.Temperature)
-                            <span class="temp-unit actual">
-                                <sup>°c</sup>                               
-                            </span>
-                            <div class="today-forecast-temperature-feels-like">
-                                <span>Feels like </span>
-                                @Math.Round(Model.Currently.ApparentTemperature)
-                                <span class="temp-unit feels-like">
-                                    <sup>°</sup>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4">
-                        <div class="weather-icon @Model.Currently.Icon.ToLower() align-items-center"></div>
-                    </div>
-                </div>
-                <div class="today-forecast-detailed-info">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-2">
-                            <div class="forecast-summary-text">
-                                <span>@Model.Currently.Summary</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="today-forecast-precipProbability">
-                                <span class="detailed-icon @(string.IsNullOrEmpty(Model.Currently.PrecipType) || Model.Currently.PrecipType.ToLower() == "none" ? "umbrella" : Model.Currently.PrecipType.ToLower())"></span>
-                                @(Model.Currently.PrecipProbability * 100)
-                                <span>%</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="today-forecast-humidity">
-                                <span class="detailed-icon humidity"></span>
-                                @(Model.Currently.Humidity * 100)
-                                <span>%</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="today-forecast-windSpeed">
-                                <span class="detailed-icon wind"></span>
-                                @Math.Round(Model.Currently.WindSpeed)
-                                <span>km/h</span>
-                            </div>
-                        </div>                  
-                    </div>
-                </div>
-                
+                <partial name="_CurrentWeather" model="Model" />
             </div>
         </div>
         <div class="row d-flex p-0 justify-content-center">
-            <div class="hourly-chart" style="height: @(adjustedChartHeight)rem">
-                @foreach ( var hourData in Model.Hourly.Data )
-                {
-                    var heightValue = hourData.Temperature * columnScalingFactor;
-                    var iconClass = hourData.Icon.ToLower(); 
-                    var hour = hourData.Time.ToString( "HH" );
-                    <div class="hour-column" style="height: @(heightValue)rem">
-                        <div class="hourly-temp text-center">
-                            @Math.Round(hourData.Temperature)
-                            <span class="temp-unit hour-unit">
-                                <sup>°</sup>
-                            </span>
-                        </div>
-                        <div class="hour-column-bottom-value">
-                            <span class="weather-icon @iconClass hourly-icon"></span>
-                            <span class="hour">@hour:00</span>
-                        </div>
-                    </div>
-                }
-            </div>
+            <partial name="_HourlyForecast" model="Model" />
         </div>
     </div>
     <div class="daily-forecast-table">

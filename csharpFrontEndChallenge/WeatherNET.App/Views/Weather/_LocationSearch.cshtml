@@ -1,0 +1,21 @@
+﻿@model WeatherNET.Models.WeatherForecast.WeatherData
+
+<div class="container location-container">
+    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName">
+        <div class="mb-6">
+            <div class="row d-flex justify-content-center">
+                <!-- Location input field with the Get Forecast button -->
+                <div class="col-md-8 position-relative">
+                    <input type="text" class="form-control location-input" id="locationNameInput" name="locationName" placeholder="Enter location name..." aria-describedby="locationNameInput" required>
+                    <button class="btn btn-primary submit-button" type="submit">Get Forecast</button>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <!-- Use my location button -->
+                <div class="col-md-8 text-center">
+                    <button type="button" class="btn btn-secondary mt-2" id="useMyLocation">Use my location</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

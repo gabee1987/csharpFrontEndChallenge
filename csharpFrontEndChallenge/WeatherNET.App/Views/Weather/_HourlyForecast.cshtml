@@ -1,0 +1,35 @@
+﻿@model WeatherNET.Models.WeatherForecast.WeatherData
+
+@{
+    // Define scaling factor for columns.
+    double columnScalingFactor = 0.4;
+
+    // Define increment factor for chart height.
+    double chartHeightIncrementFactor = 0.7;
+
+    double maxTemp = Model.Hourly.Data.Max( d => d.Temperature );
+    double adjustedChartHeight = maxTemp * chartHeightIncrementFactor;
+}
+
+<div class="hourly-forecast-data">
+    <div class="hourly-chart" style="height: @(adjustedChartHeight)rem">
+        @foreach ( var hourData in Model.Hourly.Data )
+        {
+            var heightValue = hourData.Temperature * columnScalingFactor;
+            var iconClass = hourData.Icon.ToLower();
+            var hour = hourData.Time.ToString( "HH" );
+            <div class="hour-column" style="height: @(heightValue)rem">
+                <div class="hourly-temp text-center">
+                    @Math.Round(hourData.Temperature)
+                    <span class="temp-unit hour-unit">
+                        <sup>°</sup>
+                    </span>
+                </div>
+                <div class="hour-column-bottom-value">
+                    <span class="weather-icon @iconClass hourly-icon"></span>
+                    <span class="hour">@hour:00</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
