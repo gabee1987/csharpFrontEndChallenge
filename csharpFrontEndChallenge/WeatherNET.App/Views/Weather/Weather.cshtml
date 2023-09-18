@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Weather";
 }
-@model WeatherNET.Models.WeatherForecast.WeatherData
+@model WeatherNET.App.Models.Weather.WeatherViewModel
 
 <div class="container-fluid weather-container">
     <div class="row">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row d-flex p-0 justify-content-center">
-            <partial name="_HourlyForecast" model="Model" />
+            <partial name="_HourlyForecast" model="Model.Hourly" />
         </div>
     </div>
     <div class="daily-forecast-table">

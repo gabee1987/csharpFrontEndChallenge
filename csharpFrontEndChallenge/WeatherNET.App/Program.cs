@@ -5,6 +5,8 @@ using WeatherNET.Services.PirateWeatherApi.APIService;
 using WeatherNET.Services.PirateWeatherApi.TimeService;
 using WeatherNET.Services.WeatherService;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using WeatherNET.App.Models.MappingProfiles;
+using WeatherNET.App.Services;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -22,10 +24,13 @@ builder.Services.AddSingleton<ITimeService, TimeService>();
 builder.Services.AddAutoMapper( ( serviceProvider, automapper ) =>
 {
     automapper.AddProfile( new WeatherMappingProfile( serviceProvider.GetRequiredService<ITimeService>() ) );
+    automapper.AddProfile( new WeatherViewModelMappingProfile() );
 }, AppDomain.CurrentDomain.GetAssemblies() );
+
 builder.Services.AddSingleton<IGeocodingService, GoogleGeocodingService>();
 builder.Services.AddSingleton<IPirateWeatherApiService, PirateWeatherApiService>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();
+builder.Services.AddTransient<IWeatherDisplayService, WeatherDisplayService>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();

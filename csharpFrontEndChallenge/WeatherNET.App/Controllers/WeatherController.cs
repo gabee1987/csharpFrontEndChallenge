@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using WeatherNET.Services.WeatherService;
 using WeatherNET.Services.Exceptions_Models;
+using AutoMapper;
+using WeatherNET.App.Services;
+using WeatherNET.App.Models.Weather;
 
 namespace WeatherNET.Controllers
 {
@@ -10,13 +13,22 @@ namespace WeatherNET.Controllers
         private readonly IConfiguration _configuration;             
         private readonly ILogger<WeatherData> _logger;
         private readonly IWeatherService _weatherService;
+        private readonly IMapper _mapper;
+        private readonly IWeatherDisplayService _weatherDisplayService;
 
 
-        public WeatherController( IConfiguration configuration, ILogger<WeatherData> logger, IWeatherService weatherService )
+        public WeatherController( 
+            IConfiguration configuration,
+            ILogger<WeatherData> logger,
+            IWeatherService weatherService,
+            IMapper mapper,
+            IWeatherDisplayService weatherDisplayService )
         {
-            _configuration  = configuration;
-            _logger         = logger;
-            _weatherService = weatherService;
+            _configuration         = configuration;
+            _logger                = logger;
+            _weatherService        = weatherService;
+            _mapper                = mapper;
+            _weatherDisplayService = weatherDisplayService;
         }
 
         public IActionResult WeatherIndex()
@@ -39,7 +51,13 @@ namespace WeatherNET.Controllers
                     return NotFound( $"No weather data found for location: {locationName}" );
                 }
 
-                return View( "Weather", weatherData );
+                var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
+
+                // Calculate display related values
+                _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
+                _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
+
+                return View( "Weather", weatherViewModel );
             }
             catch ( InvalidLocationException ex ) // Custom exception for invalid locations
             {
@@ -67,7 +85,13 @@ namespace WeatherNET.Controllers
                     return NotFound( new { message = $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" } );
                 }
 
-                return View( "Weather", weatherData );
+                var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
+
+                // Calculate display related values
+                _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
+                _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
+
+                return View( "Weather", weatherViewModel );
             }
             catch ( InvalidLocationException ex ) // Custom exception for invalid locations
             {
