@@ -54,18 +54,42 @@
 .today-forecast-temperature {
     display: flex;
     justify-content: center;
-    align-items: center; 
-    font-size: 4rem;
+    align-items: center;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.today-forecast-temperature-value .temp-unit {
+.today-forecast-temperature-value {
+    font-size: 4rem;
+}
+
+.today-forecast-temperature-value .temp-unit.actual {
     margin-left: -1rem;
+    
 }
 
 .today-forecast-temperature-value sup {
     margin-right: -1.5rem;
+}
+
+.today-forecast-high-low {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.middle-dot {
+    font-size: 2rem;
+    line-height: 1rem;
+    margin-top: -0.225rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.today-forecast-temperature-feels-like {
+    font-size: 1rem;
+    line-height: 1rem;
 }
 
 .today-forecast-detailed-info {
@@ -74,7 +98,7 @@
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
     align-items: center;
     text-align: center;
-    line-height: 30px;
+    line-height: 2.5rem;
 }
 
 .today-forecast-temperature-feels-like sup {
@@ -91,6 +115,7 @@
 
 .today-forecast-temperature-feels-like,
 .today-forecast-precipProbability,
+.today-forecast-humidity,
 .today-forecast-windSpeed {
     display: flex;
     flex-direction: row;
@@ -234,9 +259,9 @@
 .detailed-icon {
     background-repeat: no-repeat;
     background-position: center;
-    width: 30px; /* adjust based on actual SVG size */
-    height: 30px; /* adjust based on actual SVG size */
-    display: inline-block; /* so the class behaves like an icon */
+    width: 40px;
+    height: 40px; 
+    /*display: inline-block;*/
 }
 
     .detailed-icon.rain {
@@ -257,6 +282,10 @@
 
     .detailed-icon.umbrella {
         background-image: url('/assets/images/weather-icons/umbrella.svg');
+    }
+
+    .detailed-icon.humidity {
+        background-image: url('/assets/images/weather-icons/humidity.svg');
     }
 
 /* For medium screens and up,  add some top margin to the 'Use my location' button */
