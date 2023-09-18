@@ -1,6 +1,7 @@
 .weather-container {
     flex-grow: 1;
-    background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);
+    /*background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);*/
+    background: linear-gradient(180deg, rgba(78,200,255,1) 55%, rgba(174,245,255,0) 100%);
 }
 
 .hero {

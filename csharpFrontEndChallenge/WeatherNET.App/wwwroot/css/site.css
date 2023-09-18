@@ -52,10 +52,7 @@ footer {
 }
 
 /*Home View*/
-.home-container {
-    flex: 1 0 auto;
-    background: radial-gradient(circle, rgba(225,223,243,1) 0%, rgba(223,242,243,1) 50%, rgba(220,236,255,1) 100%);
-}
+
 
 /*Weather View*/
 
