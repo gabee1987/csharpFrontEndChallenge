@@ -14,7 +14,7 @@
 
     // always initialize the scroll on document ready for #hourlyScroll
     $(document).ready(function () {
-        initializeHorizontalScroll('#hourlyForecastScrollChart');
+        //initializeHorizontalScroll('#hourlyForecastScrollChart');
     });
 
     // Export function to use it for other elements in the future

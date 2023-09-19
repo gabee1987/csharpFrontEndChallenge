@@ -6,5 +6,6 @@ namespace WeatherNET.App.Services
     {
         void CalculateHourlyChartHeight( HourlyDataViewModel viewModel, double incrementFactor );
         void CalculateHourlyChartBarHeight( HourlyDataViewModel viewModel, double incrementFactor );
+        void CalculateUvIndex( CurrentlyDataViewModel viewModel );
     }
 }

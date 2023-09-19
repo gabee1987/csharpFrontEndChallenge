@@ -54,8 +54,10 @@ namespace WeatherNET.Controllers
                 var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
 
                 // Calculate display related values
+                // TODO need to extract these to a separate function
                 _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
                 _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
+                _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
 
                 return View( "Weather", weatherViewModel );
             }

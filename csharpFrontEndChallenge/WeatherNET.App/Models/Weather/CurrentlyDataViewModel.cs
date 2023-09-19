@@ -7,7 +7,7 @@ namespace WeatherNET.App.Models.Weather
         public CurrentlyWeatherData CurrentlyData { get; set; }
 
         #region Display Helpers
-
+        public string UvIndexDisplay { get; set; }
         #endregion
     }
 }

@@ -17,13 +17,22 @@
                 <partial name="_CurrentWeather" model="Model" />
             </div>
         </div>
-        <div class="row d-flex p-0 justify-content-center">
-            <partial name="_HourlyForecast" model="Model.Hourly" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-12">
+                <partial name="_HourlyForecast" model="Model.Hourly" />
+            </div>         
         </div>
     </div>
-    <div class="daily-forecast-table">
-        <div class="row">
-            <div class="col-xl-6">
+    <div class="current-weather-details">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-12">
+                <partial name="_CurrentWeatherDetails" model="Model.Currently" />
+            </div>
+        </div>
+    </div>
+    <div class="hourly-precipitation-forecast">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-12">
                 <div>
 
                 </div>

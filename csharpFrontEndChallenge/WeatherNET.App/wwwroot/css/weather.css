@@ -333,3 +333,15 @@
 
 
 
+/*======================= Current Weather Details */
+.currently-weather-details {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 6px #1d1e261a,0 1px 3px #1d1e261a;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.currently-weather-details label {
+    color: #7d7d7d;
+}
