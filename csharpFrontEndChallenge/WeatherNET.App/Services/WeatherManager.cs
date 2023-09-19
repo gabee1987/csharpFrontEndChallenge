@@ -30,7 +30,7 @@ namespace WeatherNET.App.Services
 
             // Calculate display related values
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
 
             // Assign tooltip values from the json to the properties
@@ -46,7 +46,7 @@ namespace WeatherNET.App.Services
 
             // Calculate display related values
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
 
             // Assign tooltip values from the json to the properties

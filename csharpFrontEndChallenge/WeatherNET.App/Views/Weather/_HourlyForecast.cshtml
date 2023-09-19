@@ -4,7 +4,7 @@
     <div class="hourly-chart" style="height: @(Model.AdjustedChartHeight)rem" id="hourlyForecastScrollChart">
         @foreach ( var displayData in Model.DisplayData )
         {
-            <div class="hour-column" style="height: @(displayData.HeightValue)rem">
+            <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.HeightValue)rem">
                 <div class="hourly-temp text-center">
                     @Math.Round(displayData.HeightValue / Model.ColumnScalingFactor)
                     <span class="temp-unit hour-unit">

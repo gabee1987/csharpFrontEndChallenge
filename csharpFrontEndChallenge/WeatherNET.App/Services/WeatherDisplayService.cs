@@ -13,19 +13,32 @@ namespace WeatherNET.App.Services
             viewModel.AdjustedChartHeight = viewModel.MaxTemp * incrementFactor;
         }
 
-        public void CalculateHourlyChartBarHeight( HourlyDataViewModel viewModel, double incrementFactor )
+        public void CalculateHourlyChartBarDisplayData( WeatherViewModel viewModel, double incrementFactor )
         {
-            if ( viewModel.HourlyData == null ) return;
+            if ( viewModel == null || viewModel.Hourly == null ) return;
 
-            foreach ( var hourData in viewModel.HourlyData.Data )
+            foreach ( var hourData in viewModel.Hourly.HourlyData.Data )
             {
+                // Get the sunrise and sunset time for the specific day of the hourData.
+                var date                 = hourData.Time.Date;
+                var dailyDataForThisHour = viewModel.Daily.DailyData.Data.FirstOrDefault( d => d.Time.Date == date );
+
+                // If there's no daily data for this hour's day, continue to the next hour.
+                if ( dailyDataForThisHour == null ) continue;
+
+                var sunriseTime = dailyDataForThisHour.SunriseTime;
+                var sunsetTime  = dailyDataForThisHour.SunsetTime;
+
                 var displayData = new HourlyDisplayData
                 {
                     HeightValue = hourData.Temperature * incrementFactor,
                     IconClass   = hourData.Icon.ToLower(),
-                    Hour        = hourData.Time.ToString( "HH" )
+                    Hour        = hourData.Time.ToString( "HH" ),
+                    SunriseTime = sunriseTime,
+                    SunsetTime  = sunsetTime,
+                    IsDaytime   = hourData.Time > sunriseTime && hourData.Time < sunsetTime ? true : false
                 };
-                viewModel.DisplayData.Add( displayData );
+                viewModel.Hourly.DisplayData.Add( displayData );
             }
         }
 

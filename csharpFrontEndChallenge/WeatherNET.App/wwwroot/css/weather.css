@@ -1,7 +1,7 @@
 .weather-container {
     flex-grow: 1;
     /*background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);*/
-    background: linear-gradient(180deg, rgba(78,200,255,1) 55%, rgba(174,245,255,0) 100%);
+    background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
 }
 
 .hero {
@@ -151,11 +151,19 @@
     margin: 0 2px;
     margin-bottom: 0.5rem;
     flex-shrink: 0;
-    background-color: rgb(0, 128, 255, 0.30);
+    background-color: rgb(0, 128, 255, 0.50);
     border-radius: 5px 5px 0 0;
     display: flex;
     align-items: flex-end;
 }
+
+    .hour-column.day-column {
+        background-color: rgb(0, 128, 255, 0.50);
+    }
+
+    .hour-column.night-column {
+        background-color: rgb(0, 72, 143, 0.50);
+    }
 
 .hourly-temp {
     margin-top: -50%;

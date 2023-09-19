@@ -5,7 +5,7 @@ namespace WeatherNET.App.Services
     public interface IWeatherDisplayService
     {
         void CalculateHourlyChartHeight( HourlyDataViewModel viewModel, double incrementFactor );
-        void CalculateHourlyChartBarHeight( HourlyDataViewModel viewModel, double incrementFactor );
-        void CalculateUvIndex( CurrentlyDataViewModel viewModel );
+        void CalculateHourlyChartBarDisplayData( WeatherViewModel viewModel, double incrementFactor );
+        void CalculateUvIndex( CurrentlyDataViewModel currentlyViewModel );
     }
 }

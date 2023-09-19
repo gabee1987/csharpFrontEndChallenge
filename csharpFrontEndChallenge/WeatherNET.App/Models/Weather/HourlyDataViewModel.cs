@@ -24,5 +24,8 @@ namespace WeatherNET.App.Models.Weather
         public double HeightValue { get; set; }
         public string IconClass { get; set; }
         public string Hour { get; set; }
+        public bool IsDaytime { get; set; }
+        public DateTime? SunriseTime { get; set; }
+        public DateTime? SunsetTime { get; set; }
     }
 }

@@ -29,7 +29,17 @@ namespace WeatherNET.Services.MappingProfiles
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiDailyData, WeatherNET.Models.WeatherForecast.DailyWeatherData>();
             CreateMap<WeatherNET.PirateWeatherApi.ApiPerDayData, WeatherNET.Models.WeatherForecast.PerDayWeatherData>()
-                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) );
+                .ForMember( dest => dest.Time, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.Time ) ) )
+                .ForMember( dest => dest.SunriseTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.SunriseTime ) ) )
+                .ForMember( dest => dest.SunsetTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.SunsetTime ) ) )
+                .ForMember( dest => dest.TemperatureHighTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.TemperatureHighTime ) ) )
+                .ForMember( dest => dest.TemperatureLowTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.TemperatureLowTime ) ) )
+                .ForMember( dest => dest.TemperatureMaxTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.TemperatureMaxTime ) ) )
+                .ForMember( dest => dest.TemperatureMinTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.TemperatureMinTime ) ) )
+                .ForMember( dest => dest.ApparentTemperatureHighTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.ApparentTemperatureHighTime ) ) )
+                .ForMember( dest => dest.ApparentTemperatureLowTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.ApparentTemperatureLowTime ) ) )
+                .ForMember( dest => dest.UvIndexTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.UvIndexTime ) ) )
+                .ForMember( dest => dest.WindGustTime, opt => opt.MapFrom( src => _timeService.ConvertUnixToDateTime( src.WindGustTime ) ) );
 
             CreateMap<WeatherNET.PirateWeatherApi.ApiHourlyData, WeatherNET.Models.WeatherForecast.HourlyWeatherData>();
             CreateMap<WeatherNET.PirateWeatherApi.ApiCurrentlyData, WeatherNET.Models.WeatherForecast.PerHourWeatherData>()
