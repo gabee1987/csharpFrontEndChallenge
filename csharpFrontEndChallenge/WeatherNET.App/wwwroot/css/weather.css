@@ -205,6 +205,41 @@
     margin-top: 15px !important
 }
 
+/*======================= Hourly Chart Scroll Bar*/
+.hourly-chart::-webkit-scrollbar {
+    /*display: none;*/ /* Hide scrollbar for Webkit browsers */
+}
+
+.hourly-chart {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+    .hourly-chart::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .hourly-chart::-webkit-scrollbar-track {
+        background-color: transparent; 
+        border-radius: 10px;
+    }
+
+    .hourly-chart::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        border: none;
+    }
+
+        .hourly-chart::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+/* For Firefox */
+.hourly-chart {
+    scrollbar-width: thin; /* 'thin' or 'none' */
+    scrollbar-color: #888 #F5F5F5; /* Thumb color and Track color */
+}
+    
 
 /*======================= Weather Icons*/
 .weather-icon {
@@ -295,3 +330,6 @@
         margin-top: 0.5rem;
     }
 }
+
+
+
