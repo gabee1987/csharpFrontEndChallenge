@@ -7,6 +7,7 @@ using WeatherNET.Services.WeatherService;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using WeatherNET.App.Models.MappingProfiles;
 using WeatherNET.App.Services;
+using WeatherNET.App.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -27,10 +28,12 @@ builder.Services.AddAutoMapper( ( serviceProvider, automapper ) =>
     automapper.AddProfile( new WeatherViewModelMappingProfile() );
 }, AppDomain.CurrentDomain.GetAssemblies() );
 
-builder.Services.AddSingleton<IGeocodingService, GoogleGeocodingService>();
-builder.Services.AddSingleton<IPirateWeatherApiService, PirateWeatherApiService>();
-builder.Services.AddSingleton<IWeatherService, WeatherService>();
+builder.Services.AddTransient<IGeocodingService, GoogleGeocodingService>();
+builder.Services.AddTransient<IPirateWeatherApiService, PirateWeatherApiService>();
+builder.Services.AddTransient<IWeatherService, WeatherService>();
 builder.Services.AddTransient<IWeatherDisplayService, WeatherDisplayService>();
+builder.Services.AddTransient<IWeatherManager, WeatherManager>();
+builder.Services.AddSingleton<ITooltipService, TooltipService>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();

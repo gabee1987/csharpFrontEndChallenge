@@ -5,6 +5,7 @@ using WeatherNET.Services.Exceptions_Models;
 using AutoMapper;
 using WeatherNET.App.Services;
 using WeatherNET.App.Models.Weather;
+using WeatherNET.App.Services.Interfaces;
 
 namespace WeatherNET.Controllers
 {
@@ -15,6 +16,7 @@ namespace WeatherNET.Controllers
         private readonly IWeatherService _weatherService;
         private readonly IMapper _mapper;
         private readonly IWeatherDisplayService _weatherDisplayService;
+        private readonly IWeatherManager _weatherManager;
 
 
         public WeatherController( 
@@ -22,13 +24,15 @@ namespace WeatherNET.Controllers
             ILogger<WeatherData> logger,
             IWeatherService weatherService,
             IMapper mapper,
-            IWeatherDisplayService weatherDisplayService )
+            IWeatherDisplayService weatherDisplayService,
+            IWeatherManager weatherManager )
         {
             _configuration         = configuration;
             _logger                = logger;
             _weatherService        = weatherService;
             _mapper                = mapper;
             _weatherDisplayService = weatherDisplayService;
+            _weatherManager        = weatherManager;
         }
 
         public IActionResult WeatherIndex()
@@ -42,28 +46,18 @@ namespace WeatherNET.Controllers
             try
             {
                 locationName ??= _configuration.GetValue<string>( "DefaultLocation" );
+                var weatherViewModel = await _weatherManager.GetWeatherViewModelByLocationName( locationName );
 
-                var weatherData = await _weatherService.GetWeatherAsync( locationName );
-
-                if ( weatherData == null )
+                if ( weatherViewModel == null )
                 {
                     _logger.LogWarning( $"No weather data found for location: {locationName}" );
                     return NotFound( $"No weather data found for location: {locationName}" );
                 }
 
-                var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
-
-                // Calculate display related values
-                // TODO need to extract these to a separate function
-                _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-                _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
-                _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
-
                 return View( "Weather", weatherViewModel );
             }
             catch ( InvalidLocationException ex ) // Custom exception for invalid locations
             {
-
                 _logger.LogError( ex, $"Invalid location provided: {locationName}" );
                 return BadRequest( $"Invalid location: {locationName}" );
             }
@@ -79,19 +73,13 @@ namespace WeatherNET.Controllers
         {
             try
             {
-                var weatherData = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
+                var weatherViewModel = await _weatherManager.GetWeatherViewModelByCoordinates( latitude, longitude );
 
-                if ( weatherData == null )
+                if ( weatherViewModel == null )
                 {
                     _logger.LogWarning( $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" );
                     return NotFound( new { message = $"No weather data found for location - Latitude: {latitude}, Longitude: {longitude}" } );
                 }
-
-                var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
-
-                // Calculate display related values
-                _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-                _weatherDisplayService.CalculateHourlyChartBarHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ColumnScalingFactor );
 
                 return View( "Weather", weatherViewModel );
             }
