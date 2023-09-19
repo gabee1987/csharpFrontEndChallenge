@@ -1,7 +1,7 @@
 ﻿@model WeatherNET.App.Models.Weather.WeatherViewModel
 
 <div class="container location-container">
-    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName">
+    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName" id="locationForm">
         <div class="mb-6">
             <div class="row d-flex justify-content-center">
                 <!-- Location input field with the Get Forecast button -->
@@ -17,5 +17,11 @@
                 </div>
             </div>
         </div>
+    </form>
+
+    <!-- Hidden form for sending coordinates to the server -->
+    <form id="coordsForm" method="get" action="/Weather/GetWeatherByCoordinates">
+        <input type="hidden" id="latitudeInput" name="latitude">
+        <input type="hidden" id="longitudeInput" name="longitude">
     </form>
 </div>
