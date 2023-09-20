@@ -68,5 +68,26 @@ namespace WeatherNET.App.Services
                 weatherViewModel.IsDayTime = weatherViewModel.Hourly.DisplayData[0].IsDaytime;
             }
         }
+
+        public void CalculateHourlyPrecipitationDisplayData( WeatherViewModel viewModel )
+        {
+            if ( viewModel == null || viewModel.Hourly.HourlyData == null ) return;
+
+            foreach ( var hourData in viewModel.Hourly.HourlyData.Data )
+            {
+                var precipData = new HourlyPrecipDisplayData
+                {
+                    PrecipChance = hourData.PrecipProbability * 100,
+                    PrecipVolume = hourData.PrecipIntensity,
+                    Hour         = hourData.Time.ToString( "HH:00" )
+                };
+                viewModel.Hourly.PrecipDisplayData.Add( precipData );
+            }
+        }
+
+        public void CalculateTotalPrecipVolumePerDay( WeatherViewModel weatherViewModel )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

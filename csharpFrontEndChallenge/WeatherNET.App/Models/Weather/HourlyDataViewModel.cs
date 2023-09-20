@@ -10,6 +10,7 @@ namespace WeatherNET.App.Models.Weather
         #region Display Helpers
         public double ColumnHeightValue { get; set; }
         public List<HourlyDisplayData> DisplayData { get; set; } = new List<HourlyDisplayData>();
+        public List<HourlyPrecipDisplayData> PrecipDisplayData { get; set; } = new List<HourlyPrecipDisplayData>();
         public string IconClass { get; set; }
         public string Hour { get; set; }
         public double ColumnScalingFactor { get; set; } = 0.4;
@@ -27,5 +28,15 @@ namespace WeatherNET.App.Models.Weather
         public bool IsDaytime { get; set; }
         public DateTime? SunriseTime { get; set; }
         public DateTime? SunsetTime { get; set; }
+    }
+
+    public class HourlyPrecipDisplayData
+    {
+        public double PrecipChance { get; set; } // In percentage
+        public double PrecipVolume { get; set; } // In mm
+        public string Hour { get; set; }
+        public string FormattedVolume => PrecipVolume == 0 ? "-" : $"{Math.Round( PrecipVolume, 1 )}";
+        public string FormattedChance => $"{Math.Round( PrecipChance, 1 )}";
+        public bool IsDaytime { get; set; }
     }
 }
