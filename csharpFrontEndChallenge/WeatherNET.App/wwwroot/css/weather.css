@@ -2,6 +2,7 @@
     flex-grow: 1;
     /*background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);*/
     background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
+    background-repeat: fix
 }
 
 .hero {
@@ -171,11 +172,15 @@
     width: 100%;
 }
 
-.hour-column-bottom-value {
-    position: relative;
-    margin-bottom: -10%;
-    margin-left: -50%;
-}
+    .hourly-temp.current-hour-temp {
+        font-weight: bold;
+    }
+
+    .hour-column-bottom-value {
+        position: relative;
+        margin-bottom: -10%;
+        margin-left: -50%;
+    }
 
 .temp-value {
     position: absolute;
@@ -206,12 +211,16 @@
     color: #555;
 }
 
-.hourly-icon {
-    width: 30px !important;
-    height: 30px !important;
-    margin-left: 0 !important;
-    margin-top: 15px !important
-}
+    .hour.current-hour {
+        font-weight: bold;
+    }
+
+    .hourly-icon {
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: 0 !important;
+        margin-top: 15px !important
+    }
 
 /*======================= Hourly Chart Scroll Bar*/
 .hourly-chart::-webkit-scrollbar {
