@@ -2,8 +2,16 @@
     flex-grow: 1;
     /*background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);*/
     background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
-    background-repeat: fix
+    background-attachment: fixed;
 }
+
+    .weather-container.daytime {
+        background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
+    }
+
+    .weather-container.nighttime {
+        background: linear-gradient(180deg, rgba(42,138,181,1) 50%, rgba(174,245,255,0) 100%);
+    }
 
 .hero {
     /*background: linear-gradient(100deg, rgba(231,255,255,1) 0%, rgba(239,252,255,1) 32%, rgba(220,243,255,1) 48%, rgba(249,232,255,1) 100%);*/

@@ -3,7 +3,7 @@
 }
 @model WeatherNET.App.Models.Weather.WeatherViewModel
 
-<div class="container-fluid weather-container">
+<div class="container-fluid weather-container @(Model.IsDayTime ? "daytime" : "nighttime")">
     <div class="row">
         <div class="col-xl-12 g-0">
             <div class="hero">

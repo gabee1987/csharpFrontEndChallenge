@@ -32,6 +32,7 @@ namespace WeatherNET.App.Services
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
             _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
+            _weatherDisplayService.GetIsDayTime( weatherViewModel );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );
@@ -41,13 +42,14 @@ namespace WeatherNET.App.Services
 
         public async Task<WeatherViewModel> GetWeatherViewModelByCoordinates( double latitude, double longitude )
         {
-            var weatherData      = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
+            var weatherData = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
             var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
 
             // Calculate display related values
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
             _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
+            _weatherDisplayService.GetIsDayTime( weatherViewModel );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );
@@ -55,6 +57,7 @@ namespace WeatherNET.App.Services
             return weatherViewModel;
         }
 
+       
         #region Helper Methods
         private async Task AssignCurrentlyWeatherTooltipsToViewModelAsync( CurrentlyDataViewModel viewModel )
         {

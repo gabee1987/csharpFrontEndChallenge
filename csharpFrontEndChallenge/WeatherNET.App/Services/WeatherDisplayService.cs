@@ -58,5 +58,15 @@ namespace WeatherNET.App.Services
                 _ => "Unknown"
             };
         }
+
+        public void GetIsDayTime( WeatherViewModel weatherViewModel )
+        {
+            if (weatherViewModel == null || weatherViewModel.Hourly == null) return;
+
+            if ( weatherViewModel.Hourly.DisplayData.Count > 0 )
+            {
+                weatherViewModel.IsDayTime = weatherViewModel.Hourly.DisplayData[0].IsDaytime;
+            }
+        }
     }
 }

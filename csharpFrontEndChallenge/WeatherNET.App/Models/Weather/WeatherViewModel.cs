@@ -15,7 +15,8 @@ namespace WeatherNET.App.Models.Weather
 
 
         #region Display Helpers
-        public string DisplayUnit { get; set; } // "imperial" or "si"       
+        public string DisplayUnit { get; set; } // "imperial" or "si"
+        public bool IsDayTime { get; set; }
         #endregion
 
     }
