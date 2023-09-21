@@ -30,7 +30,7 @@ namespace WeatherNET.App.Services
 
             // Calculate display related values
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyForecastColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );
@@ -49,7 +49,7 @@ namespace WeatherNET.App.Services
 
             // Calculate display related values
             _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.ColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyForecastColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );

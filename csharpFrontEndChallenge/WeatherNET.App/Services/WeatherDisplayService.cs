@@ -98,9 +98,12 @@ namespace WeatherNET.App.Services
             {
                 var windData = new HourlyWindDisplayData
                 {
-                    WindStrength  = GetWindStrengthInWords( hourData.WindSpeed ),
-                    WindDirection = GetWindDirectionInWords( hourData.WindBearing ),
-                    WindSpeed     = Math.Round( hourData.WindSpeed )
+                    WindStrength        = GetWindStrengthInWords( hourData.WindSpeed ),
+                    WindDirectionString = GetWindDirectionInWords( hourData.WindBearing ),
+                    WindDirection       = hourData.WindBearing,
+                    WindSpeed           = Math.Round( hourData.WindSpeed ),
+                    WindGust            = Math.Round( hourData.WindGust ),
+                    Hour                = hourData.Time.ToString( "HH:00" )
                 };
                 viewModel.Hourly.WindDisplayData.Add( windData );
             }

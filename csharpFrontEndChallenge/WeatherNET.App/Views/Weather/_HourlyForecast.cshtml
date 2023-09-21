@@ -7,7 +7,7 @@
             var displayData = Model.DisplayData[i];
             <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.HeightValue)rem">
                 <div class="hourly-temp text-center @((i == 0) ? "current-hour-temp" : "")">
-                    @Math.Round(displayData.HeightValue / Model.ColumnScalingFactor)
+                    @Math.Round(displayData.HeightValue / Model.HourlyForecastColumnScalingFactor)
                     <span class="temp-unit hour-unit">
                         <sup>°</sup>
                     </span>

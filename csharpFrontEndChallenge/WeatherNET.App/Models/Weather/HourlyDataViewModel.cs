@@ -14,7 +14,8 @@ namespace WeatherNET.App.Models.Weather
         public List<HourlyWindDisplayData> WindDisplayData { get; set; } = new List<HourlyWindDisplayData>();
         public string IconClass { get; set; }
         public string Hour { get; set; }
-        public double ColumnScalingFactor { get; set; } = 0.4;
+        public double HourlyForecastColumnScalingFactor { get; set; } = 0.4;
+        public double HourlyWindColumnScalingFactor { get; set; } = 2.5;
         public double ChartHeightIncrementFactor { get; set; } = 0.7;
         public double MaxTemp { get; set; }
         public double AdjustedChartHeight { get; set; }
@@ -45,8 +46,10 @@ namespace WeatherNET.App.Models.Weather
     {
         public double WindSpeed { get; set; } // In km/h
         public string WindStrength { get; set; } // In words like Calm, intensive etc.
-        public string WindDirection { get; set; } // in words
+        public double WindDirection { get; set; } // in degree
+        public string WindDirectionString { get; set; } // in words
         public double WindBearing { get; set; }
+        public double WindGust { get; set; }
         public string Hour { get; set; }
         public bool IsDaytime { get; set; }
     }

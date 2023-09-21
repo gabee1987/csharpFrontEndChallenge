@@ -7,9 +7,17 @@
     <div class="row">
         <div class="col-sm-1">
             <div class="wind-current-speed">
-                <h1>@Model.Currently.CurrentlyData.WindSpeed</h1>
+                <h1>@Math.Round(Model.Currently.CurrentlyData.WindSpeed)</h1>
                 <div class="wind-current-icon-and-label">
-                    <span>@Model.Currently.CurrentlyData.WindBearing</span>
+                    <span>
+                        <svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             viewBox="0 0 512 512" xml:space="preserve" style="transform: rotate(@(Model.Currently.CurrentlyData.WindBearing)deg)">
+                            <polygon style="fill:#00000A;" points="256,0.96 0,511.04 256,354.096 512,511.04 " />
+                            <g style="opacity:0.4;">
+                            <polygon style="fill:#FFFFFF;" points="256,0.96 0,511.04 256,354.096 256,203.016 	" />
+                            </g>
+                            </svg>
+                    </span>
                     <span>km/h</span>
                 </div>            
             </div>
@@ -17,7 +25,9 @@
         <div class="col-sm-2">
             <div class="wind-current-strenght">
                 <h2>@Model.Hourly.WindDisplayData.First().WindStrength</h2>
-                Now <span class="middle-dot">·</span><span>From @Model.Hourly.WindDisplayData.First().WindDirection</span>
+                <div class="wind-direction-string">
+                    <label>Now</label><span class="middle-dot">·</span><span>From @Model.Hourly.WindDisplayData.First().WindDirectionString</span>
+                </div>
             </div>          
         </div>
     </div>
@@ -29,12 +39,17 @@
                     var data = Model.Hourly.WindDisplayData[i];
                     <div class="wind-column">
                         <div class="wind-direction-icon">
-                            <svg width="20" height="30" viewBox="0 0 20 30" style="transform: rotate(@data.WindBearing + 'deg');">
-                                <path d="M10 0 L20 30 L15 20 L5 20 L0 30 L10 0" fill="none" stroke="black" />
+                            @*<img class="wind-arrow-icon" src="~/assets/images/arrow-icon.png" alt="Arrow" style="transform: rotate(@data.WindBearing + 'deg');" />*@
+                            <svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 viewBox="0 0 512 512" xml:space="preserve" style="transform: rotate(@(data.WindDirection)deg)">
+                                <polygon style="fill:#00000A;" points="256,0.96 0,511.04 256,354.096 512,511.04 " />
+                                <g style="opacity:0.4;">
+                                <polygon style="fill:#FFFFFF;" points="256,0.96 0,511.04 256,354.096 256,203.016 	" />
+                                </g>
                             </svg>
                         </div>
                         <div class="wind-speed">@data.WindSpeed</div>
-                        <div class="wind-bar" style="height: @data.WindSpeed + 'px'"></div>
+                        <div class="wind-bar" style="height: @(data.WindGust / Model.Hourly.HourlyWindColumnScalingFactor)rem"></div>
                         <div class="time-label">@data.Hour</div>
                     </div>
                 }
