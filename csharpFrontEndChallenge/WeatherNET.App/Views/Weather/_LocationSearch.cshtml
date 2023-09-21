@@ -1,0 +1,27 @@
+﻿@model WeatherNET.App.Models.Weather.WeatherViewModel
+
+<div class="container location-container">
+    <form class="weather-location-form" method="get" action="/Weather/GetWeatherByLocationName" id="locationForm">
+        <div class="mb-6">
+            <div class="row d-flex justify-content-center">
+                <!-- Location input field with the Get Forecast button -->
+                <div class="col-md-8 position-relative">
+                    <input type="text" class="form-control location-input" id="locationNameInput" name="locationName" placeholder="Enter location name..." aria-describedby="locationNameInput" required>
+                    <button class="btn btn-primary submit-button" type="submit">Get Forecast</button>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <!-- Use my location button -->
+                <div class="col-md-8 text-center">
+                    <button type="button" class="btn btn-secondary mt-2" id="useMyLocation">Use my location</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Hidden form for sending coordinates to the server -->
+    <form id="coordsForm" method="get" action="/Weather/GetWeatherByCoordinates">
+        <input type="hidden" id="latitudeInput" name="latitude">
+        <input type="hidden" id="longitudeInput" name="longitude">
+    </form>
+</div>

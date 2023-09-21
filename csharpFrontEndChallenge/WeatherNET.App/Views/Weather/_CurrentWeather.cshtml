@@ -1,0 +1,78 @@
+﻿@model WeatherNET.App.Models.Weather.WeatherViewModel
+
+<div class="current-weather-data">
+    <div class="today-forecast-date">
+        <h6>@Model.Currently.CurrentlyData.Time.ToString("MMMM dd, HH:mm")</h6>
+    </div>
+    <div class="today-forecast-location">
+        <h3 id="currentLocationName">@Model.Location.Name</h3>
+    </div>
+    <div class="today-forecast-temperature">
+        <div class="col-xl-4">
+            <div class="today-forecast-high-low">
+                <div class="today-forecast-temp-high">
+                    Day @Math.Round(Model.Daily.DailyData.Data.First().TemperatureHigh)
+                    <span class="temp-unit daily-high">
+                        <sup>°</sup>
+                        ↑
+                    </span>
+                </div>
+                <span class="middle-dot">·</span>
+                <div class="today-forecast-temp-low">
+                    Night @Math.Round(Model.Daily.DailyData.Data.First().TemperatureLow)
+                    <span class="temp-unit daily-low">
+                        <sup>°</sup>
+                        ↓
+                    </span>
+                </div>
+            </div>
+            <div class="today-forecast-temperature-value">
+                @Math.Round(Model.Currently.CurrentlyData.Temperature)
+                <span class="temp-unit actual">
+                    <sup>°c</sup>
+                </span>
+                <div class="today-forecast-temperature-feels-like">
+                    <span>Feels like </span>
+                    @Math.Round(Model.Currently.CurrentlyData.ApparentTemperature)
+                    <span class="temp-unit feels-like">
+                        <sup>°</sup>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="weather-icon @Model.Currently.CurrentlyData.Icon.ToLower() align-items-center"></div>
+        </div>
+    </div>
+    <div class="today-forecast-detailed-info">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-2">
+                <div class="forecast-summary-text">
+                    <span>@Model.Currently.CurrentlyData.Summary</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="today-forecast-precipProbability">
+                    <span class="detailed-icon @(string.IsNullOrEmpty(Model.Currently.CurrentlyData.PrecipType) || Model.Currently.CurrentlyData.PrecipType.ToLower() == "none" ? "umbrella" : Model.Currently.CurrentlyData.PrecipType.ToLower())"></span>
+                    @(Model.Currently.CurrentlyData.PrecipProbability * 100)
+                    <span>%</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="today-forecast-humidity">
+                    <span class="detailed-icon humidity"></span>
+                    @(Model.Currently.CurrentlyData.Humidity * 100)
+                    <span>%</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="today-forecast-windSpeed">
+                    <span class="detailed-icon wind"></span>
+                    @Math.Round(Model.Currently.CurrentlyData.WindSpeed)
+                    <span>km/h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

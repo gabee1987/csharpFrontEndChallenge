@@ -1,0 +1,480 @@
+.weather-container {
+    flex-grow: 1;
+    /*background: linear-gradient(180deg, rgba(121,172,208,1) 45%, rgba(223,242,255,1) 100%);*/
+    background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
+    background-attachment: fixed;
+}
+
+    .weather-container.daytime {
+        background: linear-gradient(180deg, rgba(78,200,255,1) 50%, rgba(174,245,255,0) 100%);
+    }
+
+    .weather-container.nighttime {
+        background: linear-gradient(180deg, rgba(42,138,181,1) 50%, rgba(174,245,255,0) 100%);
+    }
+
+.hero {
+    /*background: linear-gradient(100deg, rgba(231,255,255,1) 0%, rgba(239,252,255,1) 32%, rgba(220,243,255,1) 48%, rgba(249,232,255,1) 100%);*/
+}
+
+.location-container {
+    padding: 4rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.weather-location-form {
+    background: transparent;
+}
+
+
+.location-input {
+    box-shadow: 0 3px 6px #1d1e261a, 0 1px 3px #1d1e261a;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    padding: 15px 50px 15px 20px;
+    line-height: normal;
+}
+
+.submit-button {
+    position: absolute;
+    top: 5px;
+    right: 17px;
+    bottom: 5px;
+    padding: 0 30px;
+}
+
+/*======================= Today Forecast*/
+.today-forecast {
+    padding: 3rem 0;
+    padding-top: 1rem;
+}
+
+.today-forecast-date {
+    color: #444444;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.today-forecast-location {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.today-forecast-temperature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.today-forecast-temperature-value {
+    font-size: 4rem;
+}
+
+.today-forecast-temperature-value .temp-unit.actual {
+    margin-left: -1rem;
+    
+}
+
+.today-forecast-temperature-value sup {
+    margin-right: -1.5rem;
+}
+
+.today-forecast-high-low {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.middle-dot {
+    font-size: 2rem;
+    line-height: 1rem;
+    margin-top: -0.225rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.today-forecast-temperature-feels-like {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.today-forecast-detailed-info {
+    font-size: 1.2rem;
+    color: #444444;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+    align-items: center;
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+.today-forecast-temperature-feels-like sup {
+    margin-right: -0.3rem;
+}
+
+.today-forecast-temperature-feels-like {
+    
+}
+
+.today-forecast-temperature-feels-like span {
+    margin-right: 0.5rem;
+}
+
+.today-forecast-temperature-feels-like,
+.today-forecast-precipProbability,
+.today-forecast-humidity,
+.today-forecast-windSpeed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* vertically center the content inside */
+    height: 100%;
+}
+
+.forecast-summary-text {
+    /*font-size: 1rem;*/
+}
+
+
+/*======================= Hourly Forecast*/
+.hourly-chart {
+    display: flex;
+    align-items: flex-end; /* This makes sure columns (bars) grow upwards */
+    /*background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(223,242,255,0) 28%);*/
+    padding: 0.2rem;
+    overflow-x: auto;
+    margin-top: 2rem;
+    padding-bottom: 3.5rem;
+}
+
+
+.hour-unit sup {
+    margin-left: -4px;
+}
+
+.hour-column {
+    position: relative;
+    width: 50px;
+    margin: 0 2px;
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+    background-color: rgb(0, 128, 255, 0.50);
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+    .hour-column.day-column {
+        background-color: rgb(0, 128, 255, 0.50);
+    }
+
+    .hour-column.night-column {
+        background-color: rgb(0, 72, 143, 0.50);
+    }
+
+.hourly-temp {
+    margin-top: -50%;
+    align-self: flex-start;
+    width: 100%;
+}
+
+    .hourly-temp.current-hour-temp {
+        font-weight: bold;
+    }
+
+    .hour-column-bottom-value {
+        position: relative;
+        margin-bottom: -10%;
+        margin-left: -50%;
+    }
+
+.temp-value {
+    position: absolute;
+    top: -25px; /* Position above the column/bar */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    font-size: 14px;
+    color: #333;
+}
+
+.hourly-icon {
+    position: absolute;
+    bottom: -25px; /* Position below the column/bar */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.hour {
+    position: absolute;
+    bottom: -45px; /* Adjust based on the icon's height */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    font-size: 0.9rem;
+    color: #555;
+}
+
+    .hour.current-hour {
+        font-weight: bold;
+    }
+
+    .hourly-icon {
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: 0 !important;
+        margin-top: 15px !important
+    }
+
+/*======================= Hourly Chart Scroll Bar*/
+.hourly-chart::-webkit-scrollbar {
+    /*display: none;*/ /* Hide scrollbar for Webkit browsers */
+}
+
+.hourly-chart {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+    .hourly-chart::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .hourly-chart::-webkit-scrollbar-track {
+        background-color: transparent; 
+        border-radius: 10px;
+    }
+
+    .hourly-chart::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        border: none;
+    }
+
+        .hourly-chart::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+/* For Firefox */
+.hourly-chart {
+    scrollbar-width: thin; /* 'thin' or 'none' */
+    scrollbar-color: #888 #F5F5F5; /* Thumb color and Track color */
+}
+    
+
+/*======================= Weather Icons*/
+.weather-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 150px;
+    height: 150px; 
+    /*display: inline-block;*/
+    /*margin-top: 30px;*/
+    /*margin-left: -3.5rem;*/
+}
+
+    .weather-icon.clear-day {
+        background-image: url('/assets/images/weather-icons/clear-day.svg');
+    }
+
+    .weather-icon.clear-night {
+        background-image: url('/assets/images/weather-icons/clear-night.svg');
+    }
+
+    .weather-icon.rain {
+        background-image: url('/assets/images/weather-icons/rain.svg');
+    }
+
+    .weather-icon.snow {
+        background-image: url('/assets/images/weather-icons/snow.svg');
+    }
+
+    .weather-icon.sleet {
+        background-image: url('/assets/images/weather-icons/sleet.svg');
+    }
+
+    .weather-icon.wind {
+        background-image: url('/assets/images/weather-icons/wind.svg');
+    }
+
+    .weather-icon.fog {
+        background-image: url('/assets/images/weather-icons/fog.svg');
+    }
+
+    .weather-icon.cloudy {
+        background-image: url('/assets/images/weather-icons/cloudy.svg');
+    }
+
+    .weather-icon.partly-cloudy-day {
+        background-image: url('/assets/images/weather-icons/partly-cloudy-day.svg');
+    }
+
+    .weather-icon.partly-cloudy-night {
+        background-image: url('/assets/images/weather-icons/partly-cloudy-night.svg');
+    }
+
+.detailed-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px; 
+    /*display: inline-block;*/
+}
+
+    .detailed-icon.rain {
+        background-image: url('/assets/images/weather-icons/raindrops.svg');
+    }
+
+    .detailed-icon.snow {
+        background-image: url('/assets/images/weather-icons/snowflake.svg');
+    }
+
+    .detailed-icon.sleet {
+        background-image: url('/assets/images/weather-icons/sleet.svg');
+    }
+
+    .detailed-icon.wind {
+        background-image: url('/assets/images/weather-icons/wind.svg');
+    }
+
+    .detailed-icon.umbrella {
+        background-image: url('/assets/images/weather-icons/umbrella.svg');
+    }
+
+    .detailed-icon.humidity {
+        background-image: url('/assets/images/weather-icons/humidity.svg');
+    }
+
+/* For medium screens and up,  add some top margin to the 'Use my location' button */
+@media (min-width: 768px) {
+    #useMyLocation {
+        margin-top: 0.5rem;
+    }
+}
+
+
+
+/*======================= Current Weather Details */
+.currently-weather-details {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 6px #1d1e261a,0 1px 3px #1d1e261a;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+    .currently-weather-details label {
+        color: #7d7d7d;
+    }
+
+
+
+/*======================= Precipitation Forecast */
+.precipitation-forecast {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 6px #1d1e261a,0 1px 3px #1d1e261a;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.precip-chart-labels {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: 100%;
+}
+
+    .precip-chart-labels label:nth-child(1) {
+        padding-top: 0.2rem;
+    }
+
+    .precip-chart-labels label:nth-child(2) {
+        padding-bottom: 1rem;
+    }
+
+.precipitation-forecast label {
+    color: #7d7d7d;
+}
+
+.precip-chart {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; /* This makes sure columns (bars) grow upwards */
+    padding: 0.2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.precip-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50px;
+    margin: 0 2px;
+    flex-shrink: 0;
+    /*flex: 1;
+    text-align: center;
+    margin: 0 4px;*/
+}
+
+.precip-chance {
+    display: block;
+}
+
+.raindrop-icon {
+    position: relative;
+    margin: 5px auto;
+    background-size: 100% 100%;
+}
+
+.precip-chance, .precip-volume, .time-label {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.precip-column .time-label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/*======================= Precipitation Chart Scroll Bar*/
+.precip-chart::-webkit-scrollbar {
+    /*display: none;*/ /* Hide scrollbar for Webkit browsers */
+}
+
+.precip-chart {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+    .precip-chart::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .precip-chart::-webkit-scrollbar-track {
+        background-color: transparent;
+        border-radius: 10px;
+    }
+
+    .precip-chart::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        border: none;
+    }
+
+        .precip-chart::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+/* For Firefox */
+.precip-chart {
+    scrollbar-width: thin; /* 'thin' or 'none' */
+    scrollbar-color: #888 #F5F5F5; /* Thumb color and Track color */
+}

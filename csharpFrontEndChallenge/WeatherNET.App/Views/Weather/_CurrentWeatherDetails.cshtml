@@ -1,0 +1,143 @@
+﻿@model WeatherNET.App.Models.Weather.CurrentlyDataViewModel
+
+<div class="currently-weather-details">
+    <div class="currently-weather-details-title">
+        <h5>Current details</h5>
+    </div>
+    <div class="row">
+        <!-- Column 1 -->
+        <div class="col-xl-3">
+            <!-- Humidity -->
+            <div class="row mb-3" title="@Model.HumidityTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Humidity:</label>
+                </div>
+                <div class="col-6">
+                    @(Model.CurrentlyData.Humidity * 100) <span>%</span>
+                </div>
+            </div>
+
+            <!-- Dew Point -->
+            <div class="row mb-3" title="@Model.DewPointTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Dew Point:</label>
+                </div>
+                <div class="col-6">
+                    @Model.CurrentlyData.DewPoint <span><sup>°</sup>C</span>
+                </div>
+            </div>
+
+            <!-- Pressure -->
+            <div class="row mb-3" title="@Model.PressureTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Pressure:</label>
+                </div>
+                <div class="col-6">
+                    @Math.Round(Model.CurrentlyData.Pressure) <span>mBar</span>
+                </div>
+            </div>
+
+            <!-- UV Index -->
+            <div class="row mb-3" title="@Model.UvIndexTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">UV Index:</label>
+                </div>
+                <div class="col-6">
+                    @Model.UvIndexDisplay
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-xl-3">
+            <!-- Visibility -->
+            <div class="row mb-3" title="@Model.VisibilityTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Visibility:</label>
+                </div>
+                <div class="col-6">
+                    @Math.Round(Model.CurrentlyData.Visibility) <span>km</span>
+                </div>
+            </div>
+
+            <!-- Cloud Cover -->
+            <div class="row mb-3" title="@Model.CloudCoverTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Cloud Cover:</label>
+                </div>
+                <div class="col-6">
+                    @(Model.CurrentlyData.CloudCover * 100) <span>%</span>
+                </div>
+            </div>
+
+            <!-- Ozone -->
+            <div class="row mb-3" title="@Model.OzoneTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Ozone:</label>
+                </div>
+                <div class="col-6">
+                    @Math.Round(Model.CurrentlyData.Ozone) <span>DU</span>
+                </div>
+            </div>
+
+            <!-- Nearest Storm Distance -->
+            <div class="row mb-3" title="@Model.NearestStormDistanceTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Nearest Strom Distance:</label>
+                </div>
+                <div class="col-6">
+                    @Math.Round(Model.CurrentlyData.NearestStormDistance) <span>km</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-xl-3">
+            <!-- Nearest Storm Bearing -->
+            <div class="row mb-3" title="@Model.NearestStormBearingTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Nearest Strom Bearing:</label>
+                </div>
+                <div class="col-6">
+                    @Model.CurrentlyData.NearestStormBearing <span><sup>°</sup></span>
+                </div>
+            </div>
+
+            <!-- Precip Probability -->
+            <div class="row mb-3" title="@Model.PrecipProbabilityTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Precip Probability:</label>
+                </div>
+                <div class="col-6">
+                    @(Model.CurrentlyData.PrecipProbability * 100) <span>%</span>
+                </div>
+            </div>
+
+            <!-- Precip Type -->
+            <div class="row mb-3" title="@Model.PrecipTypeTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Precip Type:</label>
+                </div>
+                <div class="col-6">
+                    @Model.CurrentlyData.PrecipType
+                </div>
+            </div>
+
+            <!-- Precip Intzensity -->
+            <div class="row mb-3" title="@Model.PrecipIntensityTooltip">
+                <div class="col-6 text-right">
+                    <label class="font-weight-bold">Precip Intensity:</label>
+                </div>
+                <div class="col-6">
+                    @Model.CurrentlyData.PrecipIntensity <span>mm/h</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="col-xl-3">
+            <!-- Add data points here similar to above -->
+        </div>
+    </div>
+</div>
