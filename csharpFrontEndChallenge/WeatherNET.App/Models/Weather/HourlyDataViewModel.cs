@@ -11,6 +11,7 @@ namespace WeatherNET.App.Models.Weather
         public double ColumnHeightValue { get; set; }
         public List<HourlyDisplayData> DisplayData { get; set; } = new List<HourlyDisplayData>();
         public List<HourlyPrecipDisplayData> PrecipDisplayData { get; set; } = new List<HourlyPrecipDisplayData>();
+        public List<HourlyWindDisplayData> WindDisplayData { get; set; } = new List<HourlyWindDisplayData>();
         public string IconClass { get; set; }
         public string Hour { get; set; }
         public double ColumnScalingFactor { get; set; } = 0.4;
@@ -37,6 +38,16 @@ namespace WeatherNET.App.Models.Weather
         public string Hour { get; set; }
         public string FormattedVolume => PrecipVolume == 0 ? "-" : $"{Math.Round( PrecipVolume, 1 )}";
         public string FormattedChance => $"{Math.Round( PrecipChance, 1 )}";
+        public bool IsDaytime { get; set; }
+    }
+
+    public class HourlyWindDisplayData
+    {
+        public double WindSpeed { get; set; } // In km/h
+        public string WindStrength { get; set; } // In words like Calm, intensive etc.
+        public string WindDirection { get; set; } // in words
+        public double WindBearing { get; set; }
+        public string Hour { get; set; }
         public bool IsDaytime { get; set; }
     }
 }

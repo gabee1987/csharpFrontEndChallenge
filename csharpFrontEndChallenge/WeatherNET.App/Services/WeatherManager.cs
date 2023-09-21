@@ -34,6 +34,7 @@ namespace WeatherNET.App.Services
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );
+            _weatherDisplayService.CalculateWindStrengthType( weatherViewModel );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );
@@ -52,6 +53,7 @@ namespace WeatherNET.App.Services
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );
+            _weatherDisplayService.CalculateWindStrengthType( weatherViewModel );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );

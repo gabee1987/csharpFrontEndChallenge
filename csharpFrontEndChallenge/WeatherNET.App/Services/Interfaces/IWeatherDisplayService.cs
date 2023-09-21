@@ -10,5 +10,7 @@ namespace WeatherNET.App.Services
         void GetIsDayTime( WeatherViewModel weatherViewModel );
         void CalculateHourlyPrecipitationDisplayData( WeatherViewModel viewModel );
         void CalculateTotalPrecipVolumePerDay( WeatherViewModel weatherViewModel );
+        void CalculateWindStrengthType( WeatherViewModel weatherViewModel );
+        void CalculateWindDirectionType( WeatherViewModel weatherViewModel );
     }
 }

@@ -85,9 +85,73 @@ namespace WeatherNET.App.Services
             }
         }
 
-        public void CalculateTotalPrecipVolumePerDay( WeatherViewModel weatherViewModel )
+        public void CalculateTotalPrecipVolumePerDay( WeatherViewModel viewModel )
         {
             throw new NotImplementedException();
         }
+
+        public void CalculateWindStrengthType( WeatherViewModel viewModel )
+        {
+            if ( viewModel == null || viewModel.Hourly.HourlyData == null ) return;
+
+            foreach ( var hourData in viewModel.Hourly.HourlyData.Data )
+            {
+                var windData = new HourlyWindDisplayData
+                {
+                    WindStrength  = GetWindStrengthInWords( hourData.WindSpeed ),
+                    WindDirection = GetWindDirectionInWords( hourData.WindBearing ),
+                    WindSpeed     = Math.Round( hourData.WindSpeed )
+                };
+                viewModel.Hourly.WindDisplayData.Add( windData );
+            }
+        }
+
+        public void CalculateWindDirectionType( WeatherViewModel viewModel )
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Helper Methods
+        private string GetWindStrengthInWords( double speed )
+        {
+            if ( speed <= 1 ) return "Calm";
+            if ( speed <= 5 ) return "Light Air";
+            if ( speed <= 11 ) return "Light Breeze";
+            if ( speed <= 19 ) return "Gentle Breeze";
+            if ( speed <= 28 ) return "Moderate Breeze";
+            if ( speed <= 38 ) return "Fresh Breeze";
+            if ( speed <= 49 ) return "Strong Breeze";
+            if ( speed <= 61 ) return "Near Gale";
+            if ( speed <= 74 ) return "Gale";
+            if ( speed <= 88 ) return "Strong Gale";
+            if ( speed <= 102 ) return "Storm";
+            if ( speed <= 117 ) return "Violent Storm";
+            if ( speed > 117 ) return "Hurricane";
+
+            return "Unknown";
+        }
+
+        private string GetWindDirectionInWords( double bearing )
+        {
+            if ( bearing <= 11.25 || bearing > 348.75 ) return "North";
+            if ( bearing <= 33.75 ) return "North-Northeast";
+            if ( bearing <= 56.25 ) return "Northeast";
+            if ( bearing <= 78.75 ) return "East-Northeast";
+            if ( bearing <= 101.25 ) return "East";
+            if ( bearing <= 123.75 ) return "East-Southeast";
+            if ( bearing <= 146.25 ) return "Southeast";
+            if ( bearing <= 168.75 ) return "South-Southeast";
+            if ( bearing <= 191.25 ) return "South";
+            if ( bearing <= 213.75 ) return "South-Southwest";
+            if ( bearing <= 236.25 ) return "Southwest";
+            if ( bearing <= 258.75 ) return "West-Southwest";
+            if ( bearing <= 281.25 ) return "West";
+            if ( bearing <= 303.75 ) return "West-Northwest";
+            if ( bearing <= 326.25 ) return "Northwest";
+            if ( bearing <= 348.75 ) return "North-Northwest";
+
+            return "Unknown";
+        }
+        #endregion
     }
 }

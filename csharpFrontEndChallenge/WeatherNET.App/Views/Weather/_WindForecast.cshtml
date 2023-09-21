@@ -1,0 +1,44 @@
+﻿@model WeatherNET.App.Models.Weather.WeatherViewModel
+
+<div class="wind-forecast">
+    <div class="wind-forecast-title">
+        <h5>Wind</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            <div class="wind-current-speed">
+                <h1>@Model.Currently.CurrentlyData.WindSpeed</h1>
+                <div class="wind-current-icon-and-label">
+                    <span>@Model.Currently.CurrentlyData.WindBearing</span>
+                    <span>km/h</span>
+                </div>            
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="wind-current-strenght">
+                <h2>@Model.Hourly.WindDisplayData.First().WindStrength</h2>
+                Now <span class="middle-dot">·</span><span>From @Model.Hourly.WindDisplayData.First().WindDirection</span>
+            </div>          
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="wind-chart">
+                @for ( var i = 0; i < Model.Hourly.HourlyData.Data.Count; i++ )
+                {
+                    var data = Model.Hourly.WindDisplayData[i];
+                    <div class="wind-column">
+                        <div class="wind-direction-icon">
+                            <svg width="20" height="30" viewBox="0 0 20 30" style="transform: rotate(@data.WindBearing + 'deg');">
+                                <path d="M10 0 L20 30 L15 20 L5 20 L0 30 L10 0" fill="none" stroke="black" />
+                            </svg>
+                        </div>
+                        <div class="wind-speed">@data.WindSpeed</div>
+                        <div class="wind-bar" style="height: @data.WindSpeed + 'px'"></div>
+                        <div class="time-label">@data.Hour</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
