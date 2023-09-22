@@ -40,7 +40,7 @@ namespace WeatherNET.App.Models.Weather
     {
         public double PrecipChance { get; set; } // In percentage
         public double PrecipVolume { get; set; } // In mm
-        public string Hour { get; set; }
+        public string Hour { get; set; } // Formatted with HH
         public string FormattedVolume => PrecipVolume == 0 ? "-" : $"{Math.Round( PrecipVolume, 1 )}";
         public string FormattedChance => $"{Math.Round( PrecipChance, 1 )}";
         public bool IsDaytime { get; set; }
