@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-2">
             <div class="wind-current-strenght">
-                <h2>@Model.Hourly.WindDisplayData.First().WindStrength</h2>
+                <h3>@Model.Hourly.WindDisplayData.First().WindStrength</h3>
                 <div class="wind-direction-string">
                     <label>Now</label><span class="middle-dot">·</span><span>From @Model.Hourly.WindDisplayData.First().WindDirectionString</span>
                 </div>
@@ -48,9 +48,9 @@
                                 </g>
                             </svg>
                         </div>
-                        <div class="wind-speed">@data.WindSpeed</div>
-                        <div class="wind-bar" style="height: @(data.WindGust / Model.Hourly.HourlyWindColumnScalingFactor)rem"></div>
-                        <div class="time-label">@data.Hour</div>
+                        <div class="wind-speed @((i == 0) ? "current-hour-windSpeed" : "")">@data.WindSpeed</div>
+                        <div class="wind-bar" style="height: @(data.BarHeightValue)rem"></div>
+                        <div class="wind-hour @((i == 0) ? "current-hour" : "")">@data.Hour</div>
                     </div>
                 }
             </div>

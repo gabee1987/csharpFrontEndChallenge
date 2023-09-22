@@ -221,7 +221,7 @@
     color: #555;
 }
 
-    .hour.current-hour {
+    .current-hour {
         font-weight: bold;
     }
 
@@ -521,7 +521,6 @@
 .wind-chart {
     display: flex;
     flex-direction: row;
-    align-items: flex-end; /* This makes sure columns (bars) grow upwards */
     padding: 0.2rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
@@ -535,7 +534,7 @@
     width: 50px;
     margin: 0 2px;
     flex-shrink: 0;
-    /*align-items: flex-end;*/
+    justify-content: flex-end;
     height: 100%;
 }
 
@@ -550,7 +549,16 @@
     padding-top: 2rem;
 }
 
+.current-hour-windSpeed {
+    font-weight: bold;
+}
+
 .wind-bar {
     background-color: rgb(0, 128, 255, 0.50);
     border-radius: 5px 5px 0 0;
+}
+
+.wind-hour {
+    font-size: 0.9rem;
+    color: #555;
 }

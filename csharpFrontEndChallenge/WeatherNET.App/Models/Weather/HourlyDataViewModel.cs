@@ -16,8 +16,8 @@ namespace WeatherNET.App.Models.Weather
         public string Hour { get; set; }
         public double HourlyChartHeightIncrementFactor { get; set; } = 0.7;
         public double HourlyColumnScalingFactor { get; set; } = 0.4;
-        public double HourlyWindChartScalingFactor { get; set; } = 1.4;
-        public double HourlyWindColumnScalingFactor { get; set; } = 0.7;
+        public double HourlyWindChartScalingFactor { get; set; } = 1.1;
+        public double HourlyWindColumnScalingFactor { get; set; } = 0.8;
         public double MaxTemp { get; set; }
         public double MaxWindGust { get; set; }
         public double AdjustedHourlyChartHeight { get; set; }
@@ -27,7 +27,7 @@ namespace WeatherNET.App.Models.Weather
 
     public class HourlyDisplayData
     {
-        public double HeightValue { get; set; }
+        public double BarHeightValue { get; set; }
         public double TempValue { get; set; }
         public string IconClass { get; set; }
         public string Hour { get; set; }
@@ -48,6 +48,7 @@ namespace WeatherNET.App.Models.Weather
 
     public class HourlyWindDisplayData
     {
+        public double BarHeightValue { get; set; }
         public double WindSpeed { get; set; } // In km/h
         public string WindStrength { get; set; } // In words like Calm, intensive etc.
         public double WindDirection { get; set; } // in degree

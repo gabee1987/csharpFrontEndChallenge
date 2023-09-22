@@ -5,8 +5,8 @@
         @for ( var i = 0; i < Model.DisplayData.Count; i++ )
         {
             var displayData = Model.DisplayData[i];
-            <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.HeightValue)rem">
-                <div class="hourly-temp text-center @((i == 1) ? "current-hour-temp" : "")">
+            <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.BarHeightValue)rem">
+                <div class="hourly-temp text-center @((i == 0) ? "current-hour-temp" : "")">
                     @Math.Round(displayData.TempValue)
                     <span class="temp-unit hour-unit">
                         <sup>°</sup>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="hour-column-bottom-value">
                     <span class="weather-icon @displayData.IconClass hourly-icon"></span>
-                    <span class="hour @((i == 1) ? "current-hour" : "")">@displayData.Hour:00</span>
+                    <span class="hour @((i == 0) ? "current-hour" : "")">@displayData.Hour:00</span>
                 </div>
             </div>
         }

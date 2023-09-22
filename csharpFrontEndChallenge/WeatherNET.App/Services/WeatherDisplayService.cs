@@ -31,13 +31,13 @@ namespace WeatherNET.App.Services
 
                 var displayData = new HourlyDisplayData
                 {
-                    TempValue   = hourData.Temperature,
-                    HeightValue = hourData.Temperature * incrementFactor,
-                    IconClass   = hourData.Icon.ToLower(),
-                    Hour        = hourData.Time.ToString( "HH" ),
-                    SunriseTime = sunriseTime,
-                    SunsetTime  = sunsetTime,
-                    IsDaytime   = hourData.Time > sunriseTime && hourData.Time < sunsetTime ? true : false
+                    TempValue      = hourData.Temperature,
+                    BarHeightValue = hourData.Temperature * incrementFactor,
+                    IconClass      = hourData.Icon.ToLower(),
+                    Hour           = hourData.Time.ToString( "HH" ),
+                    SunriseTime    = sunriseTime,
+                    SunsetTime     = sunsetTime,
+                    IsDaytime      = hourData.Time > sunriseTime && hourData.Time < sunsetTime ? true : false
                 };
                 viewModel.Hourly.DisplayData.Add( displayData );
             }
@@ -91,7 +91,7 @@ namespace WeatherNET.App.Services
             throw new NotImplementedException();
         }
 
-        public void CalculateWindStrengthType( WeatherViewModel viewModel )
+        public void CalculateWindBarDisplayData( WeatherViewModel viewModel, double incrementFactor )
         {
             if ( viewModel == null || viewModel.Hourly.HourlyData == null ) return;
 
@@ -104,7 +104,8 @@ namespace WeatherNET.App.Services
                     WindDirection       = hourData.WindBearing,
                     WindSpeed           = Math.Round( hourData.WindSpeed ),
                     WindGust            = Math.Round( hourData.WindGust ),
-                    Hour                = hourData.Time.ToString( "HH:00" )
+                    Hour                = hourData.Time.ToString( "HH:00" ),
+                    BarHeightValue      = Math.Round( hourData.WindSpeed ) * incrementFactor, 
                 };
                 viewModel.Hourly.WindDisplayData.Add( windData );
             }
