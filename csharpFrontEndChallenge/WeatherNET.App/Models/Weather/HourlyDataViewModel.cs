@@ -16,7 +16,7 @@ namespace WeatherNET.App.Models.Weather
         public string Hour { get; set; }
         public double HourlyChartHeightIncrementFactor { get; set; } = 0.7;
         public double HourlyColumnScalingFactor { get; set; } = 0.4;
-        public double HourlyWindChartScalingFactor { get; set; } = 1.1;
+        public double HourlyWindChartScalingFactor { get; set; } = 0.9;
         public double HourlyWindColumnScalingFactor { get; set; } = 0.8;
         public double MaxTemp { get; set; }
         public double MaxWindGust { get; set; }
