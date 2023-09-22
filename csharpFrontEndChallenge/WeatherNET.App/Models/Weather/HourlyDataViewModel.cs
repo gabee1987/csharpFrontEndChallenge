@@ -14,17 +14,21 @@ namespace WeatherNET.App.Models.Weather
         public List<HourlyWindDisplayData> WindDisplayData { get; set; } = new List<HourlyWindDisplayData>();
         public string IconClass { get; set; }
         public string Hour { get; set; }
-        public double HourlyForecastColumnScalingFactor { get; set; } = 0.4;
-        public double HourlyWindColumnScalingFactor { get; set; } = 2.5;
-        public double ChartHeightIncrementFactor { get; set; } = 0.7;
+        public double HourlyChartHeightIncrementFactor { get; set; } = 0.7;
+        public double HourlyColumnScalingFactor { get; set; } = 0.4;
+        public double HourlyWindChartScalingFactor { get; set; } = 1.4;
+        public double HourlyWindColumnScalingFactor { get; set; } = 0.7;
         public double MaxTemp { get; set; }
-        public double AdjustedChartHeight { get; set; }
+        public double MaxWindGust { get; set; }
+        public double AdjustedHourlyChartHeight { get; set; }
+        public double AdjustedWindChartHeight { get; set; }
         #endregion
     }
 
     public class HourlyDisplayData
     {
         public double HeightValue { get; set; }
+        public double TempValue { get; set; }
         public string IconClass { get; set; }
         public string Hour { get; set; }
         public bool IsDaytime { get; set; }

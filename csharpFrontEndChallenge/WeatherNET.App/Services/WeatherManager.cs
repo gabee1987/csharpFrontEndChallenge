@@ -29,12 +29,13 @@ namespace WeatherNET.App.Services
             var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
 
             // Calculate display related values
-            _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyForecastColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.HourlyChartHeightIncrementFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );
             _weatherDisplayService.CalculateWindStrengthType( weatherViewModel );
+            _weatherDisplayService.CalculateWindChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.HourlyWindChartScalingFactor );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );
@@ -44,16 +45,17 @@ namespace WeatherNET.App.Services
 
         public async Task<WeatherViewModel> GetWeatherViewModelByCoordinates( double latitude, double longitude )
         {
-            var weatherData = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
+            var weatherData      = await _weatherService.GetWeatherBasedOnCoordsAsync( latitude, longitude );
             var weatherViewModel = _mapper.Map<WeatherViewModel>( weatherData );
 
             // Calculate display related values
-            _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.ChartHeightIncrementFactor );
-            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyForecastColumnScalingFactor );
+            _weatherDisplayService.CalculateHourlyChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.HourlyChartHeightIncrementFactor );
+            _weatherDisplayService.CalculateHourlyChartBarDisplayData( weatherViewModel, weatherViewModel.Hourly.HourlyColumnScalingFactor );
             _weatherDisplayService.CalculateUvIndex( weatherViewModel.Currently );
             _weatherDisplayService.GetIsDayTime( weatherViewModel );
             _weatherDisplayService.CalculateHourlyPrecipitationDisplayData( weatherViewModel );
             _weatherDisplayService.CalculateWindStrengthType( weatherViewModel );
+            _weatherDisplayService.CalculateWindChartHeight( weatherViewModel.Hourly, weatherViewModel.Hourly.HourlyWindChartScalingFactor );
 
             // Assign tooltip values from the json to the properties
             await AssignCurrentlyWeatherTooltipsToViewModelAsync( weatherViewModel.Currently );

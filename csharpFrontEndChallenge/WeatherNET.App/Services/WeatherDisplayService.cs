@@ -10,7 +10,7 @@ namespace WeatherNET.App.Services
 
 
             viewModel.MaxTemp = viewModel.HourlyData.Data.Max( d => d.Temperature );
-            viewModel.AdjustedChartHeight = viewModel.MaxTemp * incrementFactor;
+            viewModel.AdjustedHourlyChartHeight = viewModel.MaxTemp * incrementFactor;
         }
 
         public void CalculateHourlyChartBarDisplayData( WeatherViewModel viewModel, double incrementFactor )
@@ -31,6 +31,7 @@ namespace WeatherNET.App.Services
 
                 var displayData = new HourlyDisplayData
                 {
+                    TempValue   = hourData.Temperature,
                     HeightValue = hourData.Temperature * incrementFactor,
                     IconClass   = hourData.Icon.ToLower(),
                     Hour        = hourData.Time.ToString( "HH" ),
@@ -154,6 +155,14 @@ namespace WeatherNET.App.Services
             if ( bearing <= 348.75 ) return "North-Northwest";
 
             return "Unknown";
+        }
+
+        public void CalculateWindChartHeight( HourlyDataViewModel viewModel, double incrementFactor )
+        {
+            if ( viewModel == null || viewModel.HourlyData == null ) return;
+
+            viewModel.MaxWindGust             = viewModel.HourlyData.Data.Max( d => d.WindGust );
+            viewModel.AdjustedWindChartHeight = viewModel.MaxWindGust * incrementFactor;
         }
         #endregion
     }

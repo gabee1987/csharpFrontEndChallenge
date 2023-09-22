@@ -535,9 +535,19 @@
     width: 50px;
     margin: 0 2px;
     flex-shrink: 0;
-    /*flex: 1;
-    text-align: center;
-    margin: 0 4px;*/
+    /*align-items: flex-end;*/
+    height: 100%;
+}
+
+.wind-direction-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wind-speed {
+    padding-top: 2rem;
 }
 
 .wind-bar {

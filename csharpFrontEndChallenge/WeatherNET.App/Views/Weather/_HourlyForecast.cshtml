@@ -1,20 +1,20 @@
 ﻿@model WeatherNET.App.Models.Weather.HourlyDataViewModel
 
 <div class="hourly-forecast-data">
-    <div class="hourly-chart" style="height: @(Model.AdjustedChartHeight)rem" id="hourlyForecastScrollChart">
+    <div class="hourly-chart" style="height: @(Model.AdjustedHourlyChartHeight)rem" id="hourlyForecastScrollChart">
         @for ( var i = 0; i < Model.DisplayData.Count; i++ )
         {
             var displayData = Model.DisplayData[i];
             <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.HeightValue)rem">
-                <div class="hourly-temp text-center @((i == 0) ? "current-hour-temp" : "")">
-                    @Math.Round(displayData.HeightValue / Model.HourlyForecastColumnScalingFactor)
+                <div class="hourly-temp text-center @((i == 1) ? "current-hour-temp" : "")">
+                    @Math.Round(displayData.TempValue)
                     <span class="temp-unit hour-unit">
                         <sup>°</sup>
                     </span>
                 </div>
                 <div class="hour-column-bottom-value">
                     <span class="weather-icon @displayData.IconClass hourly-icon"></span>
-                    <span class="hour @((i == 0) ? "current-hour" : "")">@displayData.Hour:00</span>
+                    <span class="hour @((i == 1) ? "current-hour" : "")">@displayData.Hour:00</span>
                 </div>
             </div>
         }

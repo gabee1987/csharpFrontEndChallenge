@@ -27,7 +27,7 @@ namespace WeatherNET.App.Models.MappingProfiles
             CreateMap<HourlyWeatherData, HourlyDataViewModel>()
                 .ForMember( dest => dest.HourlyData, opt => opt.MapFrom( src => src ) )
                 .ForMember( dest => dest.MaxTemp, opt => opt.MapFrom( src => src.Data.Max( d => d.Temperature ) ) )
-                .ForMember( dest => dest.AdjustedChartHeight, opt => opt.MapFrom( src => src.Data.Max( d => d.Temperature ) * 0.7 ) );
+                .ForMember( dest => dest.AdjustedHourlyChartHeight, opt => opt.MapFrom( src => src.Data.Max( d => d.Temperature ) * 0.7 ) );
 
             CreateMap<MinutelyWeatherData, MinutelyDataViewModel>()
                 .ForMember( dest => dest.MinutelyData, opt => opt.MapFrom( src => src ) );

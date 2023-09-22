@@ -12,5 +12,6 @@ namespace WeatherNET.App.Services
         void CalculateTotalPrecipVolumePerDay( WeatherViewModel weatherViewModel );
         void CalculateWindStrengthType( WeatherViewModel weatherViewModel );
         void CalculateWindDirectionType( WeatherViewModel weatherViewModel );
+        void CalculateWindChartHeight( HourlyDataViewModel viewModel, double incrementFactor );
     }
 }
