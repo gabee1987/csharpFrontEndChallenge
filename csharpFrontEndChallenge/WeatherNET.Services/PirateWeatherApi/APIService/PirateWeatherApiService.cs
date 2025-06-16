@@ -16,7 +16,13 @@ namespace WeatherNET.Services.PirateWeatherApi.APIService
         public PirateWeatherApiService( IOptions<PirateWeatherConfig> configOptions, IMapper mapper )
         {
             _config = configOptions.Value;
-            _api    = RestService.For<IPirateWeatherApi>( _config.BaseUrl );
+            var refitSettings = new RefitSettings
+            {
+                ContentSerializer = new NewtonsoftJsonContentSerializer()
+            };
+
+            _api = RestService.For<IPirateWeatherApi>(_config.BaseUrl, refitSettings);
+
             _mapper = mapper;
         }
 

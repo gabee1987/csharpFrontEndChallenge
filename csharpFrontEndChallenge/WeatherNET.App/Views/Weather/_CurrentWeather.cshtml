@@ -54,7 +54,7 @@
             <div class="col-md-2">
                 <div class="today-forecast-precipProbability">
                     <span class="detailed-icon @(string.IsNullOrEmpty(Model.Currently.CurrentlyData.PrecipType) || Model.Currently.CurrentlyData.PrecipType.ToLower() == "none" ? "umbrella" : Model.Currently.CurrentlyData.PrecipType.ToLower())"></span>
-                    @(Model.Currently.CurrentlyData.PrecipProbability * 100)
+                    @Math.Round(Model.Currently.CurrentlyData.PrecipProbability * 100, 2)
                     <span>%</span>
                 </div>
             </div>

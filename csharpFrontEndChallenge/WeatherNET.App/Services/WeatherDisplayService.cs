@@ -78,7 +78,7 @@ namespace WeatherNET.App.Services
             {
                 var precipData = new HourlyPrecipDisplayData
                 {
-                    PrecipChance = hourData.PrecipProbability * 100,
+                    PrecipChance = Math.Round(hourData.PrecipProbability * 100, 2),
                     PrecipVolume = hourData.PrecipIntensity,
                     Hour         = hourData.Time.ToString( "HH:00" )
                 };

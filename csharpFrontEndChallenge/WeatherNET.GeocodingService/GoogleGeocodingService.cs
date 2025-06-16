@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Refit;
+using System.Globalization;
 using WeatherNET.Common.Configs;
 
 namespace WeatherNET.GeocodingService
@@ -10,7 +11,21 @@ namespace WeatherNET.GeocodingService
         private readonly GoogleGeocodingConfig _config;
 
 
-        public GoogleGeocodingService( IOptions<GoogleGeocodingConfig> configOptions )
+        //public GoogleGeocodingService(IOptions<GoogleGeocodingConfig> configOptions)
+        //{
+        //    _config = configOptions.Value;
+
+        //    if (string.IsNullOrWhiteSpace(_config.ApiKey))
+        //        throw new InvalidOperationException("Google Geocoding API key is missing.");
+
+        //    var refitSettings = new RefitSettings
+        //    {
+        //        ContentSerializer = new NewtonsoftJsonContentSerializer()
+        //    };
+
+        //    _api = RestService.For<IGoogleGeocodingApi>(_config.BaseUrl, refitSettings);
+        //}
+        public GoogleGeocodingService(IOptions<GoogleGeocodingConfig> configOptions)
         {
             _config = configOptions.Value;
 
@@ -20,45 +35,83 @@ namespace WeatherNET.GeocodingService
                 ContentSerializer = new NewtonsoftJsonContentSerializer()
             };
 
-            _api = RestService.For<IGoogleGeocodingApi>( _config.BaseUrl );
+            _api = RestService.For<IGoogleGeocodingApi>(_config.BaseUrl);
         }
 
-        public async Task<GoogleGeocodeResponse> GetLocationDataAsync( string locationName )
+        public async Task<GoogleGeocodeResponse> GetLocationDataAsync(string locationName)
         {
-            var response = await _api.GetLocationDataBasedOnNameAsync( locationName, _config.ApiKey );
+            var response = await _api.GetLocationDataBasedOnNameAsync(locationName, _config.ApiKey);
 
-            if ( response.Status != "OK" || !response.Results.Any() )
+            if (response.Status != "OK" || !response.Results.Any())
             {
-                throw new Exception( "Failed to get location name from Google Geocoding API." );
+                throw new Exception("Failed to get location name from Google Geocoding API.");
             }
 
             return response;
         }
 
-        public async Task<GoogleGeocodeResponse> GetLocationDataAsync( double latitude, double longitude )
-        {
-            var response = await _api.GetLocationDataBasedOnCoordinatesAsync( latitude, longitude, _config.ApiKey );
+        //public async Task<GoogleGeocodeResponse> GetLocationDataAsync( string locationName )
+        //{
+        //    var response = await _api.GetLocationDataBasedOnNameAsync( locationName, _config.ApiKey );
 
-            if ( response.Status != "OK" || !response.Results.Any() )
+        //    //_logger.LogDebug("Geocoding response status: {Status}, error: {Err}",
+        //    //     response.Status, response.ErrorMessage);
+
+        //    if ( response.Status != "OK" || !response.Results.Any() )
+        //    {
+        //        throw new Exception( "Failed to get location name from Google Geocoding API." );
+        //    }
+
+        //    return response;
+        //}
+
+        public async Task<GoogleGeocodeResponse> GetLocationDataAsync(double latitude, double longitude)
+        {
+            var response = await _api.GetLocationDataBasedOnCoordinatesAsync(latitude, longitude, _config.ApiKey);
+
+            if (response.Status != "OK" || !response.Results.Any())
             {
-                throw new Exception( "Failed to get location name from Google Geocoding API." );
+                throw new Exception("Failed to get location name from Google Geocoding API.");
             }
 
             return response;
         }
 
+        //public async Task<GoogleGeocodeResponse> GetLocationDataAsync( double latitude, double longitude )
+        //{
+        //    var latlng = $"{latitude.ToString(CultureInfo.InvariantCulture)},{longitude.ToString(CultureInfo.InvariantCulture)}";
+        //    var response = await _api.GetLocationDataBasedOnCoordinatesAsync(latlng, _config.ApiKey);
 
-        public async Task<string> GetLocationNameAsync( double latitude, double longitude )
+        //    if (response.Status != "OK" || !response.Results.Any())
+        //        throw new Exception("Failed to get location name from Google Geocoding API.");
+
+        //    return response;
+        //}
+
+        public async Task<string> GetLocationNameAsync(double latitude, double longitude)
         {
-            var response = await _api.GetLocationDataBasedOnCoordinatesAsync( latitude, longitude, _config.ApiKey );
+            var response = await _api.GetLocationDataBasedOnCoordinatesAsync(latitude, longitude, _config.ApiKey);
 
-            if ( response.Status != "OK" || !response.Results.Any() )
+            if (response.Status != "OK" || !response.Results.Any())
             {
-                throw new Exception( "Failed to get location name from Google Geocoding API." );
+                throw new Exception("Failed to get location name from Google Geocoding API.");
             }
 
             return response.Results.First().Formatted_Address;
         }
+
+        //public async Task<string> GetLocationNameAsync( double latitude, double longitude )
+        //{
+        //    var latlng = $"{latitude.ToString(CultureInfo.InvariantCulture)},{longitude.ToString(CultureInfo.InvariantCulture)}";
+        //    var response = await _api.GetLocationDataBasedOnCoordinatesAsync(latlng, _config.ApiKey);
+
+        //    if ( response.Status != "OK" || !response.Results.Any() )
+        //    {
+        //        throw new Exception( "Failed to get location name from Google Geocoding API." );
+        //    }
+
+        //    return response.Results.First().Formatted_Address;
+        //}
 
         public async Task<(double Latitude, double Longitude)> GetCoordinatesAsync( string locationName )
         {

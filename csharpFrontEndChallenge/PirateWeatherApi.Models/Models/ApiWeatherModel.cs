@@ -57,11 +57,11 @@ namespace WeatherNET.PirateWeatherApi
         [JsonProperty( "icon" )]
         public string Icon { get; set; }
 
-        [JsonProperty( "nearestStormDistance", NullValueHandling = NullValueHandling.Ignore )]
-        public long? NearestStormDistance { get; set; }
+        [JsonProperty("nearestStormDistance", NullValueHandling = NullValueHandling.Ignore)]
+        public double? NearestStormDistance { get; set; }
 
-        [JsonProperty( "nearestStormBearing", NullValueHandling = NullValueHandling.Ignore )]
-        public long? NearestStormBearing { get; set; }
+        [JsonProperty("nearestStormBearing", NullValueHandling = NullValueHandling.Ignore)]
+        public double? NearestStormBearing { get; set; }
 
         [JsonProperty( "precipIntensity" )]
         public double PrecipIntensity { get; set; }

@@ -14,8 +14,8 @@ namespace WeatherNET.App.Models.Weather
         public List<HourlyWindDisplayData> WindDisplayData { get; set; } = new List<HourlyWindDisplayData>();
         public string IconClass { get; set; }
         public string Hour { get; set; }
-        public double HourlyChartHeightIncrementFactor { get; set; } = 0.7;
-        public double HourlyColumnScalingFactor { get; set; } = 0.4;
+        public double HourlyChartHeightIncrementFactor { get; set; } = 0.5;
+        public double HourlyColumnScalingFactor { get; set; } = 0.3;
         public double HourlyWindChartScalingFactor { get; set; } = 1.2;
         public double HourlyWindColumnScalingFactor { get; set; } = 1.0;
         public double MaxTemp { get; set; }

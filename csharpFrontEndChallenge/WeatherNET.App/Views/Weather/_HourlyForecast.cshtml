@@ -1,11 +1,12 @@
-﻿@model WeatherNET.App.Models.Weather.HourlyDataViewModel
+﻿@using System.Globalization
+@model WeatherNET.App.Models.Weather.HourlyDataViewModel
 
 <div class="hourly-forecast-data">
-    <div class="hourly-chart" style="height: @(Model.AdjustedHourlyChartHeight)rem" id="hourlyForecastScrollChart">
+    <div class="hourly-chart" style="height: @(Model.AdjustedHourlyChartHeight.ToString("F3", CultureInfo.InvariantCulture))rem" id="hourlyForecastScrollChart">
         @for ( var i = 0; i < Model.DisplayData.Count; i++ )
         {
             var displayData = Model.DisplayData[i];
-            <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.BarHeightValue)rem">
+            <div class="hour-column @((displayData.IsDaytime) ? "day-column" : "night-column")" style="height: @(displayData.BarHeightValue.ToString("F3", CultureInfo.InvariantCulture))rem">
                 <div class="hourly-temp text-center @((i == 0) ? "current-hour-temp" : "")">
                     @Math.Round(displayData.TempValue)
                     <span class="temp-unit hour-unit">
